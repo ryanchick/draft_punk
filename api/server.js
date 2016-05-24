@@ -21,6 +21,17 @@ app.use('/api/stats',stat_routes);
 app.use('/api/team',team_routes);
 app.use('/api/draft',draft_routes);
 
+//test user table
+// var testobj = {firstName: "Brian"};
+
+// models.Users.create(testobj).then(function(newObj){
+// 	console.log(newObj);
+// });
+
+// models.Users.findAll().then(function(res){
+// 		//findall returns an array of objects
+// 		console.log(res[0].dataValues.teams);
+// })
 
 //start server and database
 models.sequelize.sync().then(function(){
@@ -29,3 +40,4 @@ models.sequelize.sync().then(function(){
 		console.log('Stop Server With CTRL + C');
 	});
 })
+
