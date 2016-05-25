@@ -4,11 +4,15 @@
 		.controller('LoginCtrl', LoginCtrl);
 
 	function LoginCtrl($http){
-		var loginVm = this;
+		var loginVm     	 = this;
 
-		loginVm.addUser = addUser;
-		loginVm.login = login;
+		//function bindings
+		loginVm.addUser 	 = addUser;
+		loginVm.login   	 = login;
+		loginVm.toggleCreate = toggleCreate;
 
+
+		//functions
 		function addUser(){
 			var newUser = {
 							username:loginVm.username,
@@ -25,13 +29,17 @@
 
 		function login(){
 			var loginInfo = {
-								username:loginVm.username,
-								password:loginVm.password
+							  username:loginVm.username,
+							  password:loginVm.password
 							};
 			$http.post('/api/users/login', loginInfo)
 				.then(function(res){
 					console.log(res);
 				});
+		}
+
+		function toggleCreate(){
+			loginVm.create = !loginVm.create;
 		}
 				
 	}
