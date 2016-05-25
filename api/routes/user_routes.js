@@ -1,4 +1,5 @@
 var models 	= require('./../models');
+var jwt 	= require('jsonwebtoken');
 var router 	= require('express').Router();
 
 //get all users?
@@ -40,7 +41,9 @@ router.post('/login', function(req,res){
 	var where = {where:{username:req.body.username,password:req.body.password}};
 	models.Users.find(where).then(function(user){
 		if (user){
-			console.log("logging in");
+			var user_obj = {email:user.email,id:user.id};
+			var token = jwt.sign(user_obj, 'A5kjdl341Dadf123dAdfDedcAdfeD673F231');
+			res.set('authentication',token);
 			res.json(user);
 		} else {
 			res.send({});

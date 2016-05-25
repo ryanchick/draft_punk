@@ -6,8 +6,12 @@
 		function HomeCtrl($http, $location){
 			var homeVm = this;
 
+		
 			//variables
-			homeVm.userId = 1;
+			if (localStorage.user != undefined){
+				var user = JSON.parse(localStorage.user);
+				homeVm.username = user.username;
+			}
 
 			//function bindings
 			homeVm.route = route;

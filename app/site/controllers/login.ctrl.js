@@ -3,8 +3,15 @@
 		.module('draftApp')
 		.controller('LoginCtrl', LoginCtrl);
 
-	function LoginCtrl($http){
+	function LoginCtrl($http, $location){
 		var loginVm     	 = this;
+
+		//if logged-in, proceed to user page
+		if(localStorage.authToken){
+			var user = JSON.parse(localStorage.user);
+			console.log(user);
+			$location.path('user/' + user.username);
+		}
 
 		//function bindings
 		loginVm.addUser 	 = addUser;
@@ -34,7 +41,14 @@
 							};
 			$http.post('/api/users/login', loginInfo)
 				.then(function(res){
-					console.log(res);
+					if (res.data.username){
+						console.log('logged in');
+						console.log(res.data);
+						localStorage.user = JSON.stringify(res.data);
+						$location.path('user/' + res.data.username)
+					} else {
+						console.log('invalid login');
+					}
 				});
 		}
 

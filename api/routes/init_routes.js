@@ -10,7 +10,7 @@ var playerStats = [];
 
 var positions = JSON.parse(fs.readFileSync(__dirname + '/../positions.txt','utf8'))
 // console.log(typeof positions)
-// console.log(positions[0])
+console.log(positions[0])
 
 router.get('/stats',function(req,res){
 	request(URL, function (error, response, body) {
@@ -63,10 +63,10 @@ router.get('/stats',function(req,res){
 				    games_played: player[5]
 				}
 				playerStats.push(__player)
-				// models.Stats.create(__player)
-				// 	.then(function(ret){
-				// 		// console.log(ret.dataValues)
-				// 	})
+				models.Stats.create(__player)
+					.then(function(ret){
+						// console.log(ret.dataValues)
+					})
 
 			}
 			// console.log(playerStats.length)

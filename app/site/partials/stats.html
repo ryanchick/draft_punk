@@ -1,1 +1,34 @@
-<h2>STATS</h2>
+<div class="container">
+	<h2>STATS</h2>
+
+	<table class="table table-bordered table-striped table-hover table-condensed statTable">
+
+		<tr>
+			<th ng-repeat="category in ctrl.headers" ng-click="ctrl.sortChange(category.sort)" ng-bind="category.label" class="statTable__cell"></th>
+		</tr>
+		
+		<tr ng-repeat="player in ctrl.stats | orderBy:ctrl.sort">
+			<td>
+				<div class = "playerbox">
+					<img class = "playerbox__img" src="{{player.img_url}}" alt='' onError="this.onerror=null;this.src='http://www.ligum.umontreal.ca/people/johndoe.jpg'">
+				</div>
+			</td>
+			<td class="statTable__cell" ng-bind="player.name"></td>
+			<td class="statTable__cell" ng-bind="player.position"></td>
+			<td class="statTable__cell" ng-bind="player.min"></td>
+			<td class="statTable__cell" ng-bind="player.pts"></td>
+			<td class="statTable__cell" ng-bind="player.ast"></td>
+			<td class="statTable__cell" ng-bind="player.reb"></td>
+			<td class="statTable__cell" ng-bind="player.stl"></td>
+			<td class="statTable__cell" ng-bind="player.blk"></td>
+			<td class="statTable__cell" ng-bind="player.fg3m"></td>
+			<td class="statTable__cell">{{player.fgp = player.fgm/player.fga * 100 || 0 | number:2}}</td>
+			<td class="statTable__cell">{{player.ftp = player.ftm/player.fta * 100 || 0 | number:2}}</td>
+			<td class="statTable__cell" ng-bind="player.tov"></td>
+
+		</tr>
+		
+		
+
+	</table>
+</div>
