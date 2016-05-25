@@ -1,9 +1,27 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title></title>
-</head>
-<body>
+	<title>Draft</title>
 
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular-route.js"></script>
+
+	<script type="text/javascript" src="app.js"></script>
+
+	<!-- controllers and services -->
+	<script type="text/javascript" src="site/controllers/draft.ctrl.js"></script>
+	<script type="text/javascript" src="site/controllers/home.ctrl.js"></script>
+	<script type="text/javascript" src="site/controllers/login.ctrl.js"></script>
+	<script type="text/javascript" src="site/controllers/review.ctrl.js"></script>
+	<script type="text/javascript" src="site/controllers/stats.ctrl.js"></script>
+	<script type="text/javascript" src="site/controllers/user.ctrl.js"></script>
+	<script type="text/javascript" src="site/services/players.srv.js"></script>
+
+	<!-- styling -->
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
+</head>
+<body ng-app="draftApp">
+	<ng-view></ng-view>
 </body>
 </html>
