@@ -1,0 +1,99 @@
+(function(){
+	angular
+		.module('draftApp')
+		.controller('DraftCtrl',DraftCtrl)
+
+	function DraftCtrl ($http,stats){
+		var draftVm = this;
+		// console.log('draft')
+		draftVm.playerStats = stats.data;
+		draftVm.myTeam = {
+			"PG":"",
+			"SG":"",
+			"SF":"",
+			"PF":"",
+			"C":"",
+			"G":"",
+			"F":"",
+			"UTIL1":"",
+			"UTIL2":"",
+			"UTIL3":"",
+			"BENCH1":"",
+			"BENCH2":"",
+			"BENCH3":""
+		}
+		draftVm.playerSelect = draftVm.playerStats[1];
+		draftVm.searchName = "";
+		draftVm.draftedPlayers = [];
+		draftVm.myPick = true;
+		checkSelected();
+
+		//public methods
+		draftVm.abbrev = abbrev;
+		draftVm.show = show;
+		draftVm.draft = draft;
+		draftVm.checkSelected = checkSelected;
+
+		function abbrev(name){
+			var arr = name.split(" ")
+			// console.log(arr)
+			arr[0] = arr[0].charAt(0) + ". ";
+			var abbr = arr.reduce(function(a,b){
+				return a+b;
+			})
+			return abbr;
+		}
+
+		function show(player){
+			draftVm.playerSelect = player;
+		}
+
+		function checkSelected(){
+			draftVm.playerStats = draftVm.playerStats.filter(function(player){
+				for(var i = 0;i < draftVm.draftedPlayers.length; i++){
+					if(player.nba_id == draftVm.draftedPlayers[i].nba_id){
+						return false;
+					}
+				}
+				return true;
+			})
+		}
+
+		function draft(player){
+			console.log('draft')
+			draftVm.draftedPlayers.push(player);
+			if(draftVm.myPick == true){
+				if(draftVm.myTeam[player.position] == ""){
+					console.log(player.position)
+					draftVm.myTeam[player.position] = player;
+				} else if(draftVm.myTeam["G"] == "" && (player.position == "PG" || player.position == "SG")){
+					console.log("G")
+					draftVm.myTeam["G"] = player;
+				} else if(draftVm.myTeam["F"] == "" && (player.position == "PF" || player.position == "SF")){
+					draftVm.myTeam["F"] = player;
+				} else if(draftVm.myTeam["UTIL1"] == ""){
+					draftVm.myTeam["UTIL1"] = player;
+				} else if(draftVm.myTeam["UTIL2"] == ""){
+					draftVm.myTeam["UTIL2"] = player;
+				} else if(draftVm.myTeam["UTIL3"] == ""){
+					draftVm.myTeam["UTIL3"] = player;
+				} else if(draftVm.myTeam["BENCH1"] == ""){
+					draftVm.myTeam["BENCH1"] = player;
+				} else if(draftVm.myTeam["BENCH2"] == ""){
+					draftVm.myTeam["BENCH2"] = player;
+				} else if(draftVm.myTeam["BENCH3"] == ""){
+					draftVm.myTeam["BENCH3"] = player;
+				}
+			}
+			checkSelected();
+			if(player == draftVm.filtered[0]){
+				draftVm.playerSelect = draftVm.filtered[1];
+			}else{
+				draftVm.playerSelect = draftVm.filtered[0];
+			}
+			
+
+		}
+
+	}
+})();

@@ -1,0 +1,59 @@
+.draft__playerList {
+  border: 1px solid blue;
+  font-size: 11px;
+  height: 80vh; }
+  .draft__playerList table {
+    width: 100%; }
+  .draft__playerList thead {
+    display: block;
+    border: 1px solid blue; }
+    .draft__playerList thead tr {
+      width: 100%;
+      border: 1px solid green; }
+  .draft__playerList tbody {
+    height: 50vh;
+    border: 1px solid red;
+    overflow: auto;
+    display: block;
+    padding: 0px; }
+  .draft__playerList__name {
+    max-width: 20%;
+    width: 20%;
+    word-wrap: break-word; }
+  .draft__playerList__min {
+    min-width: 8%;
+    width: 8%; }
+  .draft__playerList__pts {
+    min-width: 8%;
+    width: 8%; }
+  .draft__playerList__ast {
+    min-width: 8%;
+    width: 8%; }
+  .draft__playerList__reb {
+    min-width: 8%;
+    width: 8%; }
+  .draft__playerList__stl {
+    min-width: 8%;
+    width: 8%; }
+  .draft__playerList__blk {
+    width: 8%; }
+  .draft__playerList__3pm {
+    width: 8%; }
+  .draft__playerList__fgp {
+    width: 8%; }
+  .draft__playerList__ftp {
+    width: 8%; }
+  .draft__playerList__tov {
+    width: 8%; }
+
+.playerStats {
+  height: 40vh;
+  border: 1px solid red; }
+  .playerStats__image {
+    height: 90px;
+    width: 100px;
+    background-size: cover;
+    background-position: center;
+    float: left; }
+
+/*# sourceMappingURL=draft.css.map */

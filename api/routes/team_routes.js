@@ -20,7 +20,7 @@ router.post('/:userId/addTeam',function (req,res){
 	//update user array of teams
 })
 
-//update team(adding players)
+//update team(adding/removing players)
 router.put('/:teamId',function (req,res){
 	//add player to team
 })

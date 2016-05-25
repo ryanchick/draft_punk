@@ -1,0 +1,81 @@
+
+$stat_width: 8%;
+
+.draft__playerList {
+	border:1px solid blue;
+	font-size: 11px;
+	height:80vh;
+	table{
+		width: 100%;
+	}
+	thead { 
+		display:block;
+		// width:97.5%; 
+		border:1px solid blue;
+		tr{
+			width:100%;
+			border: 1px solid green;
+		}
+	}
+	tbody { 
+		height:50vh; 
+		border: 1px solid red;
+		overflow: auto; 
+		display:block;
+		padding:0px; 
+	}
+	&__name{
+		max-width:20%;
+		width:20%;
+		word-wrap: break-word;
+	}
+	&__min{
+		min-width:$stat_width;
+		width:$stat_width;
+		// font-weight:bold;
+	}
+	&__pts{
+		min-width:$stat_width;
+		width:$stat_width;
+		// color:blue;
+	}
+	&__ast{
+		min-width:$stat_width;
+		width:$stat_width;
+	}
+	&__reb{
+		min-width:$stat_width;
+		width:$stat_width;
+	}
+	&__stl{
+		min-width:$stat_width;
+		width:$stat_width;
+	}
+	&__blk{
+		width:$stat_width;
+	}
+	&__3pm{
+		width:$stat_width;
+	}
+	&__fgp{
+		width:$stat_width;
+	}
+	&__ftp{
+		width:$stat_width;
+	}
+	&__tov{
+		width:$stat_width;
+	}
+}
+
+.playerStats{
+	height:40vh;
+	border:1px solid red;
+	&__image{
+		height:90px;
+		width:100px;
+		background-size:cover;
+		background-position:center;
+		float:left;
+	}
+}

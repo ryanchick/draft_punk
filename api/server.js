@@ -37,7 +37,7 @@ app.use('/api/init',init_routes)
 // 		console.log(res[0].dataValues.teams);
 // })
 
-start server and database
+// start server and database
 models.sequelize.sync().then(function(){
 	app.listen(PORT,function(){
 		console.log('Listening on http://localhost: ' + PORT);

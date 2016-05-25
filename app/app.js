@@ -30,7 +30,12 @@
 				})
 				.when('/draft/:leagueId',{
 					templateUrl: 'site/partials/draft.html',
-					controller: 'DraftCtrl as ctrl'
+					controller: 'DraftCtrl as ctrl',
+					resolve:{
+						stats:function($http){
+							return $http.get("api/draft/init");
+						}
+					}
 				})
 				.when('/review/:leagueId',{
 					templateUrl: 'site/partials/review.html',
