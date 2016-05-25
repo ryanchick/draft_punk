@@ -38,6 +38,7 @@ app.use('/api/init',init_routes)
 // })
 
 //start server and database
+
 models.sequelize.sync().then(function(){
 	app.listen(PORT,function(){
 		console.log('Listening on http://localhost: ' + PORT);

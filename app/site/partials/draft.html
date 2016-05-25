@@ -1,0 +1,78 @@
+<div>
+	Draft order list
+</div>
+<div class="container-fluid">
+	<div class="row">
+			<div class="col-md-5 draft__playerList">
+				<h4>Player List</h4>
+				<input type="text" name="" placeholder="Name" ng-model="ctrl.searchName">
+				<table class="table table-condensed table-striped table-bordered table-hover ">
+					<thead>
+						<tr>
+							<th class="draft__playerList__name">Player Name</th>
+							<th class="draft__playerList__min">POS</th>
+							<th class="draft__playerList__pts">PTS</th>
+							<th class="draft__playerList__ast">AST</th>
+							<th class="draft__playerList__reb">REB</th>
+							<th class="draft__playerList__stl">STL</th>
+							<th class="draft__playerList__blk">BLK</th>
+							<th class="draft__playerList__3pm">3PM</th>
+							<th class="draft__playerList__fgp">FG%</th>
+							<th class="draft__playerList__ftp">FT%</th>
+							<th class="draft__playerList__tov">TOV</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="player in (ctrl.filtered = (ctrl.playerStats | filter: {'name':ctrl.searchName}| orderBy:'-pts'))"
+							ng-click="ctrl.show(player)"
+							>
+							<td class="draft__playerList__name">{{ctrl.abbrev(player.name)}}</td>
+							<td class="draft__playerList__min">{{player.position}}</td>
+							<td class="draft__playerList__pts">{{player.pts | number:1}}</td>
+							<td class="draft__playerList__ast">{{player.ast | number:1}}</td>
+							<td class="draft__playerList__reb">{{player.reb | number:1}}</td>
+							<td class="draft__playerList__stl">{{player.stl | number:1}}</td>
+							<td class="draft__playerList__blk">{{player.blk | number:1}}</td>
+							<td class="draft__playerList__3pm">{{player.fg3m | number:1}}</td>
+							<td class="draft__playerList__fgp">{{player.fgp = player.fgm/player.fga | number:1}}</td>
+							<td class="draft__playerList__ftp">{{player.ftp = player.ftm/player.fta | number:1}}</td>
+							<td class="draft__playerList__tov">{{player.tov | number:1}}</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="col-md-5">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="playerStats">
+							<div class="playerStats__image" style="background-image:url({{ctrl.playerSelect.img_url}})"></div>
+							<h4>Name: {{ctrl.playerSelect.name}}</h4>
+							<p>Stats</p>
+							<button ng-click="ctrl.draft(ctrl.playerSelect)">Draft Player</button>
+						</div>
+					</div>
+					<div class="col-md-12" style="border:1px solid yellow">
+						Team Info
+					</div>
+				</div>
+			</div>
+			<div class="col-md-2" style="border:1px solid green">
+				<h4>Your Team</h4>
+				<table class="table table-condensed table-bordered">
+					<tr>
+						<th>POS</th>
+						<th>Player Name</th>
+					</tr>
+					<tr ng-repeat="(key,value) in ctrl.myTeam">
+						<td>{{key}}</td>
+						<td>{{value.name}}</td>
+					</tr>
+				</table>
+			</div>
+	</div>
+</div>
+{{ctrl.draftedPlayers}}
+<!-- <p ng-repeat="(key,value) in ctrl.myTeam">
+	<span>{{key}}</span>
+	<span>{{value}}</span>
+</p> -->
