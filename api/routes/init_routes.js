@@ -8,7 +8,7 @@ var season = '2015-16';
 var URL = 'http://stats.nba.com/stats/leaguedashplayerstats/?PerMode=' + mode + '&Season=' + season + '&Gamescope&PlayerExperience&PlayerPosition&StarterBench&MeasureType=Base&PlusMinus=N&PaceAdjust=N&Rank=N&SeasonType=Regular%20Season&Outcome&Location&Month=0&SeasonSegment&DateFrom&DateTo&OpponentTeamId=0&VsConference&VsDivision&GameSegment&Period=0&LastNGames=0'
 var playerStats = [];
 
-var positions = JSON.parse(fs.readFileSync(__dirname + './../positions.txt','utf8'))
+var positions = JSON.parse(fs.readFileSync(__dirname + '/../positions.txt','utf8'))
 // console.log(typeof positions)
 // console.log(positions[0])
 
