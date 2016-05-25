@@ -50,7 +50,7 @@ router.post('/login', function(req,res){
 
 //update account inform
 router.put('/',function(req,res){
-	
+
 })
 
 
