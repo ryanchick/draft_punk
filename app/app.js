@@ -16,6 +16,10 @@
 					templateUrl: 'site/partials/login.html',
 					controller: 'LoginCtrl as ctrl'
 				})
+				.when('/user',{
+					templateUrl: 'site/partials/login.html',
+					controller: 'LoginCtrl as ctrl'
+				})
 				.when('/user/:username',{
 					templateUrl: 'site/partials/user.html',
 					controller: 'UserCtrl as ctrl'

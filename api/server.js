@@ -26,6 +26,7 @@ app.use('/api/draft',draft_routes);
 app.use('/api/init',init_routes)
 
 //test user table
+
 // var testobj = {firstName: "Brian"};
 
 // models.Users.create(testobj).then(function(newObj){
