@@ -1,5 +1,15 @@
-<div>
-	Draft order list
+<div class="">
+	<div class="draftList" ng-repeat='round in ctrl.rounds|limitTo:1:ctrl.curRound'>
+		<button class="draftList__left" ng-click="ctrl.curRound = ctrl.curRound - 1;" ng-disabled="ctrl.curRound== 0"></button>
+		<button class="draftList__right" ng-click="ctrl.curRound = ctrl.curRound + 1" ng-disabled="ctrl.curRound >= 12"></button>
+		<div class="draftList__roundNum">Round #{{round + 1}}:</div>
+		<div class="draftList__pick" ng-repeat='team in ctrl.league.teams |orderBy: $index :round % 2 == 1' ng-class="{'draftList__pick--myTeam':team.user,'draftList__pick--active':(round * 12 + $index) == ctrl.curPick}">
+			{{team.teamName}} 
+			Pick#:{{round * 12 + $index+1}}
+			Player:{{team.players[round].name}}
+		</div>
+
+	</div>
 </div>
 <div class="container-fluid">
 	<div class="row">
@@ -48,7 +58,7 @@
 							<div class="playerStats__image" style="background-image:url({{ctrl.playerSelect.img_url}})"></div>
 							<h4>Name: {{ctrl.playerSelect.name}}</h4>
 							<p>Stats</p>
-							<button ng-click="ctrl.draft(ctrl.playerSelect)">Draft Player</button>
+							<button ng-click="ctrl.draft(ctrl.playerSelect)" ng-disabled="(!ctrl.playerSelect.name || ctrl.done)">Draft Player</button>
 						</div>
 					</div>
 					<div class="col-md-12" style="border:1px solid yellow">
@@ -71,7 +81,7 @@
 			</div>
 	</div>
 </div>
-{{ctrl.draftedPlayers}}
+<!-- {{ctrl.draftedPlayers}} -->
 <!-- <p ng-repeat="(key,value) in ctrl.myTeam">
 	<span>{{key}}</span>
 	<span>{{value}}</span>

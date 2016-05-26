@@ -10,7 +10,7 @@ var playerStats = [];
 
 
 // console.log(typeof positions)
-console.log(positions[0])
+// console.log(positions[0])
 
 router.get('/stats',function(req,res){
 	var positions = JSON.parse(fs.readFileSync(__dirname + '/../positions.txt','utf8'))
