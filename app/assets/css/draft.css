@@ -1,3 +1,45 @@
+.draftList {
+  height: 100px;
+  margin: 10px 20px;
+  padding: 10px;
+  border: 1px solid teal;
+  overflow: hidden;
+  font-size: 12px; }
+  .draftList__roundNum {
+    display: inline-block;
+    font-weight: bold;
+    line-height: 80px;
+    padding: 5px;
+    border: none;
+    height: 80px;
+    overflow: hidden; }
+  .draftList__pick {
+    display: inline-block;
+    box-sizing: border-box;
+    border: 1px solid black;
+    width: 80px;
+    margin-right: 5px;
+    height: 80px;
+    overflow: hidden; }
+    .draftList__pick--active {
+      border-color: green;
+      border-width: 2px; }
+    .draftList__pick--myTeam {
+      border-color: gold;
+      border-width: 2px; }
+      .draftList__pick--myTeam.draftList__pick--active {
+        border-color: red; }
+  .draftList__left {
+    float: left;
+    height: 80px;
+    width: 30px;
+    border: 1px solid blue; }
+  .draftList__right {
+    float: right;
+    height: 80px;
+    width: 30px;
+    border: 1px solid red; }
+
 .draft__playerList {
   border: 1px solid blue;
   font-size: 11px;
