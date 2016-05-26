@@ -5,6 +5,10 @@ var router 	= require('express').Router();
 //get all stats
 router.get('/', function(req, res) {
 	// console.log(req.body)
+	models.Stats.findAll().then(function(stats){
+		res.json(stats);
+	})
+
 });
 
 

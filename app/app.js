@@ -2,11 +2,11 @@
 	'use strict';
 
 	angular
-		.module('draftApp',['ngRoute']);
+		.module('draftApp',['ngRoute', 'ngAnimate']);
 
 	angular
 		.module('draftApp')
-		.config(function($routeProvider){
+		.config(function($routeProvider, $httpProvider){
 			$routeProvider
 				.when('/home',{
 					templateUrl: 'site/partials/home.html',
@@ -26,7 +26,12 @@
 				})
 				.when('/stats',{
 					templateUrl: 'site/partials/stats.html',
-					controller: 'StatsCtrl as ctrl'
+					controller: 'StatsCtrl as ctrl',
+					resolve: {
+						stats: function($http){
+							return $http.get('/api/stats');
+						}
+					}
 				})
 				.when('/draft/:leagueId',{
 					templateUrl: 'site/partials/draft.html',
@@ -44,5 +49,22 @@
 				.otherwise({
 					redirectTo: '/home'
 				})
-		})
+
+				$httpProvider.interceptors.push(function(){
+	    			return {
+	            		request: function(config) {
+	                		return config;
+	            		},
+	            		response: function(response) {
+	              		  var auth_token = response.headers('authentication');
+	                		if(localStorage.authToken == undefined && auth_token != null){
+	                				localStorage.authToken = auth_token;
+	                		}
+	                		return response;
+	            		}
+	    			}
+				});
+		});
+
+		
 })();
