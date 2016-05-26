@@ -3,9 +3,11 @@
 		.module('draftApp')
 		.controller('StatsCtrl', StatsCtrl);
 
-		function StatsCtrl(stats){
+		function StatsCtrl($location, stats){
 			statsVm = this;
-			statsVm.stats = stats.data;
+			statsVm.stats = stats;
+			console.log("stats:");
+			console.log(stats);
 			statsVm.sort = '-pts';
 			statsVm.headers = [
 				{label:'',sort:'name'},
@@ -25,19 +27,26 @@
 
 			//function bindings
 			statsVm.sortChange = sortChange;
+			statsVm.playerProfile = playerProfile;
 			
 			//functions
 			function sortChange(sortType){
-			if(statsVm.sort.match(sortType)){
-				if(statsVm.sort.charAt(0) == '-'){
-					statsVm.sort = sortType;
+				if(statsVm.sort.match(sortType)){
+					if(statsVm.sort.charAt(0) == '-'){
+						statsVm.sort = sortType;
+					} else {
+						statsVm.sort = '-' + sortType;
+					}
 				} else {
 					statsVm.sort = '-' + sortType;
 				}
-			} else {
-				statsVm.sort = '-' + sortType;
+
 			}
-		}
+
+			function playerProfile(id){
+				$location.path('/player/'+id);
+			}
+
 		}
 
 })();
