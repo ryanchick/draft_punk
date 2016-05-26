@@ -7,8 +7,8 @@
 		var loginVm     	 = this;
 
 		//if logged-in, proceed to user page
-		if(localStorage.authToken){
-			var user = JSON.parse(localStorage.user);
+		if(localStorage.draftAuthToken){
+			var user = JSON.parse(localStorage.draftUser);
 			console.log(user);
 			$location.path('user/' + user.username);
 		}
@@ -44,7 +44,7 @@
 					if (res.data.username){
 						console.log('logged in');
 						console.log(res.data);
-						localStorage.user = JSON.stringify(res.data);
+						localStorage.draftUser = JSON.stringify(res.data);
 						$location.path('user/' + res.data.username)
 					} else {
 						console.log('invalid login');

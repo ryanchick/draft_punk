@@ -3,7 +3,7 @@
 		.module('draftApp')
 		.controller('HomeCtrl', HomeCtrl);
 
-		function HomeCtrl($http, $location){
+		function HomeCtrl($http, $location, playerSrv){
 			var homeVm = this;
 
 		

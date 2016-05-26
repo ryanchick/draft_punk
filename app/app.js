@@ -2,7 +2,7 @@
 	'use strict';
 
 	angular
-		.module('draftApp',['ngRoute', 'ngAnimate']);
+		.module('draftApp',['ngRoute', 'chart.js']);
 
 	angular
 		.module('draftApp')
@@ -28,8 +28,27 @@
 					templateUrl: 'site/partials/stats.html',
 					controller: 'StatsCtrl as ctrl',
 					resolve: {
-						stats: function($http){
-							return $http.get('/api/stats');
+						stats: function(playerSrv){
+							return playerSrv.getStats();
+						}
+					}
+				})
+				.when('/player/:playerId',{
+					templateUrl: 'site/partials/player.html',
+					controller: 'PlayerCtrl as ctrl',
+					resolve:{
+						player: function($route, playerSrv){
+							return playerSrv.getStats()
+								.then(function(stats){
+									var id = $route.current.params.playerId;
+									var l = stats.length;
+
+									for (var i = 0; i < l; i ++){
+										if (stats[i].id == id){
+											return stats[i];
+										}
+									}
+								})
 						}
 					}
 				})
@@ -57,8 +76,8 @@
 	            		},
 	            		response: function(response) {
 	              		  var auth_token = response.headers('authentication');
-	                		if(localStorage.authToken == undefined && auth_token != null){
-	                				localStorage.authToken = auth_token;
+	                		if(localStorage.draftAuthToken == undefined && auth_token != null){
+	                				localStorage.draftAuthToken = auth_token;
 	                		}
 	                		return response;
 	            		}

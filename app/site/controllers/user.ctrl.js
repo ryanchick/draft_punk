@@ -6,7 +6,7 @@
 	function UserCtrl(){
 		userVm = this;
 
-		userVm.user = JSON.parse(localStorage.user);
+		userVm.user = JSON.parse(localStorage.draftUser);
 		console.log(userVm.user);
 	}
 	
