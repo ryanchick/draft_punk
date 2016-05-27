@@ -2,7 +2,11 @@
 	'use strict';
 
 	angular
+<<<<<<< HEAD
 		.module('draftApp',['ngRoute', 'nvd3']);
+=======
+		.module('draftApp',['ngRoute']);
+>>>>>>> c8ad19f5117777ce5b1a0c4cd8da88ea5365e903
 
 	angular
 		.module('draftApp')

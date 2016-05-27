@@ -8,22 +8,7 @@
 		// console.log('draft')
 		draftVm.playerStats = stats.data;
 		draftVm.numTeams = 12;
-		draftVm.userPick = 6;
-		draftVm.myTeam = {
-			"PG":"",
-			"SG":"",
-			"SF":"",
-			"PF":"",
-			"C":"",
-			"G":"",
-			"F":"",
-			"UTIL1":"",
-			"UTIL2":"",
-			"UTIL3":"",
-			"BENCH1":"",
-			"BENCH2":"",
-			"BENCH3":""
-		}
+		draftVm.userPick = 1;
 		draftVm.rounds = [0,1,2,3,4,5,6,7,8,9,10,11,12];
 		draftVm.curRound = 0;
 		draftVm.curPick = 0;
@@ -33,6 +18,10 @@
 		draftVm.league = createLeague(draftVm.numTeams,draftVm.userPick);
 		draftVm.draftedPlayers = [];
 		draftVm.myPick = false;
+		draftVm.teamSelect = draftVm.league.teams[draftVm.userPick-1];
+		draftVm.goals = [14.78,3.33,5.99,1.09,0.74,1.07,46.4,78.3,2.0]
+
+
 		checkSelected();
 		// draftVm.playerSelect = draftVm.filtered[1];
 
@@ -41,13 +30,14 @@
 		draftVm.show = show;
 		draftVm.draft = draft;
 		draftVm.checkSelected = checkSelected;
+		draftVm.teamTotals = teamTotals;
 
 		function abbrev(name){
 			var arr = name.split(" ")
 			// console.log(arr)
-			arr[0] = arr[0].charAt(0) + ". ";
+			arr[0] = arr[0].charAt(0) + ".";
 			var abbr = arr.reduce(function(a,b){
-				return a+b;
+				return a+" "+b;
 			})
 			return abbr;
 		}
@@ -68,6 +58,7 @@
 		}
 
 		function draft(player){
+			draftVm.myPick = false;
 			console.log('draft')
 			//calculate which team is currently picking
 			if(draftVm.curRound % 2 == 0){
@@ -83,7 +74,46 @@
 			}
 			console.log(pickTeam)
 			
-			draftVm.league.teams[pickTeam].players.push(player);
+			//put selected player into appropriate team slot
+			if(draftVm.league.teams[pickTeam].players[player.position] == ""){
+				console.log(player.position)
+				draftVm.league.teams[pickTeam].players[player.position] = player;
+			} else if(draftVm.league.teams[pickTeam].players["G"] == "" && (player.position == "PG" || player.position == "SG")){
+				console.log("G")
+				draftVm.league.teams[pickTeam].players["G"] = player;
+			} else if(draftVm.league.teams[pickTeam].players["F"] == "" && (player.position == "PF" || player.position == "SF")){
+				draftVm.league.teams[pickTeam].players["F"] = player;
+			} else if(draftVm.league.teams[pickTeam].players["UTIL1"] == ""){
+				draftVm.league.teams[pickTeam].players["UTIL1"] = player;
+			} else if(draftVm.league.teams[pickTeam].players["UTIL2"] == ""){
+				draftVm.league.teams[pickTeam].players["UTIL2"] = player;
+			} else if(draftVm.league.teams[pickTeam].players["UTIL3"] == ""){
+				draftVm.league.teams[pickTeam].players["UTIL3"] = player;
+			} else if(draftVm.league.teams[pickTeam].players["BENCH1"] == ""){
+				draftVm.league.teams[pickTeam].players["BENCH1"] = player;
+			} else if(draftVm.league.teams[pickTeam].players["BENCH2"] == ""){
+				draftVm.league.teams[pickTeam].players["BENCH2"] = player;
+			} else if(draftVm.league.teams[pickTeam].players["BENCH3"] == ""){
+				draftVm.league.teams[pickTeam].players["BENCH3"] = player;
+			} else {
+				console.log('invalid pick')
+				return;
+			}
+
+			draftVm.league.teams[pickTeam].stats.pts += player.pts;
+			draftVm.league.teams[pickTeam].stats.ast += player.ast;
+			draftVm.league.teams[pickTeam].stats.reb += player.reb;
+			draftVm.league.teams[pickTeam].stats.stl += player.stl;
+			draftVm.league.teams[pickTeam].stats.blk += player.blk;
+			draftVm.league.teams[pickTeam].stats.fg3m += player.fg3m;
+			draftVm.league.teams[pickTeam].stats.fgm += player.fgm;
+			draftVm.league.teams[pickTeam].stats.fga += player.fga;
+			draftVm.league.teams[pickTeam].stats.ftm += player.ftm;
+			draftVm.league.teams[pickTeam].stats.fta += player.fta;
+			draftVm.league.teams[pickTeam].stats.tov += player.tov;
+			draftVm.league.teams[pickTeam].stats.count++;
+
+			// draftVm.league.teams[pickTeam].players.push(player);
 			draftVm.league.draftedPlayers.push(player);
 			if(draftVm.curPick % draftVm.numTeams == (draftVm.numTeams-1) && draftVm.curRound != 12){
 				draftVm.curRound++;
@@ -91,35 +121,14 @@
 			if(draftVm.curPick == ((draftVm.numTeams * 13) - 1)){
 				console.log(draftVm.done)
 				draftVm.done = true;
+				console.log(draftVm.league)
 			}else{
 				draftVm.curPick++;
 			}
 
 			//add pick to team sidebar if picking for user team
-			if(draftVm.myPick == true){
-				if(draftVm.myTeam[player.position] == ""){
-					console.log(player.position)
-					draftVm.myTeam[player.position] = player;
-				} else if(draftVm.myTeam["G"] == "" && (player.position == "PG" || player.position == "SG")){
-					console.log("G")
-					draftVm.myTeam["G"] = player;
-				} else if(draftVm.myTeam["F"] == "" && (player.position == "PF" || player.position == "SF")){
-					draftVm.myTeam["F"] = player;
-				} else if(draftVm.myTeam["UTIL1"] == ""){
-					draftVm.myTeam["UTIL1"] = player;
-				} else if(draftVm.myTeam["UTIL2"] == ""){
-					draftVm.myTeam["UTIL2"] = player;
-				} else if(draftVm.myTeam["UTIL3"] == ""){
-					draftVm.myTeam["UTIL3"] = player;
-				} else if(draftVm.myTeam["BENCH1"] == ""){
-					draftVm.myTeam["BENCH1"] = player;
-				} else if(draftVm.myTeam["BENCH2"] == ""){
-					draftVm.myTeam["BENCH2"] = player;
-				} else if(draftVm.myTeam["BENCH3"] == ""){
-					draftVm.myTeam["BENCH3"] = player;
-				}
-			}
-			draftVm.myPick = false;
+
+			// draftVm.myPick = false;
 			
 			//refilter players remaining
 			checkSelected();
@@ -130,22 +139,89 @@
 			}else{
 				draftVm.playerSelect = draftVm.filtered[0];
 			}
+		}
 
+		function teamTotals(players){
+			var totals = {
+				pts:0,
+				ast:0,
+				reb:0,
+				stl:0,
+				blk:0,
+				fg3m:0,
+				fgm:0,
+				fga:0,
+				ftm:0,
+				fta:0,
+				tov:0
+			}
+			for(var pos in players){
+				if(players[pos] != ""){
+					totals.pts += players[pos].pts;
+					totals.ast += players[pos].ast;
+					totals.reb += players[pos].reb;
+					totals.stl += players[pos].stl;
+					totals.blk += players[pos].blk;
+					totals.fg3m += players[pos].fg3m;
+					totals.fgm += players[pos].fgm;
+					totals.fga += players[pos].fga;
+					totals.ftm += players[pos].ftm;
+					totals.fta += players[pos].fta;
+					totals.tov += players[pos].tov;
+				}
+			}
+			console.log(totals)
+			return totals;
 		}
 
 		function createLeague(num,nth){
 			var teams = [];
 			for(var i = 0; i < num; i++){
-				teams.push({teamId:i,teamName:'Team '+(i+1),user:false,players:[]})
+				teams.push({
+					teamId:i,
+					teamName:'Team '+(i+1),
+					user:false,
+					players:{
+						"PG":"",
+						"SG":"",
+						"SF":"",
+						"PF":"",
+						"C":"",
+						"G":"",
+						"F":"",
+						"UTIL1":"",
+						"UTIL2":"",
+						"UTIL3":"",
+						"BENCH1":"",
+						"BENCH2":"",
+						"BENCH3":""
+					},
+					stats:{
+						pts:0,
+						ast:0,
+						reb:0,
+						stl:0,
+						blk:0,
+						fg3m:0,
+						fgm:0,
+						fga:0,
+						ftm:0,
+						fta:0,
+						tov:0,
+						count:0
+					}
+				})
 				if (nth == (i+1)){
 					teams[i].user = true;
+					teams[i].teamName = 'My Team';
 				}
 			}
 			console.log(teams)
 			var league = {
 				id:$routeParams.leagueId,
 				teams:teams,
-				draftedPlayers:[]
+				draftedPlayers:[],
+
 			}
 			return league;
 		}
