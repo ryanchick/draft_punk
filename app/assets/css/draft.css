@@ -20,7 +20,8 @@
     width: 80px;
     margin-right: 5px;
     height: 80px;
-    overflow: hidden; }
+    overflow: hidden;
+    padding: 3px; }
     .draftList__pick--active {
       border-color: green;
       border-width: 2px; }
@@ -90,12 +91,26 @@
 
 .playerStats {
   height: 40vh;
-  border: 1px solid red; }
+  border: 1px solid red;
+  padding: 10px;
+  box-sizing: border-box;
+  width: 100%; }
+  .playerStats table {
+    font-size: 11px; }
   .playerStats__image {
     height: 90px;
-    width: 100px;
     background-size: cover;
     background-position: center;
     float: left; }
+  .playerStats__draftButton {
+    margin: 0 auto; }
+
+.green {
+  color: green;
+  font-weight: bold; }
+
+.red {
+  color: red;
+  font-weight: bold; }
 
 /*# sourceMappingURL=draft.css.map */

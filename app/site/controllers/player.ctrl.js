@@ -35,13 +35,16 @@
 		// 	   playerVm.player.fta == 0 ? 0 : playerVm.player.ftm/playerVm.player.fta
 		//   ]
 		// ];
+		$scope.labels = ['1','2','3','4'];
+	    $scope.data = [
+	      [1,2,-3,4]
+	    ];
 
-		 playerVm.labels = ["January", "February", "March", "April", "May", "June", "July"];
-  playerVm.series = ['Series A', 'Series B'];
-  playerVm.data = [
-    [65, 59, 80, 81, 56, 55, 40],
-    [28, 48, 40, 19, 86, 27, 90]
-  ];
+		playerVm.labels = ["January", "February", "March", "April", "May", "June", "July"];
+  // playerVm.series = ['Series A', 'Series B'];
+		playerVm.data = [
+			[65, 59, 80, 81, 56, 55, 40]
+		];
   
 	}
 	

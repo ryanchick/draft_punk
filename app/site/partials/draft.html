@@ -3,19 +3,26 @@
 		<button class="draftList__left" ng-click="ctrl.curRound = ctrl.curRound - 1;" ng-disabled="ctrl.curRound== 0"></button>
 		<button class="draftList__right" ng-click="ctrl.curRound = ctrl.curRound + 1" ng-disabled="ctrl.curRound >= 12"></button>
 		<div class="draftList__roundNum">Round #{{round + 1}}:</div>
-		<div class="draftList__pick" ng-repeat='team in ctrl.league.teams |orderBy: $index :round % 2 == 1' ng-class="{'draftList__pick--myTeam':team.user,'draftList__pick--active':(round * 12 + $index) == ctrl.curPick}">
-			{{team.teamName}} 
-			Pick#:{{round * 12 + $index+1}}
-			Player:{{team.players[round].name}}
+		<div class="draftList__pick" ng-repeat='team in ctrl.league.teams |orderBy: $index :round % 2 == 1' ng-class="{'draftList__pick--myTeam':team.user,'draftList__pick--active':(round * ctrl.numTeams + $index) == ctrl.curPick}">
+			{{team.teamName}} <br />
+			Pick#: {{round * ctrl.numTeams + $index+1}} <br />
+			{{ctrl.league.draftedPlayers[round * ctrl.numTeams + $index].name | abbrevNameFilter}}
 		</div>
 
 	</div>
 </div>
-<div class="container-fluid">
+<div class="container-fluid" ng-show="ctrl.done">
+	<h4>Draft Complete</h4>
+</div>
+<div class="container-fluid" ng-hide="ctrl.done">
 	<div class="row">
 			<div class="col-md-5 draft__playerList">
 				<h4>Player List</h4>
+				
 				<input type="text" name="" placeholder="Name" ng-model="ctrl.searchName">
+				<div>
+					SUGGESTIONS GO HERE
+				</div>
 				<table class="table table-condensed table-striped table-bordered table-hover ">
 					<thead>
 						<tr>
@@ -36,7 +43,7 @@
 						<tr ng-repeat="player in (ctrl.filtered = (ctrl.playerStats | filter: {'name':ctrl.searchName}| orderBy:'-pts'))"
 							ng-click="ctrl.show(player)"
 							>
-							<td class="draft__playerList__name">{{ctrl.abbrev(player.name)}}</td>
+							<td class="draft__playerList__name">{{player.name | abbrevNameFilter}}</td>
 							<td class="draft__playerList__min">{{player.position}}</td>
 							<td class="draft__playerList__pts">{{player.pts | number:1}}</td>
 							<td class="draft__playerList__ast">{{player.ast | number:1}}</td>
@@ -44,8 +51,8 @@
 							<td class="draft__playerList__stl">{{player.stl | number:1}}</td>
 							<td class="draft__playerList__blk">{{player.blk | number:1}}</td>
 							<td class="draft__playerList__3pm">{{player.fg3m | number:1}}</td>
-							<td class="draft__playerList__fgp">{{player.fgp = player.fgm/player.fga | number:1}}</td>
-							<td class="draft__playerList__ftp">{{player.ftp = player.ftm/player.fta | number:1}}</td>
+							<td class="draft__playerList__fgp">{{player.fgp = player.fgm/player.fga * 100| number:1}}</td>
+							<td class="draft__playerList__ftp">{{player.ftp = player.ftm/player.fta * 100| number:1}}</td>
 							<td class="draft__playerList__tov">{{player.tov | number:1}}</td>
 						</tr>
 					</tbody>
@@ -53,29 +60,141 @@
 			</div>
 			<div class="col-md-5">
 				<div class="row">
-					<div class="col-md-12">
-						<div class="playerStats">
-							<div class="playerStats__image" style="background-image:url({{ctrl.playerSelect.img_url}})"></div>
-							<h4>Name: {{ctrl.playerSelect.name}}</h4>
-							<p>Stats</p>
-							<button ng-click="ctrl.draft(ctrl.playerSelect)" ng-disabled="(!ctrl.playerSelect.name || ctrl.done)">Draft Player</button>
+					<div class="col-md-12 playerStats">
+						<!-- <h4>Player Information:</h4> -->
+						<div class="container-fluid" ng-show='ctrl.playerSelect.name'>
+							<div class="row">
+								<!-- <div class=""> -->
+									<div class="col-xs-2 playerStats__image" style="background-image:url({{ctrl.playerSelect.img_url}})"></div>
+								<!-- </div> -->
+								<div class="col-xs-10" style="{border:1px solid yellow,padding:0px}">
+									<h4>{{ctrl.playerSelect.name}}</h4>
+									<table class="table table-condensed">
+										<tr>
+											<th>PTS</th>
+											<th>AST</th>
+											<th>REB</th>
+											<th>STL</th>
+											<th>BLK</th>
+											<th>FG3M</th>
+											<th>FG%</th>
+											<th>FT%</th>
+											<th>TOV</th>
+										</tr>
+										<tr>
+											<td>{{ctrl.playerSelect.pts}}</td>
+											<td>{{ctrl.playerSelect.ast}}</td>
+											<td>{{ctrl.playerSelect.reb}}</td>
+											<td>{{ctrl.playerSelect.stl}}</td>
+											<td>{{ctrl.playerSelect.blk}}</td>
+											<td>{{ctrl.playerSelect.fg3m}}</td>
+											<td>{{ctrl.playerSelect.fgm/ctrl.playerSelect.fga * 100 | number:1}}</td>
+											<td>{{ctrl.playerSelect.ftm/ctrl.playerSelect.fta * 100 | number:1}}</td>
+											<td>{{ctrl.playerSelect.tov}}</td>
+										</tr>
+									</table>
+								</div>
+							</div>
+							<button class="playerStats__draftButton btn btn-success" ng-click="ctrl.draft(ctrl.playerSelect)" ng-disabled="(!ctrl.playerSelect.name || ctrl.done)">Draft Player</button>
 						</div>
 					</div>
 					<div class="col-md-12" style="border:1px solid yellow">
-						Team Info
+						Team Average
+						<table class="table table-condensed">
+							<tr>
+								<th></th>
+								<th>PTS</th>
+								<th>AST</th>
+								<th>REB</th>
+								<th>STL</th>
+								<th>BLK</th>
+								<th>FG3M</th>
+								<th>FG%</th>
+								<th>FT%</th>
+								<th>TOV</th>
+							</tr>
+							<tr>
+								<th>
+									{{ctrl.teamSelect.teamName}}
+								</th>
+								<td ng-class="ctrl.teamSelect.stats.pts/ctrl.teamSelect.stats.count > ctrl.goals[0] ? 'green' : 'red'">
+									{{ctrl.teamSelect.stats.pts/ctrl.teamSelect.stats.count |number:1}}
+								</td>
+								<td ng-class="ctrl.teamSelect.stats.ast/ctrl.teamSelect.stats.count > ctrl.goals[1] ? 'green' : 'red'">
+									{{ctrl.teamSelect.stats.ast/ctrl.teamSelect.stats.count |number:1}}
+								</td>
+								<td ng-class="ctrl.teamSelect.stats.reb/ctrl.teamSelect.stats.count > ctrl.goals[2] ? 'green' : 'red'">
+									{{ctrl.teamSelect.stats.reb/ctrl.teamSelect.stats.count |number:1}}
+								</td>
+								<td ng-class="ctrl.teamSelect.stats.stl/ctrl.teamSelect.stats.count > ctrl.goals[3] ? 'green' : 'red'">
+									{{ctrl.teamSelect.stats.stl/ctrl.teamSelect.stats.count |number:1}}
+								</td>
+								<td ng-class="ctrl.teamSelect.stats.blk/ctrl.teamSelect.stats.count > ctrl.goals[4] ? 'green' : 'red'">
+									{{ctrl.teamSelect.stats.blk/ctrl.teamSelect.stats.count |number:1}}
+								</td>
+								<td ng-class="ctrl.teamSelect.stats.fg3m/ctrl.teamSelect.stats.count > ctrl.goals[5] ? 'green' : 'red'">
+									{{ctrl.teamSelect.stats.fg3m/ctrl.teamSelect.stats.count |number:1}}
+								</td>
+								<td ng-class="ctrl.teamSelect.stats.fgm/ctrl.teamSelect.stats.fga * 100 > ctrl.goals[6] ? 'green' : 'red'">
+									{{ctrl.teamSelect.stats.fgm/ctrl.teamSelect.stats.fga*100 |number:1}}
+								</td>
+								<td ng-class="ctrl.teamSelect.stats.ftm/ctrl.teamSelect.stats.fta*100 > ctrl.goals[7] ? 'green' : 'red'">
+									{{ctrl.teamSelect.stats.ftm/ctrl.teamSelect.stats.fta*100 |number:1}}
+								</td>
+								<td ng-class="ctrl.teamSelect.stats.tov/ctrl.teamSelect.stats.count > ctrl.goals[8] ? 'red' : 'green'">
+									{{ctrl.teamSelect.stats.tov/ctrl.teamSelect.stats.count |number:1}}
+								</td>
+							</tr>
+							<tr ng-show="ctrl.playerSelect.name">
+								<th>w/ Added Player</th>
+
+								<td ng-class="(ctrl.teamSelect.stats.pts+ctrl.playerSelect.pts)/(ctrl.teamSelect.stats.count+1) > ctrl.goals[0] ? 'green' : 'red'">
+									{{(ctrl.teamSelect.stats.pts+ctrl.playerSelect.pts)/(ctrl.teamSelect.stats.count+1) |number:1}}
+								</td>
+								<td ng-class="(ctrl.teamSelect.stats.ast+ctrl.playerSelect.ast)/(ctrl.teamSelect.stats.count+1) > ctrl.goals[1] ? 'green' : 'red'">
+									{{(ctrl.teamSelect.stats.ast+ctrl.playerSelect.ast)/(ctrl.teamSelect.stats.count+1) |number:1}}
+								</td>
+								<td ng-class="(ctrl.teamSelect.stats.reb+ctrl.playerSelect.reb)/(ctrl.teamSelect.stats.count+1) > ctrl.goals[2] ? 'green' : 'red'">
+									{{(ctrl.teamSelect.stats.reb+ctrl.playerSelect.reb)/(ctrl.teamSelect.stats.count+1) |number:1}}
+								</td>
+								<td ng-class="(ctrl.teamSelect.stats.stl+ctrl.playerSelect.stl)/(ctrl.teamSelect.stats.count+1) > ctrl.goals[3] ? 'green' : 'red'">
+									{{(ctrl.teamSelect.stats.stl+ctrl.playerSelect.stl)/(ctrl.teamSelect.stats.count+1) |number:1}}
+								</td>
+								<td ng-class="(ctrl.teamSelect.stats.blk+ctrl.playerSelect.blk)/(ctrl.teamSelect.stats.count+1) > ctrl.goals[4] ? 'green' : 'red'">
+									{{(ctrl.teamSelect.stats.blk+ctrl.playerSelect.blk)/(ctrl.teamSelect.stats.count+1) |number:1}}
+								</td>
+								<td ng-class="(ctrl.teamSelect.stats.fg3m+ctrl.playerSelect.fg3m)/(ctrl.teamSelect.stats.count+1) > ctrl.goals[5] ? 'green' : 'red'">
+									{{(ctrl.teamSelect.stats.fg3m+ctrl.playerSelect.fg3m)/(ctrl.teamSelect.stats.count+1) |number:1}}
+								</td>
+								<td ng-class="(ctrl.teamSelect.stats.fgm+ctrl.playerSelect.fgm) /(ctrl.teamSelect.stats.fga+ctrl.playerSelect.fga) * 100 > ctrl.goals[6] ? 'green' : 'red'">
+									{{(ctrl.teamSelect.stats.fgm+ctrl.playerSelect.fgm)/(ctrl.teamSelect.stats.fga+ctrl.playerSelect.fga) *100 |number:1}}
+								</td>
+								<td ng-class="(ctrl.teamSelect.stats.ftm+ctrl.playerSelect.ftm)/(ctrl.teamSelect.stats.fta+ctrl.playerSelect.fta) * 100 > ctrl.goals[7] ? 'green' : 'red'">
+									{{(ctrl.teamSelect.stats.ftm+ctrl.playerSelect.ftm)/(ctrl.teamSelect.stats.fta+ctrl.playerSelect.fta)  * 100|number:1}}
+								</td>
+								<td ng-class="(ctrl.teamSelect.stats.tov+ctrl.playerSelect.tov)/(ctrl.teamSelect.stats.count+1) > ctrl.goals[8] ? 'green' : 'red'">
+									{{(ctrl.teamSelect.stats.tov+ctrl.playerSelect.tov)/(ctrl.teamSelect.stats.count+1) |number:1}}
+								</td>
+							</tr>
+							<tr>
+								<th>Targets</th>
+								<td ng-repeat='stat in ctrl.goals'>{{stat}}</td>
+							</tr>
+						</table>
 					</div>
 				</div>
 			</div>
-			<div class="col-md-2" style="border:1px solid green">
-				<h4>Your Team</h4>
+			<div class="col-md-2" style="border:1px solid green; padding:4px; box-sizing:border-box">
+				<select ng-options="team as team.teamName for team in ctrl.league.teams" ng-model="ctrl.teamSelect" style="float:right"></select>
+				<h4>{{ctrl.teamSelect.teamName}}</h4>
 				<table class="table table-condensed table-bordered">
 					<tr>
 						<th>POS</th>
 						<th>Player Name</th>
 					</tr>
-					<tr ng-repeat="(key,value) in ctrl.myTeam">
+					<tr ng-repeat="(key,value) in ctrl.teamSelect.players">
 						<td>{{key}}</td>
-						<td>{{value.name}}</td>
+						<td>{{value.name |abbrevNameFilter}}</td>
 					</tr>
 				</table>
 			</div>

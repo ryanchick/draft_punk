@@ -31,6 +31,7 @@ $stat_width: 8%;
 		// margin-bottom:1px;
 		height:80px;
 		overflow:hidden;
+		padding:3px;
 		&--active{
 			border-color:green;
 			border-width:2px;
@@ -133,11 +134,31 @@ $stat_width: 8%;
 .playerStats{
 	height:40vh;
 	border:1px solid red;
+	padding:10px;
+	box-sizing:border-box;
+	width:100%;
+	table{
+		font-size:11px;
+	}
 	&__image{
 		height:90px;
-		width:100px;
+		// width:100%;
 		background-size:cover;
 		background-position:center;
 		float:left;
 	}
+	&__draftButton{
+		// text-align:center;
+		// color:red;
+		margin:0 auto;
+	}
+}
+
+.green{
+	color:green;
+	font-weight:bold;
+}
+.red{
+	color:red;
+	font-weight:bold;
 }
