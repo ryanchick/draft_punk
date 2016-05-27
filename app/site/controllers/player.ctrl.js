@@ -11,7 +11,6 @@
 
 		console.log(playerVm.avg);
 
-<<<<<<< HEAD
 		 playerVm.options = {
 		    chart: {
 		        type: 'discreteBarChart',
@@ -38,32 +37,7 @@
 		        }
 		    }
 		};
-=======
-  // 		playerVm.data = [
-		//   [
-		// 	   playerVm.player.pts, 
-		// 	   playerVm.player.ast, 
-		// 	   playerVm.player.reb, 
-		// 	   playerVm.player.stl, 
-		// 	   playerVm.player.blk,
-		// 	   playerVm.player.tov, 
-		// 	   playerVm.player.fg3m,
-		// 	   playerVm.player.fga == 0 ? 0 : playerVm.player.fgm/playerVm.player.fga,
-		// 	   playerVm.player.fta == 0 ? 0 : playerVm.player.ftm/playerVm.player.fta
-		//   ]
-		// ];
-		$scope.labels = ['1','2','3','4'];
-	    $scope.data = [
-	      [1,2,-3,4]
-	    ];
 
-		playerVm.labels = ["January", "February", "March", "April", "May", "June", "July"];
-  // playerVm.series = ['Series A', 'Series B'];
-		playerVm.data = [
-			[65, 59, 80, 81, 56, 55, 40]
-		];
->>>>>>> c8ad19f5117777ce5b1a0c4cd8da88ea5365e903
-  
 		playerVm.data = [{
 		    key: playerVm.player.name,
 		    values: [
