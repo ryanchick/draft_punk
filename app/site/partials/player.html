@@ -1,8 +1,49 @@
-<h1 ng-bind="ctrl.player.name"></h1>
+<div class = "container">
+	<div class="playerHeader row">
+		<div class="playerHeader__img col-md-4 col-sm-4" style="background-image:url({{ctrl.player.img_url}})">
+			<!-- <img src="{{ctrl.player.img_url}}"> -->
+		</div>
+		<div class="col-md-8 col-sm-8">
+			<h1 ng-bind="ctrl.player.name"></h1>
+			<p>Team: {{ctrl.player.team}}</p>
+			<p>Position: {{ctrl.player.position}}</p>
+			<p>Age: {{ctrl.player.age}}</p>
+		</div>
+	</div>
 
-<!-- <canvas class="chart chart-bar"
-  chart-data="ctrl.data" chart-labels="ctrl.labels" chart-series="ctrl.series"> 
-</canvas> -->
+	<table class="table table-bordered table-striped table-condensed statTable">
+		<tr>
+			<th>Games Played</th>
+			<th>MIN</th>
+			<th>PTS</th>
+			<th>AST</th>
+			<th>REB</th>
+			<th>STL</th>
+			<th>BLK</th>
+			<th>3PT</th>
+			<th>FGM/FGA</th>
+			<th>FG%</th>
+			<th>FTM/FTA</th>
+			<th>FT%</th>
+			<th>TO</th>
+		</tr>
+		<tr>
+			<td ng-bind="ctrl.player.games_played"></td>
+			<td ng-bind="ctrl.player.min"></td>
+			<td ng-bind="ctrl.player.pts"></td>
+			<td ng-bind="ctrl.player.ast"></td>
+			<td ng-bind="ctrl.player.reb"></td>
+			<td ng-bind="ctrl.player.stl"></td>
+			<td ng-bind="ctrl.player.blk"></td>
+			<td ng-bind="ctrl.player.fg3m"></td>
+			<td ng-bind="ctrl.player.fgm+'/'+ctrl.player.fga"> </td>
+			<td ng-bind="ctrl.player.fga == 0 ? 0 : ctrl.player.fgm/ctrl.player.fga | number:2"></td>
+			<td ng-bind="ctrl.player.ftm+'/'+ctrl.player.fta"></td>
+			<td ng-bind="ctrl.player.fta == 0 ? 0 : ctrl.player.ftm/ctrl.player.fta | number:2"></td>
+			<td ng-bind="ctrl.player.tov"></td>
+		</tr>
+	</table>
 
-<canvas class="chart chart-line" chart-data="ctrl.data" chart-labels="ctrl.labels" 
-    chart-series="ctrl.series" ></canvas> 
+	<nvd3 options='ctrl.options' data='ctrl.data'></nvd3>
+
+</div>

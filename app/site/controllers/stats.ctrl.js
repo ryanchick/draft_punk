@@ -6,8 +6,7 @@
 		function StatsCtrl($location, stats){
 			statsVm = this;
 			statsVm.stats = stats;
-			console.log("stats:");
-			console.log(stats);
+
 			statsVm.sort = '-pts';
 			statsVm.headers = [
 				{label:'',sort:'name'},
@@ -28,6 +27,38 @@
 			//function bindings
 			statsVm.sortChange = sortChange;
 			statsVm.playerProfile = playerProfile;
+
+
+			// function getAvg (stats){
+			// 	var totalStats = [{pts:0},{ast:0},{reb:0},{stl:0},{blk:0},{fg3m:0},{fgp:0},{ftp:0},{tov:0}];
+			// 	for (var i = 0; i < stats.length; i++){
+			// 		if (stats[i].min > 10 && stats[i].games_played > 20){
+			// 			totalStats.pts += stats[i].pts;
+			// 			totalStats.ast += stats[i].ast;
+			// 			totalStats.reb += stats[i].reb;
+			// 			totalStats.stl += stats[i].stl;
+			// 			totalStats.blk += stats[i].blk;
+			// 			totalStats.fg3m += stats[i].fg3m;
+			// 			totalStats.fgp += stats[i].fga == 0 ? 0 : stats[i].fgm/stats[i].fga;
+			// 			totalStats.ftp += stats[i].fta == 0 ? 0 : stats[i].ftm/stats[i].fta;
+			// 			totalStats.tov += stats[i].tov;
+			// 		}
+			// 	}
+			// 	var avgStats = [
+			// 		{pts:totalStats.pts/totalStats.length},
+			// 		{pts:totalStats.ast/totalStats.length},
+			// 		{pts:totalStats.reb/totalStats.length},
+			// 		{pts:totalStats.stl/totalStats.length},
+			// 		{pts:totalStats.blk/totalStats.length},
+			// 		{pts:totalStats.fg3m/totalStats.length},
+			// 		{pts:totalStats.fgp/totalStats.length},
+			// 		{pts:totalStats.ftp/totalStats.length},
+			// 		{pts:totalStats.tov/totalStats.length}
+
+			// 	];
+
+			// 	return avgStats;
+			// }
 			
 			//functions
 			function sortChange(sortType){
@@ -46,6 +77,8 @@
 			function playerProfile(id){
 				$location.path('/player/'+id);
 			}
+
+
 
 		}
 

@@ -15,6 +15,17 @@
 	text-align:center;
 }
 
+.playerHeader {
+	margin-bottom: 15px;
+}
+
+
+.playerHeader__img{
+	height:180px;
+	width:225px;
+	background-size:cover;
+}
+
 /* when hiding the picture */
 /*.ng-hide-add         { animation:0.5s slideOut ease; }
 

@@ -2,7 +2,7 @@
 	'use strict';
 
 	angular
-		.module('draftApp',['ngRoute']);
+		.module('draftApp',['ngRoute', 'nvd3']);
 
 	angular
 		.module('draftApp')

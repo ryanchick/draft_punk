@@ -6,7 +6,6 @@
 		<tr>
 			<th ng-repeat="category in ctrl.headers" ng-click="ctrl.sortChange(category.sort)" ng-bind="category.label" class="statTable__cell"></th>
 		</tr>
-		
 		<tr ng-repeat="player in ctrl.stats | orderBy:ctrl.sort">
 			<td>
 				<div class = "playerbox">
