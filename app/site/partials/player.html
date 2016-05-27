@@ -13,21 +13,27 @@
 
 	<table class="table table-bordered table-striped table-condensed statTable">
 		<tr>
-			<th>Games Played</th>
+			<th>Name</th>
+			<th>GP</th>
 			<th>MIN</th>
 			<th>PTS</th>
 			<th>AST</th>
 			<th>REB</th>
 			<th>STL</th>
 			<th>BLK</th>
-			<th>3PT</th>
-			<th>FGM/FGA</th>
+			<th>3PM</th>
+			<th>3PA</th>
+			<th>3P%</th>
+			<th>FGM</th>
+			<th>FGA</th>
 			<th>FG%</th>
-			<th>FTM/FTA</th>
+			<th>FTM</th>
+			<th>FTA</th>
 			<th>FT%</th>
 			<th>TO</th>
 		</tr>
 		<tr>
+			<td ng-bind="ctrl.player.name"></td>
 			<td ng-bind="ctrl.player.games_played"></td>
 			<td ng-bind="ctrl.player.min"></td>
 			<td ng-bind="ctrl.player.pts"></td>
@@ -36,11 +42,35 @@
 			<td ng-bind="ctrl.player.stl"></td>
 			<td ng-bind="ctrl.player.blk"></td>
 			<td ng-bind="ctrl.player.fg3m"></td>
-			<td ng-bind="ctrl.player.fgm+'/'+ctrl.player.fga"> </td>
-			<td ng-bind="ctrl.player.fga == 0 ? 0 : ctrl.player.fgm/ctrl.player.fga | number:2"></td>
-			<td ng-bind="ctrl.player.ftm+'/'+ctrl.player.fta"></td>
-			<td ng-bind="ctrl.player.fta == 0 ? 0 : ctrl.player.ftm/ctrl.player.fta | number:2"></td>
+			<td ng-bind="ctrl.player.fg3a"></td>
+			<td ng-bind="ctrl.player.fg3a == 0 ? 0 : ctrl.player.fg3m/ctrl.player.fg3a * 100| number:2"></td>
+			<td ng-bind="ctrl.player.fgm"></td>
+			<td ng-bind="ctrl.player.fga"></td>
+			<td ng-bind="ctrl.player.fga == 0 ? 0 : ctrl.player.fgm/ctrl.player.fga * 100| number:2"></td>
+			<td ng-bind="ctrl.player.ftm"></td>
+			<td ng-bind="ctrl.player.fta"></td>
+			<td ng-bind="ctrl.player.fta == 0 ? 0 : ctrl.player.ftm/ctrl.player.fta * 100| number:2"></td>
 			<td ng-bind="ctrl.player.tov"></td>
+		</tr>
+		<tr>
+			<td>Average {{ctrl.player.position}}</td>
+			<td></td>
+			<td>{{ctrl.avg.min | number:1}}</td>
+			<td>{{ctrl.avg.pts | number:1}}</td>
+			<td>{{ctrl.avg.ast| number:1}}</td>
+			<td>{{ctrl.avg.reb| number:1}}</td>
+			<td>{{ctrl.avg.stl| number:1}}</td>
+			<td>{{ctrl.avg.blk| number:1}}</td>
+			<td>{{ctrl.avg.fg3m| number:1}}</td>
+			<td>{{ctrl.avg.fg3a| number:1}}</td>
+			<td>{{ctrl.avg.fg3p * 100| number:1}}</td>
+			<td>{{ctrl.avg.fgm| number:1}}</td>
+			<td>{{ctrl.avg.fga| number:1}}</td>
+			<td>{{ctrl.avg.fgp * 100| number:1}}</td>
+			<td>{{ctrl.avg.ftm| number:1}}</td>
+			<td>{{ctrl.avg.fta| number:1}}</td>
+			<td>{{ctrl.avg.ftp * 100| number:1}}</td>
+			<td>{{ctrl.avg.tov| number:1}}</td>
 		</tr>
 	</table>
 

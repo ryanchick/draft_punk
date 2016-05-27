@@ -17,7 +17,7 @@
     display: inline-block;
     box-sizing: border-box;
     border: 1px solid black;
-    width: 80px;
+    width: 6.5%;
     margin-right: 5px;
     height: 80px;
     overflow: hidden;
@@ -103,7 +103,8 @@
     background-position: center;
     float: left; }
   .playerStats__draftButton {
-    margin: 0 auto; }
+    margin-left: 10px;
+    margin-bottom: 5px; }
 
 .green {
   color: green;

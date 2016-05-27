@@ -13,7 +13,7 @@
 
 		 playerVm.options = {
 		    chart: {
-		        type: 'discreteBarChart',
+		        type: 'multiBarChart',
 		        height: 450,
 		        margin : {
 		            top: 20,
@@ -21,6 +21,8 @@
 		            bottom: 60,
 		            left: 55
 		        },
+		        showControls:false,
+		        reduceXTicks:false,
 		        x: function(d){ return d.label; },
 		        y: function(d){ return d.value; },
 		        showValues: true,
@@ -32,7 +34,7 @@
 		            axisLabel: 'Standard Fantasy Categories'
 		        },
 		        yAxis: {
-		            axisLabel: '% of Average ' + player.position,
+		            axisLabel: '% Relative to Average ' + player.position,
 		            axisLabelDistance: -5
 		        }
 		    }

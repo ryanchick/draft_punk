@@ -62,13 +62,17 @@
 				<div class="row">
 					<div class="col-md-12 playerStats">
 						<!-- <h4>Player Information:</h4> -->
+						<div ng-show='!ctrl.playerSelect.name'>
+							<h3>Pick a Player!</h3>
+						</div>
 						<div class="container-fluid" ng-show='ctrl.playerSelect.name'>
 							<div class="row">
 								<!-- <div class=""> -->
 									<div class="col-xs-2 playerStats__image" style="background-image:url({{ctrl.playerSelect.img_url}})"></div>
 								<!-- </div> -->
 								<div class="col-xs-10" style="{border:1px solid yellow,padding:0px}">
-									<h4>{{ctrl.playerSelect.name}}</h4>
+									<b>{{ctrl.playerSelect.name}}</b>
+									<button class="playerStats__draftButton btn btn-success" ng-click="ctrl.draft(ctrl.playerSelect)" ng-disabled="(!ctrl.playerSelect.name || ctrl.done)">Draft Player</button>
 									<table class="table table-condensed">
 										<tr>
 											<th>PTS</th>
@@ -95,7 +99,6 @@
 									</table>
 								</div>
 							</div>
-							<button class="playerStats__draftButton btn btn-success" ng-click="ctrl.draft(ctrl.playerSelect)" ng-disabled="(!ctrl.playerSelect.name || ctrl.done)">Draft Player</button>
 						</div>
 					</div>
 					<div class="col-md-12" style="border:1px solid yellow">
@@ -172,7 +175,7 @@
 								<td ng-class="(ctrl.teamSelect.stats.ftm+ctrl.playerSelect.ftm)/(ctrl.teamSelect.stats.fta+ctrl.playerSelect.fta) * 100 > ctrl.goals[7] ? 'green' : 'red'">
 									{{(ctrl.teamSelect.stats.ftm+ctrl.playerSelect.ftm)/(ctrl.teamSelect.stats.fta+ctrl.playerSelect.fta)  * 100|number:1}}
 								</td>
-								<td ng-class="(ctrl.teamSelect.stats.tov+ctrl.playerSelect.tov)/(ctrl.teamSelect.stats.count+1) > ctrl.goals[8] ? 'green' : 'red'">
+								<td ng-class="(ctrl.teamSelect.stats.tov+ctrl.playerSelect.tov)/(ctrl.teamSelect.stats.count+1) > ctrl.goals[8] ? 'red' : 'green'">
 									{{(ctrl.teamSelect.stats.tov+ctrl.playerSelect.tov)/(ctrl.teamSelect.stats.count+1) |number:1}}
 								</td>
 							</tr>
