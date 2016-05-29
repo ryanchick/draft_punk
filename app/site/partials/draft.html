@@ -19,9 +19,17 @@
 			<div class="col-md-5 draft__playerList">
 				<h4>Player List</h4>
 				
-				<input type="text" name="" placeholder="Name" ng-model="ctrl.searchName">
-				<div>
-					SUGGESTIONS GO HERE
+				<div><label>Search:</label><input type="text" name="" placeholder="Name" ng-model="ctrl.searchName" class="">
+				</div>
+				<div class="row">
+				
+					<div class="container-fluid">
+						<div><b>We Suggest:</b></div>
+						<div class="col-xs-4 draft__playerList__suggest" ng-repeat="suggest in ctrl.suggested" ng-click="ctrl.show(suggest)">
+							<div class="col-xs-3 draft__playerList__suggest__image" style="background-image:url({{suggest.img_url}})"></div>
+							{{suggest.name}}
+						</div>
+					</div>
 				</div>
 				<table class="table table-condensed table-striped table-bordered table-hover ">
 					<thead>
@@ -40,7 +48,7 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr ng-repeat="player in (ctrl.filtered = (ctrl.playerStats | filter: {'name':ctrl.searchName}| orderBy:'-pts'))"
+						<tr ng-repeat="player in (ctrl.filtered = (ctrl.playerStats | filter: {'name':ctrl.searchName}| orderBy:'-totRtg'))"
 							ng-click="ctrl.show(player)"
 							>
 							<td class="draft__playerList__name">{{player.name | abbrevNameFilter}}</td>

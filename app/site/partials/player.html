@@ -30,7 +30,7 @@
 			<th>FTM</th>
 			<th>FTA</th>
 			<th>FT%</th>
-			<th>TO</th>
+			<th>TOV</th>
 		</tr>
 		<tr>
 			<td ng-bind="ctrl.player.name"></td>
@@ -63,13 +63,13 @@
 			<td>{{ctrl.avg.blk| number:1}}</td>
 			<td>{{ctrl.avg.fg3m| number:1}}</td>
 			<td>{{ctrl.avg.fg3a| number:1}}</td>
-			<td>{{ctrl.avg.fg3p * 100| number:1}}</td>
+			<td>{{ctrl.avg.fg3p * 100| number:2}}</td>
 			<td>{{ctrl.avg.fgm| number:1}}</td>
 			<td>{{ctrl.avg.fga| number:1}}</td>
-			<td>{{ctrl.avg.fgp * 100| number:1}}</td>
+			<td>{{ctrl.avg.fgp * 100| number:2}}</td>
 			<td>{{ctrl.avg.ftm| number:1}}</td>
 			<td>{{ctrl.avg.fta| number:1}}</td>
-			<td>{{ctrl.avg.ftp * 100| number:1}}</td>
+			<td>{{ctrl.avg.ftp * 100| number:2}}</td>
 			<td>{{ctrl.avg.tov| number:1}}</td>
 		</tr>
 	</table>

@@ -6,8 +6,9 @@
 	function DraftCtrl ($http,$routeParams,stats){
 		var draftVm = this;
 		// console.log('draft')
+		console.log(stats)
 		draftVm.playerStats = stats.data;
-		draftVm.numTeams = 12;
+		draftVm.numTeams = 2;
 		draftVm.userPick = 1;
 		draftVm.rounds = [0,1,2,3,4,5,6,7,8,9,10,11,12];
 		draftVm.curRound = 0;
@@ -20,7 +21,9 @@
 		draftVm.myPick = false;
 		draftVm.teamSelect = draftVm.league.teams[draftVm.userPick-1];
 		draftVm.goals = [14.78,3.33,5.99,1.09,0.74,1.07,46.4,78.3,2.0]
-
+		draftVm.suggested = [draftVm.playerStats[0],
+			draftVm.playerStats[1],
+			draftVm.playerStats[2]];
 
 		checkSelected();
 		// draftVm.playerSelect = draftVm.filtered[1];
@@ -114,6 +117,7 @@
 			draftVm.league.teams[pickTeam].stats.count++;
 
 			// draftVm.league.teams[pickTeam].players.push(player);
+			
 			draftVm.league.draftedPlayers.push(player);
 			if(draftVm.curPick % draftVm.numTeams == (draftVm.numTeams-1) && draftVm.curRound != 12){
 				draftVm.curRound++;
@@ -126,8 +130,6 @@
 				draftVm.curPick++;
 			}
 
-			//add pick to team sidebar if picking for user team
-
 			// draftVm.myPick = false;
 			
 			//refilter players remaining
@@ -139,6 +141,19 @@
 			}else{
 				draftVm.playerSelect = draftVm.filtered[0];
 			}
+			$http.post('/api/draft/',player)
+				.then(function(res){
+					console.log(res);
+					draftVm.playerStats = res.data;
+					draftVm.playerSelect = res.data[0];
+					return $http.put('/api/draft/' + (draftVm.userPick - 1),draftVm.league)
+				})
+				.then(function(res){
+					console.log('suggested');
+					console.log(res);
+					draftVm.suggested = res.data;
+				})			
+
 		}
 
 		function teamTotals(players){
