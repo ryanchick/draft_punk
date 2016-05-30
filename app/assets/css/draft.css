@@ -105,13 +105,17 @@
   .playerStats__table {
     margin-bottom: 0; }
 
-.green {
-  color: green;
-  font-weight: bold; }
-
-.red {
-  color: red;
-  font-weight: bold; }
+.home__playerPanel {
+  border: 2px solid black;
+  margin-bottom: 10px; }
+  .home__playerPanel :hover {
+    background-color: whitesmoke; }
+  .home__playerPanel__playerImg {
+    width: 50px;
+    height: 50px;
+    background-size: cover;
+    background-position: center;
+    margin-right: 20px; }
 
 .myTeam {
   border: 1px solid green;

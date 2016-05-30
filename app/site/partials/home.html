@@ -1,8 +1,37 @@
 <div class="container">
-	<button class="btn" ng-click="ctrl.route('login')">Login</button>
-	<button class="btn" ng-click="ctrl.route('stats')">Stats</button>
-	<button class="btn" ng-click="ctrl.route('user/'+ctrl.username)">User</button>
-	<button class="btn" ng-click="ctrl.route('draft/1')">Draft</button>
-
-
+	<div class="jumbotron">
+		<h1>DRAFT PROJECT</h1>
+		<p>Explanation Text</p>
+		<p><button class="btn btn-success btn-lg">DRAFT NOW</button></p>
+	</div>
+	<div>
+		<div class="row">
+			<div class="col-sm-4">
+				<h3>Detailed Statistics</h3>
+				<p>Each player's statistics are analyzed by category and compared to find the best fit for your team</p>
+				
+				<div ng-repeat="player in ctrl.players| orderBy: '-pts'" ng-click="ctrl.changePlayer(player)" class="home__playerPanel">
+					<div class="container-fluid">
+						<div class="row">
+							<div class="col-xs-3 home__playerPanel__playerImg" style="background-image:url({{player.img_url}})">
+							</div>
+							<div>
+							<b>{{player.name}}</b>
+							<br>{{player.position}}
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-8">
+				<!-- GRAPH -->
+				<h3>{{ctrl.playerSelect.name}}</h3>
+				<nvd3 options='ctrl.options' data='ctrl.data'></nvd3>
+			</div>
+		</div>
+		<!-- <button ng-click="ctrl.get()">GET</button> -->
+	</div>
+	<div>
+		<button class="btn btn-success btn-lg"><h2>DRAFT NOW</h2></button>
+	</div>
 <div>

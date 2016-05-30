@@ -11,7 +11,7 @@
 
 		console.log(playerVm.avg);
 
-		 playerVm.options = {
+		playerVm.options = {
 		    chart: {
 		        type: 'discreteBarChart',
 		        height: 450,

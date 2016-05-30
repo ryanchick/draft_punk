@@ -11,6 +11,19 @@ router.get('/', function(req, res) {
 
 });
 
+router.get('/demo',function(req,res){
+	var where = {where:{$or:[
+		{name:'Stephen Curry'},
+		{name:'James Harden'},
+		{name:'Kawhi Leonard'},
+		{name:'Anthony Davis'},
+		{name:'Karl-Anthony Towns'}]
+	}}
+	models.Stats.findAll(where).then(function(stats){
+		// console.log(stats)
+		res.json(stats);
+	})
+})
 
 //get stats for specific player
 router.get('/:playerId', function(req, res) {
