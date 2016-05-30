@@ -11,6 +11,8 @@
 	<script type="text/javascript" src="assets/js/vendor/d3.js"></script>
 	<script type="text/javascript" src="assets/js/vendor/nv.d3.js"></script>
 	<script type="text/javascript" src="assets/js/vendor/angular-nvd3.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.js"></script>
+	<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
 	<script type="text/javascript" src="app.js"></script>
 
@@ -24,6 +26,9 @@
 	<script type="text/javascript" src="site/controllers/player.ctrl.js"></script>
 	<script type="text/javascript" src="site/services/players.srv.js"></script>
 
+	<!-- directives -->
+	<script type="text/javascript" src="site/directives/navbar.dir.js"></script>
+
 	<!-- filters -->
 	<script type="text/javascript" src="site/filters/abbrevNameFilter.js"></script>
 
@@ -36,7 +41,9 @@
 
 
 </head>
+
 <body ng-app="draftApp">
+	<draft-navbar></draft-navbar>
 	<ng-view></ng-view>
 </body>
 </html>
