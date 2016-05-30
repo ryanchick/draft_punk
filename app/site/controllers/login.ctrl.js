@@ -30,7 +30,7 @@
 						  };
 			$http.post('/api/users', newUser)
 				.then(function(res){
-					console.log(res);
+					loginVm.login();
 				});
 		}
 
