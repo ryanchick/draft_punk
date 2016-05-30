@@ -9,7 +9,7 @@
 		console.log(stats)
 		draftVm.playerStats = stats.data;
 		draftVm.numTeams = 12;
-		draftVm.userPick = 4;
+		draftVm.userPick = 1;
 		draftVm.rounds = [0,1,2,3,4,5,6,7,8,9,10,11,12];
 		draftVm.curRound = 0;
 		draftVm.curPick = 0;
@@ -141,16 +141,17 @@
 			checkSelected();
 
 			//repopulate player info box with top remaining scorer
-			if(player == draftVm.filtered[0]){
-				draftVm.playerSelect = draftVm.filtered[1];
-			}else{
-				draftVm.playerSelect = draftVm.filtered[0];
-			}
+			
 			$http.post('/api/draft/',player)
 				.then(function(res){
 					console.log(res);
 					draftVm.playerStats = res.data;
-					draftVm.playerSelect = res.data[0];
+					// draftVm.playerSelect = res.data[0];
+					if(player == draftVm.filtered[0]){
+						draftVm.playerSelect = draftVm.filtered[1];
+					}else{
+						draftVm.playerSelect = draftVm.filtered[0];
+					}
 					return $http.put('/api/draft/' + (draftVm.userPick - 1),draftVm.league.teams[(draftVm.userPick - 1)])
 				})
 				.then(function(res){

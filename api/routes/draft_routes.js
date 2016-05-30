@@ -176,9 +176,9 @@ router.put('/:teamId', function(req,res){
 	}
 	var validPlayers = __newPlayers.filter(function(player){
 		// console.log(player)
-		// if(isNaN(player.totRtg)){
-		// 	return false;
-		// }
+		if(isNaN(player.totRtg)){
+			return false;
+		}
 		if(missing != ""){
 			if(!player.position.match(missing)){
 				return false;

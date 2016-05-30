@@ -43,10 +43,11 @@
 
 .draft__playerList {
   border: 1px solid blue;
-  font-size: 11px;
+  font-size: 12px;
   height: 80vh; }
   .draft__playerList table {
-    width: 100%; }
+    max-width: 540px;
+    margin: 0 auto; }
   .draft__playerList thead {
     display: block;
     border: 1px solid blue; }
@@ -57,10 +58,10 @@
     height: 50vh;
     border: 1px solid red;
     overflow: auto;
-    display: block;
-    padding: 0px; }
+    display: block; }
   .draft__playerList__suggest {
     border: 2px solid green;
+    box-sizing: border-box;
     font-weight: bold;
     font-size: 14px;
     vertical-align: middle;
@@ -70,34 +71,13 @@
       background-size: cover;
       background-position: center; }
   .draft__playerList__name {
-    max-width: 20%;
-    width: 20%;
+    width: 135px;
     word-wrap: break-word; }
-  .draft__playerList__min {
-    min-width: 8%;
-    width: 8%; }
-  .draft__playerList__pts {
-    min-width: 8%;
-    width: 8%; }
-  .draft__playerList__ast {
-    min-width: 8%;
-    width: 8%; }
-  .draft__playerList__reb {
-    min-width: 8%;
-    width: 8%; }
-  .draft__playerList__stl {
-    min-width: 8%;
-    width: 8%; }
-  .draft__playerList__blk {
-    width: 8%; }
-  .draft__playerList__3pm {
-    width: 8%; }
-  .draft__playerList__fgp {
-    width: 8%; }
-  .draft__playerList__ftp {
-    width: 8%; }
-  .draft__playerList__tov {
-    width: 8%; }
+  .draft__playerList__stat {
+    min-width: 35px;
+    width: 35px;
+    vertical-align: middle;
+    padding-right: 0px !important; }
 
 .playerStats {
   height: 40vh;

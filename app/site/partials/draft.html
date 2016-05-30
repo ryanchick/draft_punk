@@ -36,33 +36,39 @@
 					<thead>
 						<tr>
 							<th class="draft__playerList__name">Player Name</th>
-							<th class="draft__playerList__min">POS</th>
-							<th class="draft__playerList__pts">PTS</th>
-							<th class="draft__playerList__ast">AST</th>
-							<th class="draft__playerList__reb">REB</th>
-							<th class="draft__playerList__stl">STL</th>
-							<th class="draft__playerList__blk">BLK</th>
-							<th class="draft__playerList__3pm">3PM</th>
-							<th class="draft__playerList__fgp">FG%</th>
-							<th class="draft__playerList__ftp">FT%</th>
-							<th class="draft__playerList__tov">TOV</th>
+							<th class="draft__playerList__stat">POS</th>
+							<th class="draft__playerList__stat">PTS</th>
+							<th class="draft__playerList__stat">AST</th>
+							<th class="draft__playerList__stat">REB</th>
+							<th class="draft__playerList__stat">STL</th>
+							<th class="draft__playerList__stat">BLK</th>
+							<th class="draft__playerList__stat">3PM</th>
+							<th class="draft__playerList__stat">FG%</th>
+							<th class="draft__playerList__stat">FT%</th>
+							<th class="draft__playerList__stat">TOV</th>
+							<th class="draft__playerList__stat">RTG</th>
+							<!-- <th style="width:17px"></th> -->
 						</tr>
 					</thead>
 					<tbody>
-						<tr ng-repeat="player in (ctrl.filtered = (ctrl.playerStats | filter: {'name':ctrl.searchName}| orderBy:'-totRtg'))"
+						<tr ng-repeat="player in (ctrl.filtered = (ctrl.playerStats | filter: {'name':ctrl.searchName}| orderBy:'-pts'))"
 							ng-click="ctrl.show(player)"
 							>
-							<td class="draft__playerList__name">{{player.name | abbrevNameFilter}}</td>
-							<td class="draft__playerList__min">{{player.position}}</td>
-							<td class="draft__playerList__pts">{{player.pts | number:1}}</td>
-							<td class="draft__playerList__ast">{{player.ast | number:1}}</td>
-							<td class="draft__playerList__reb">{{player.reb | number:1}}</td>
-							<td class="draft__playerList__stl">{{player.stl | number:1}}</td>
-							<td class="draft__playerList__blk">{{player.blk | number:1}}</td>
-							<td class="draft__playerList__3pm">{{player.fg3m | number:1}}</td>
-							<td class="draft__playerList__fgp">{{player.fgp = player.fgm/player.fga * 100| number:1}}</td>
-							<td class="draft__playerList__ftp">{{player.ftp = player.ftm/player.fta * 100| number:1}}</td>
-							<td class="draft__playerList__tov">{{player.tov | number:1}}</td>
+							<td class="draft__playerList__name">{{player.name | abbrevNameFilter}}
+								<span class='badge' ng-show='ctrl.isSuggest(player) >= 0'>{{ctrl.isSuggest(player) + 1}}</span>
+							</td>
+							<td class="draft__playerList__stat">{{player.position}}</td>
+							<td class="draft__playerList__stat">{{player.pts | number:1}}</td>
+							<td class="draft__playerList__stat">{{player.ast | number:1}}</td>
+							<td class="draft__playerList__stat">{{player.reb | number:1}}</td>
+							<td class="draft__playerList__stat">{{player.stl | number:1}}</td>
+							<td class="draft__playerList__stat">{{player.blk | number:1}}</td>
+							<td class="draft__playerList__stat">{{player.fg3m | number:1}}</td>
+							<td class="draft__playerList__stat">{{player.fgp = player.fgm/player.fga * 99.9|| 0 | number:1}}</td>
+							<td class="draft__playerList__stat">{{player.ftp = player.ftm/player.fta * 99.9|| 0 | number:1}}</td>
+							<td class="draft__playerList__stat">{{player.tov | number:1}}</td>
+							<td class="draft__playerList__stat">
+							{{player.totRtg || 0 | number:1}}</td>
 						</tr>
 					</tbody>
 				</table>
@@ -162,7 +168,7 @@
 								<td ng-style="ctrl.colourScale(ctrl.teamSelect.stats.ftm/ctrl.teamSelect.stats.fta*100 , ctrl.goals[7])">
 									{{ctrl.teamSelect.stats.ftm/ctrl.teamSelect.stats.fta*100 |number:1}}
 								</td>
-								<td ng-style="ctrl.colourScale(ctrl.teamSelect.stats.tov/ctrl.teamSelect.stats.count, ctrl.goals[8])">
+								<td ng-style="ctrl.colourScale(ctrl.goals[8],ctrl.teamSelect.stats.tov/ctrl.teamSelect.stats.count )">
 									{{ctrl.teamSelect.stats.tov/ctrl.teamSelect.stats.count |number:1}}
 								</td>
 							</tr>
@@ -193,7 +199,7 @@
 								<td ng-style="ctrl.colourScale((ctrl.teamSelect.stats.ftm+ctrl.playerSelect.ftm)/(ctrl.teamSelect.stats.fta+ctrl.playerSelect.fta) * 100, ctrl.goals[7])">
 									{{(ctrl.teamSelect.stats.ftm+ctrl.playerSelect.ftm)/(ctrl.teamSelect.stats.fta+ctrl.playerSelect.fta)  * 100|number:1}}
 								</td>
-								<td ng-style="ctrl.colourScale((ctrl.teamSelect.stats.tov+ctrl.playerSelect.tov)/(ctrl.teamSelect.stats.count+1), ctrl.goals[8])">
+								<td ng-style="ctrl.colourScale(ctrl.goals[8],(ctrl.teamSelect.stats.tov+ctrl.playerSelect.tov)/(ctrl.teamSelect.stats.count+1))">
 									{{(ctrl.teamSelect.stats.tov+ctrl.playerSelect.tov)/(ctrl.teamSelect.stats.count+1) |number:1}}
 								</td>
 							</tr>
