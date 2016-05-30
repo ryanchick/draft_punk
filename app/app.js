@@ -10,7 +10,19 @@
 			$routeProvider
 				.when('/home',{
 					templateUrl: 'site/partials/home.html',
-					controller: 'HomeCtrl as ctrl'
+					controller: 'HomeCtrl as ctrl',
+					resolve:{
+						demo: function($http,playerSrv){
+							return playerSrv.getStats()
+								.then(function(res){
+									return $http.get('api/stats/demo');
+								})
+								.then(function(res){
+									console.log(res);
+									return res;
+								})
+						}
+					}
 				})
 				.when('/login',{
 					templateUrl: 'site/partials/login.html',

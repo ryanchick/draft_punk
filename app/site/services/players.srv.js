@@ -13,12 +13,12 @@
 
 		//functions
 		function getStats(){
-				return $http.get('/api/stats')
-					.then (function(res){
-						self.stats = res.data;
-						getAvg(self.stats);
-						return self.stats
-				})
+			return $http.get('/api/stats')
+				.then (function(res){
+					self.stats = res.data;
+					getAvg(self.stats);
+					return self.stats
+			})
 						 
 		}
 
