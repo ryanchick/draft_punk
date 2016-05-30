@@ -109,9 +109,12 @@ router.put('/:teamId', function(req,res){
 	//change weightings
 	//get list of remaining players
 	//return top 3 suggested players
-	console.log(req.params.teamId)
-	console.log(req.body)
+
+	// console.log(req.params.teamId)
+	// console.log(req.body)
+	var missing = "";
 	var userTeam = req.body.stats;
+
 	var __team = {
 		pts: userTeam.pts/userTeam.count,
 		ast: userTeam.ast/userTeam.count,
@@ -123,17 +126,9 @@ router.put('/:teamId', function(req,res){
 		ftp: userTeam.fta > 0 ? userTeam.ftm/userTeam.fta : 0,
 		tov: userTeam.tov/userTeam.count
 	}
-	var teamWgts = {
-		pts: 1,
-		ast: 1,
-		reb: 1,
-		stl: 1,
-		blk: 1,
-		fg3: 1,
-		fgp: 1,
-		ftp: 1,
-		tov: 1
-	}
+	var teamWgts = {pts: 1,ast: 1,reb: 1,stl: 1,blk: 1,fg3: 1,fgp: 1,ftp: 1,tov: 1}
+
+	//adjust team stat weightings based on current stats
 	if(__team.pts > 0){
 		for(var stat in __team){
 			// console.log(stat)
@@ -141,6 +136,18 @@ router.put('/:teamId', function(req,res){
 			var __change = (Math.abs(__change) < maxVar) ? __change : (__change >= 0 ? maxVar : maxVar * -1);
 			teamWgts[stat] = 1 + __change;
 		}
+	}
+	if(userTeam.count >= 7){
+		for(var pos in req.body.players){
+			if(!(pos.match('UTIL') || pos.match('BENCH'))){
+				if(req.body.players[pos] == ""){
+					missing = pos;
+					console.log(missing)
+					break;
+				}
+			}
+		}
+			
 	}
 	console.log(teamWgts)
 	// Math.abs(A) < Math.abs(B) ? A : B;
@@ -171,6 +178,11 @@ router.put('/:teamId', function(req,res){
 		// console.log(player)
 		if(isNaN(player.totRtg)){
 			return false;
+		}
+		if(missing != ""){
+			if(!player.position.match(missing)){
+				return false;
+			}
 		}
 		return true;
 		// return true;

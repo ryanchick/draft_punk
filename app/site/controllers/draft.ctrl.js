@@ -102,6 +102,7 @@
 				draftVm.league.teams[pickTeam].players["BENCH3"] = player;
 			} else {
 				console.log('invalid pick')
+				draftVm.drafting = false;
 				return;
 			}
 
