@@ -27,7 +27,8 @@
 						<div><b>We Suggest:</b></div>
 						<div class="col-xs-4 draft__playerList__suggest" ng-repeat="suggest in ctrl.suggested" ng-click="ctrl.show(suggest)">
 							<div class="col-xs-3 draft__playerList__suggest__image" style="background-image:url({{suggest.img_url}})"></div>
-							{{suggest.name}}
+							{{suggest.name | abbrevNameFilter}} <br>
+							Adj. Rtg: {{suggest.totRtg |number:2}}
 						</div>
 					</div>
 				</div>
@@ -80,7 +81,9 @@
 								<!-- </div> -->
 								<div class="col-xs-10" style="{border:1px solid yellow,padding:0px}">
 									<b>{{ctrl.playerSelect.name}}</b>
-									<button class="playerStats__draftButton btn btn-success" ng-click="ctrl.draft(ctrl.playerSelect)" ng-disabled="(!ctrl.playerSelect.name || ctrl.done)">Draft Player</button>
+									{{ctrl.playerSelect.position}}
+									<i>Rating:{{ctrl.playerSelect.totRtg|number:2}}</i>
+									<button class="playerStats__draftButton btn btn-success" ng-click="ctrl.draft(ctrl.playerSelect)" ng-disabled="(!ctrl.playerSelect.name || ctrl.done || ctrl.drafting)">Draft Player</button>
 									<table class="table table-condensed">
 										<tr>
 											<th>PTS</th>

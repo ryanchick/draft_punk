@@ -8,6 +8,12 @@
 	   		if(name){
 		        var arr = name.split(" ")
 				// console.log(arr)
+				//Antetokounmpo exception
+				if(arr[1]){
+					if(arr[1].toLowerCase() == 'antetokounmpo'){
+						return 'GIANNIS';
+					}
+				}
 				arr[0] = arr[0].charAt(0) + ".";
 				var abbr = arr.reduce(function(a,b){
 					return a+" "+b;

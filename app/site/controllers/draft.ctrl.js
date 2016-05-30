@@ -8,8 +8,8 @@
 		// console.log('draft')
 		console.log(stats)
 		draftVm.playerStats = stats.data;
-		draftVm.numTeams = 2;
-		draftVm.userPick = 1;
+		draftVm.numTeams = 12;
+		draftVm.userPick = 4;
 		draftVm.rounds = [0,1,2,3,4,5,6,7,8,9,10,11,12];
 		draftVm.curRound = 0;
 		draftVm.curPick = 0;
@@ -24,6 +24,7 @@
 		draftVm.suggested = [draftVm.playerStats[0],
 			draftVm.playerStats[1],
 			draftVm.playerStats[2]];
+		draftVm.drafting = false;
 
 		checkSelected();
 		// draftVm.playerSelect = draftVm.filtered[1];
@@ -62,6 +63,7 @@
 
 		function draft(player){
 			draftVm.myPick = false;
+			draftVm.drafting = true;
 			console.log('draft')
 			//calculate which team is currently picking
 			if(draftVm.curRound % 2 == 0){
@@ -146,12 +148,13 @@
 					console.log(res);
 					draftVm.playerStats = res.data;
 					draftVm.playerSelect = res.data[0];
-					return $http.put('/api/draft/' + (draftVm.userPick - 1),draftVm.league)
+					return $http.put('/api/draft/' + (draftVm.userPick - 1),draftVm.league.teams[(draftVm.userPick - 1)])
 				})
 				.then(function(res){
 					console.log('suggested');
 					console.log(res);
 					draftVm.suggested = res.data;
+					draftVm.drafting = false;
 				})			
 
 		}

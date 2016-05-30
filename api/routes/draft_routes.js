@@ -13,8 +13,8 @@ var availPlayers = [];
 // 	})
 var ovrWgts = {
 	pts: 0.33,
-	reb: 0.8,
 	ast: 1.0,
+	reb: 0.8,
 	stl: 4.50,
 	blk: 2.5,
 	fg3: 2.5,
@@ -24,6 +24,18 @@ var ovrWgts = {
 	fgpAvg: 45.2,
 	ftpAvg: 75.7
 }
+var goals = {
+	pts:14.78,
+	ast:3.33,
+	reb:5.99,
+	stl:1.09,
+	blk:0.74,
+	fg3:1.07,
+	fgp:0.464,
+	ftp:0.783,
+	tov:2.0
+}
+var maxVar = 0.25;
 
 //get players for draft
 router.get('/init', function(req,res) {
@@ -98,12 +110,23 @@ router.put('/:teamId', function(req,res){
 	//get list of remaining players
 	//return top 3 suggested players
 	console.log(req.params.teamId)
-	console.log(req.body.teams[req.params.teamId].stats)
-	var userTeam = req.body.teams[req.params.teamId]
+	console.log(req.body)
+	var userTeam = req.body.stats;
+	var __team = {
+		pts: userTeam.pts/userTeam.count,
+		ast: userTeam.ast/userTeam.count,
+		reb: userTeam.reb/userTeam.count,
+		stl: userTeam.stl/userTeam.count,
+		blk: userTeam.blk/userTeam.count,
+		fg3: userTeam.fg3m/userTeam.count,
+		fgp: userTeam.fga > 0 ? userTeam.fgm/userTeam.fga : 0,
+		ftp: userTeam.fta > 0 ? userTeam.ftm/userTeam.fta : 0,
+		tov: userTeam.tov/userTeam.count
+	}
 	var teamWgts = {
 		pts: 1,
-		reb: 1,
 		ast: 1,
+		reb: 1,
 		stl: 1,
 		blk: 1,
 		fg3: 1,
@@ -111,15 +134,28 @@ router.put('/:teamId', function(req,res){
 		ftp: 1,
 		tov: 1
 	}
+	if(__team.pts > 0){
+		for(var stat in __team){
+			// console.log(stat)
+			var __change = (goals[stat]-__team[stat])/Math.min(__team[stat],goals[stat]) * maxVar;
+			var __change = (Math.abs(__change) < maxVar) ? __change : (__change >= 0 ? maxVar : maxVar * -1);
+			teamWgts[stat] = 1 + __change;
+		}
+	}
+	console.log(teamWgts)
+	// Math.abs(A) < Math.abs(B) ? A : B;
+
+
+
 	var l = availPlayers.length;
-	console.log('avail')
-	console.log(availPlayers[0])
+	//clone players array so list of players doesn't change when recalculating ratings
+	var __newPlayers = JSON.parse(JSON.stringify(availPlayers));
 	for(var i = 0; i < l;i++){
-		var __player = availPlayers[i];
+		var __player = __newPlayers[i];
 		__player.fgp = __player.fga > 0 ? __player.fgm/__player.fga * 100: 0;
 		// console.log(__player.fgp)
 		__player.ftp = __player.fta > 0 ? __player.ftm/__player.fta * 100: 0;
-		availPlayers[i].totRtg = 
+		__newPlayers[i].totRtg = 
 			__player.pts * teamWgts.pts * ovrWgts.pts +
 			__player.ast * teamWgts.ast * ovrWgts.ast +
 			__player.reb * teamWgts.reb * ovrWgts.reb +
@@ -131,12 +167,25 @@ router.put('/:teamId', function(req,res){
 			__player.tov * teamWgts.tov * ovrWgts.tov
 			* (1 + ((__player.games_played - 72)/ 82));
 	}
-	availPlayers.sort(function(a, b) {
+	var validPlayers = __newPlayers.filter(function(player){
+		// console.log(player)
+		if(isNaN(player.totRtg)){
+			return false;
+		}
+		return true;
+		// return true;
+	})
+	// console.log(validPlayers)
+	validPlayers.sort(function(a, b) {
 	  return b.totRtg - a.totRtg;
 	});
-	// console.log(availPlayers[0])
-	var suggested = [availPlayers[0],availPlayers[1],availPlayers[2]]
 
+	// console.log(validPlayers[0])
+	var suggested = [validPlayers[0],validPlayers[1],validPlayers[2]]
+	// console.log(availPlayers[0].games_played)
+	// console.log(availPlayers[1].games_played)
+	// console.log(availPlayers[1].totRtg)
+	// console.log(availPlayers[2].games_played)
 	res.send(suggested)
 })
 
