@@ -13,7 +13,7 @@
 
 		 playerVm.options = {
 		    chart: {
-		        type: 'multiBarChart',
+		        type: 'discreteBarChart',
 		        height: 450,
 		        margin : {
 		            top: 20,
