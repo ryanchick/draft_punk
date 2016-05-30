@@ -35,6 +35,7 @@
 		draftVm.draft = draft;
 		draftVm.checkSelected = checkSelected;
 		draftVm.teamTotals = teamTotals;
+		draftVm.isSuggest = isSuggest;
 
 		function abbrev(name){
 			var arr = name.split(" ")
@@ -243,6 +244,17 @@
 
 			}
 			return league;
+		}
+
+		function isSuggest(player){
+
+			for(var i = 0;i < draftVm.suggested.length;i++){
+
+				if(player.nba_id == draftVm.suggested[i].nba_id){
+					return i;
+				}
+			}
+			return -1;
 		}
 
 	}

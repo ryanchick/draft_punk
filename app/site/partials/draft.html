@@ -27,7 +27,7 @@
 						<div><b>We Suggest:</b></div>
 						<div class="col-xs-4 draft__playerList__suggest" ng-repeat="suggest in ctrl.suggested" ng-click="ctrl.show(suggest)">
 							<div class="col-xs-3 draft__playerList__suggest__image" style="background-image:url({{suggest.img_url}})"></div>
-							{{suggest.name | abbrevNameFilter}} <br>
+							#{{$index+1}}: {{suggest.name | abbrevNameFilter}} <br>
 							Adj. Rtg: {{suggest.totRtg |number:2}}
 						</div>
 					</div>
@@ -77,12 +77,19 @@
 						<div class="container-fluid" ng-show='ctrl.playerSelect.name'>
 							<div class="row">
 								<!-- <div class=""> -->
-									<div class="col-xs-2 playerStats__image" style="background-image:url({{ctrl.playerSelect.img_url}})"></div>
+									<div class="col-xs-2 playerStats__image" style="background-image:url({{ctrl.playerSelect.img_url}})">
+										<span class='badge' ng-show='ctrl.isSuggest(ctrl.playerSelect) >= 0'>
+											{{ctrl.isSuggest(ctrl.playerSelect) + 1}}
+										</span>
+									</div>
 								<!-- </div> -->
 								<div class="col-xs-10" style="{border:1px solid yellow,padding:0px}">
 									<b>{{ctrl.playerSelect.name}}</b>
 									{{ctrl.playerSelect.position}}
-									<i>Rating:{{ctrl.playerSelect.totRtg|number:2}}</i>
+									<!-- <i>Rating:{{ctrl.playerSelect.totRtg|number:2}}</i> -->
+									<!-- <i ng-show='ctrl.isSuggest(ctrl.playerSelect) >= 0'>
+										Rated: #{{ctrl.isSuggest(ctrl.playerSelect)+1}} for Your Team
+									</i> -->
 									<button class="playerStats__draftButton btn btn-success" ng-click="ctrl.draft(ctrl.playerSelect)" ng-disabled="(!ctrl.playerSelect.name || ctrl.done || ctrl.drafting)">Draft Player</button>
 									<table class="table table-condensed">
 										<tr>
