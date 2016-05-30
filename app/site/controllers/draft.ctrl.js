@@ -3,7 +3,7 @@
 		.module('draftApp')
 		.controller('DraftCtrl',DraftCtrl)
 
-	function DraftCtrl ($http,$routeParams,stats){
+	function DraftCtrl ($timeout, $http,$routeParams,stats, playerSrv){
 		var draftVm = this;
 		// console.log('draft')
 		console.log(stats)
@@ -25,6 +25,7 @@
 			draftVm.playerStats[1],
 			draftVm.playerStats[2]];
 		draftVm.drafting = false;
+		//draftVm.avg = playerSrv.avgStats[draftVm.playerSelect.position];
 
 		checkSelected();
 		// draftVm.playerSelect = draftVm.filtered[1];
@@ -37,6 +38,7 @@
 		draftVm.teamTotals = teamTotals;
 		draftVm.isSuggest = isSuggest;
 		draftVm.colourScale = colourScale;
+		draftVm.drawChart = drawChart;
 
 		function abbrev(name){
 			var arr = name.split(" ")
@@ -50,6 +52,7 @@
 
 		function show(player){
 			draftVm.playerSelect = player;
+			draftVm.drawChart();
 		}
 
 		function checkSelected(){
@@ -279,6 +282,59 @@
 				style.color = 'green';
 			}
 			return style;
+		}
+
+		function drawChart(){
+			draftVm.avg = playerSrv.avgStats[draftVm.playerSelect.position];
+			draftVm.options = {
+			    chart: {
+			        type: 'discreteBarChart',
+			        height: 150,
+			        //width: 400,
+			        margin : {
+			            top: 5,
+			            right: 0,
+			            bottom: 45,
+			            left: 55
+			        },
+			        showControls:false,
+			        reduceXTicks:false,
+			        x: function(d){ return d.label; },
+			        y: function(d){ return d.value; },
+			        showValues: true,
+			        valueFormat: function(d){
+			            return d3.format(',.1f')(d);
+			        },
+			        transitionDuration: 500,
+			        xAxis: {
+			            axisLabel: 'Standard Fantasy Categories',
+			            axisLabelDistance: -5
+			        },
+			        yAxis: {
+			            axisLabel: '% : Avg '+draftVm.playerSelect.position,
+			            axisLabelDistance: -5
+			        }
+			    }
+			};
+
+			draftVm.data = [{
+			    key: draftVm.playerSelect.name,
+			    values: [
+			        { "label" : "PTS" , "value" : (draftVm.playerSelect.pts-draftVm.avg.pts)/draftVm.avg.pts*100},
+			        { "label" : "AST" , "value" : (draftVm.playerSelect.ast-draftVm.avg.ast)/draftVm.avg.ast*100},
+			        { "label" : "REB" , "value" : (draftVm.playerSelect.reb-draftVm.avg.reb)/draftVm.avg.reb*100},
+			        { "label" : "STL" , "value" : (draftVm.playerSelect.stl-draftVm.avg.stl)/draftVm.avg.stl*100},
+			        { "label" : "BLK" , "value" : (draftVm.playerSelect.blk-draftVm.avg.blk)/draftVm.avg.blk*100},
+			        { "label" : "3PT" , "value" : (draftVm.playerSelect.fg3m-draftVm.avg.fg3m)/draftVm.avg.fg3m*100},
+			        { "label" : "FG%" , "value" : ((draftVm.playerSelect.fga == 0 ? 0 : draftVm.playerSelect.fgm/draftVm.playerSelect.fga) - draftVm.avg.fgp)/draftVm.avg.fgp*100},
+			        { "label" : "FT%" , "value" : ((draftVm.playerSelect.fta == 0 ? 0 : draftVm.playerSelect.ftm/draftVm.playerSelect.fta) - draftVm.avg.ftp)/draftVm.avg.ftp*100},
+			        { "label" : "TO"  , "value" : (draftVm.avg.tov-draftVm.playerSelect.tov)/draftVm.avg.tov*100}
+			    ]
+			}];
+			//window.dispatchEvent(new Event('resize'));
+			$timeout(function() {
+                    window.dispatchEvent(new Event('resize'));
+                }, 50);
 		}
 
 	}

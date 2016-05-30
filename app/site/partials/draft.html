@@ -17,9 +17,9 @@
 <div class="container-fluid" ng-hide="ctrl.done">
 	<div class="row">
 			<div class="col-md-5 draft__playerList">
-				<h4>Player List</h4>
+				<h4 class="draft__playerList__title">Player List</h4>
 				
-				<div><label>Search:</label><input type="text" name="" placeholder="Name" ng-model="ctrl.searchName" class="">
+				<div class="draft__playerList__search"><label>Search:</label><input type="text" name="" placeholder="Name" ng-model="ctrl.searchName">
 				</div>
 				<div class="row">
 				
@@ -83,11 +83,11 @@
 						<div class="container-fluid" ng-show='ctrl.playerSelect.name'>
 							<div class="row">
 								<!-- <div class=""> -->
-									<div class="col-xs-2 playerStats__image" style="background-image:url({{ctrl.playerSelect.img_url}})">
-										<span class='badge' ng-show='ctrl.isSuggest(ctrl.playerSelect) >= 0'>
-											{{ctrl.isSuggest(ctrl.playerSelect) + 1}}
-										</span>
-									</div>
+								<div class="col-xs-2 playerStats__image" style="background-image:url({{ctrl.playerSelect.img_url}})">
+									<span class='badge' ng-show='ctrl.isSuggest(ctrl.playerSelect) >= 0'>
+										{{ctrl.isSuggest(ctrl.playerSelect) + 1}}
+									</span>
+								</div>
 								<!-- </div> -->
 								<div class="col-xs-10" style="{border:1px solid yellow,padding:0px}">
 									<b>{{ctrl.playerSelect.name}}</b>
@@ -97,7 +97,7 @@
 										Rated: #{{ctrl.isSuggest(ctrl.playerSelect)+1}} for Your Team
 									</i> -->
 									<button class="playerStats__draftButton btn btn-success" ng-click="ctrl.draft(ctrl.playerSelect)" ng-disabled="(!ctrl.playerSelect.name || ctrl.done || ctrl.drafting)">Draft Player</button>
-									<table class="table table-condensed">
+									<table class="table table-condensed playerStats__table">
 										<tr>
 											<th>PTS</th>
 											<th>AST</th>
@@ -121,6 +121,9 @@
 											<td>{{ctrl.playerSelect.tov}}</td>
 										</tr>
 									</table>
+								</div>
+								<div>
+									<nvd3 options='ctrl.options' data='ctrl.data' style="width:100%"></nvd3>
 								</div>
 							</div>
 						</div>
@@ -211,9 +214,9 @@
 					</div>
 				</div>
 			</div>
-			<div class="col-md-2" style="border:1px solid green; padding:4px; box-sizing:border-box">
+			<div class="col-md-2 myTeam">
 				<select ng-options="team as team.teamName for team in ctrl.league.teams" ng-model="ctrl.teamSelect" style="float:right"></select>
-				<h4>{{ctrl.teamSelect.teamName}}</h4>
+				<h4 class="myTeam__title">{{ctrl.teamSelect.teamName}}</h4>
 				<table class="table table-condensed table-bordered">
 					<tr>
 						<th>POS</th>
