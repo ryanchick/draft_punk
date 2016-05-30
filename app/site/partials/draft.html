@@ -138,68 +138,68 @@
 								<th>
 									{{ctrl.teamSelect.teamName}}
 								</th>
-								<td ng-class="ctrl.teamSelect.stats.pts/ctrl.teamSelect.stats.count > ctrl.goals[0] ? 'green' : 'red'">
+								<td ng-style="ctrl.colourScale(ctrl.teamSelect.stats.pts/ctrl.teamSelect.stats.count,ctrl.goals[0])">
 									{{ctrl.teamSelect.stats.pts/ctrl.teamSelect.stats.count |number:1}}
 								</td>
-								<td ng-class="ctrl.teamSelect.stats.ast/ctrl.teamSelect.stats.count > ctrl.goals[1] ? 'green' : 'red'">
+								<td ng-style="ctrl.colourScale(ctrl.teamSelect.stats.ast/ctrl.teamSelect.stats.count, ctrl.goals[1])">
 									{{ctrl.teamSelect.stats.ast/ctrl.teamSelect.stats.count |number:1}}
 								</td>
-								<td ng-class="ctrl.teamSelect.stats.reb/ctrl.teamSelect.stats.count > ctrl.goals[2] ? 'green' : 'red'">
+								<td ng-style="ctrl.colourScale(ctrl.teamSelect.stats.reb/ctrl.teamSelect.stats.count,ctrl.goals[2])">
 									{{ctrl.teamSelect.stats.reb/ctrl.teamSelect.stats.count |number:1}}
 								</td>
-								<td ng-class="ctrl.teamSelect.stats.stl/ctrl.teamSelect.stats.count > ctrl.goals[3] ? 'green' : 'red'">
+								<td ng-style="ctrl.colourScale(ctrl.teamSelect.stats.stl/ctrl.teamSelect.stats.count, ctrl.goals[3])">
 									{{ctrl.teamSelect.stats.stl/ctrl.teamSelect.stats.count |number:1}}
 								</td>
-								<td ng-class="ctrl.teamSelect.stats.blk/ctrl.teamSelect.stats.count > ctrl.goals[4] ? 'green' : 'red'">
+								<td ng-style="ctrl.colourScale(ctrl.teamSelect.stats.blk/ctrl.teamSelect.stats.count , ctrl.goals[4])">
 									{{ctrl.teamSelect.stats.blk/ctrl.teamSelect.stats.count |number:1}}
 								</td>
-								<td ng-class="ctrl.teamSelect.stats.fg3m/ctrl.teamSelect.stats.count > ctrl.goals[5] ? 'green' : 'red'">
+								<td ng-style="ctrl.colourScale(ctrl.teamSelect.stats.fg3m/ctrl.teamSelect.stats.count, ctrl.goals[5])">
 									{{ctrl.teamSelect.stats.fg3m/ctrl.teamSelect.stats.count |number:1}}
 								</td>
-								<td ng-class="ctrl.teamSelect.stats.fgm/ctrl.teamSelect.stats.fga * 100 > ctrl.goals[6] ? 'green' : 'red'">
+								<td ng-style="ctrl.colourScale(ctrl.teamSelect.stats.fgm/ctrl.teamSelect.stats.fga * 100 ,ctrl.goals[6])">
 									{{ctrl.teamSelect.stats.fgm/ctrl.teamSelect.stats.fga*100 |number:1}}
 								</td>
-								<td ng-class="ctrl.teamSelect.stats.ftm/ctrl.teamSelect.stats.fta*100 > ctrl.goals[7] ? 'green' : 'red'">
+								<td ng-style="ctrl.colourScale(ctrl.teamSelect.stats.ftm/ctrl.teamSelect.stats.fta*100 , ctrl.goals[7])">
 									{{ctrl.teamSelect.stats.ftm/ctrl.teamSelect.stats.fta*100 |number:1}}
 								</td>
-								<td ng-class="ctrl.teamSelect.stats.tov/ctrl.teamSelect.stats.count > ctrl.goals[8] ? 'red' : 'green'">
+								<td ng-style="ctrl.colourScale(ctrl.teamSelect.stats.tov/ctrl.teamSelect.stats.count, ctrl.goals[8])">
 									{{ctrl.teamSelect.stats.tov/ctrl.teamSelect.stats.count |number:1}}
 								</td>
 							</tr>
 							<tr ng-show="ctrl.playerSelect.name">
 								<th>w/ Added Player</th>
 
-								<td ng-class="(ctrl.teamSelect.stats.pts+ctrl.playerSelect.pts)/(ctrl.teamSelect.stats.count+1) > ctrl.goals[0] ? 'green' : 'red'">
+								<td ng-style="ctrl.colourScale((ctrl.teamSelect.stats.pts+ctrl.playerSelect.pts)/(ctrl.teamSelect.stats.count+1), ctrl.goals[0])">
 									{{(ctrl.teamSelect.stats.pts+ctrl.playerSelect.pts)/(ctrl.teamSelect.stats.count+1) |number:1}}
 								</td>
-								<td ng-class="(ctrl.teamSelect.stats.ast+ctrl.playerSelect.ast)/(ctrl.teamSelect.stats.count+1) > ctrl.goals[1] ? 'green' : 'red'">
+								<td ng-style="ctrl.colourScale((ctrl.teamSelect.stats.ast+ctrl.playerSelect.ast)/(ctrl.teamSelect.stats.count+1), ctrl.goals[1])">
 									{{(ctrl.teamSelect.stats.ast+ctrl.playerSelect.ast)/(ctrl.teamSelect.stats.count+1) |number:1}}
 								</td>
-								<td ng-class="(ctrl.teamSelect.stats.reb+ctrl.playerSelect.reb)/(ctrl.teamSelect.stats.count+1) > ctrl.goals[2] ? 'green' : 'red'">
+								<td ng-style="ctrl.colourScale((ctrl.teamSelect.stats.reb+ctrl.playerSelect.reb)/(ctrl.teamSelect.stats.count+1), ctrl.goals[2])">
 									{{(ctrl.teamSelect.stats.reb+ctrl.playerSelect.reb)/(ctrl.teamSelect.stats.count+1) |number:1}}
 								</td>
-								<td ng-class="(ctrl.teamSelect.stats.stl+ctrl.playerSelect.stl)/(ctrl.teamSelect.stats.count+1) > ctrl.goals[3] ? 'green' : 'red'">
+								<td ng-style="ctrl.colourScale((ctrl.teamSelect.stats.stl+ctrl.playerSelect.stl)/(ctrl.teamSelect.stats.count+1), ctrl.goals[3])">
 									{{(ctrl.teamSelect.stats.stl+ctrl.playerSelect.stl)/(ctrl.teamSelect.stats.count+1) |number:1}}
 								</td>
-								<td ng-class="(ctrl.teamSelect.stats.blk+ctrl.playerSelect.blk)/(ctrl.teamSelect.stats.count+1) > ctrl.goals[4] ? 'green' : 'red'">
+								<td ng-style="ctrl.colourScale((ctrl.teamSelect.stats.blk+ctrl.playerSelect.blk)/(ctrl.teamSelect.stats.count+1), ctrl.goals[4])">
 									{{(ctrl.teamSelect.stats.blk+ctrl.playerSelect.blk)/(ctrl.teamSelect.stats.count+1) |number:1}}
 								</td>
-								<td ng-class="(ctrl.teamSelect.stats.fg3m+ctrl.playerSelect.fg3m)/(ctrl.teamSelect.stats.count+1) > ctrl.goals[5] ? 'green' : 'red'">
+								<td ng-style="ctrl.colourScale((ctrl.teamSelect.stats.fg3m+ctrl.playerSelect.fg3m)/(ctrl.teamSelect.stats.count+1), ctrl.goals[5])">
 									{{(ctrl.teamSelect.stats.fg3m+ctrl.playerSelect.fg3m)/(ctrl.teamSelect.stats.count+1) |number:1}}
 								</td>
-								<td ng-class="(ctrl.teamSelect.stats.fgm+ctrl.playerSelect.fgm) /(ctrl.teamSelect.stats.fga+ctrl.playerSelect.fga) * 100 > ctrl.goals[6] ? 'green' : 'red'">
+								<td ng-style="ctrl.colourScale((ctrl.teamSelect.stats.fgm+ctrl.playerSelect.fgm) /(ctrl.teamSelect.stats.fga+ctrl.playerSelect.fga) * 100, ctrl.goals[6])">
 									{{(ctrl.teamSelect.stats.fgm+ctrl.playerSelect.fgm)/(ctrl.teamSelect.stats.fga+ctrl.playerSelect.fga) *100 |number:1}}
 								</td>
-								<td ng-class="(ctrl.teamSelect.stats.ftm+ctrl.playerSelect.ftm)/(ctrl.teamSelect.stats.fta+ctrl.playerSelect.fta) * 100 > ctrl.goals[7] ? 'green' : 'red'">
+								<td ng-style="ctrl.colourScale((ctrl.teamSelect.stats.ftm+ctrl.playerSelect.ftm)/(ctrl.teamSelect.stats.fta+ctrl.playerSelect.fta) * 100, ctrl.goals[7])">
 									{{(ctrl.teamSelect.stats.ftm+ctrl.playerSelect.ftm)/(ctrl.teamSelect.stats.fta+ctrl.playerSelect.fta)  * 100|number:1}}
 								</td>
-								<td ng-class="(ctrl.teamSelect.stats.tov+ctrl.playerSelect.tov)/(ctrl.teamSelect.stats.count+1) > ctrl.goals[8] ? 'red' : 'green'">
+								<td ng-style="ctrl.colourScale((ctrl.teamSelect.stats.tov+ctrl.playerSelect.tov)/(ctrl.teamSelect.stats.count+1), ctrl.goals[8])">
 									{{(ctrl.teamSelect.stats.tov+ctrl.playerSelect.tov)/(ctrl.teamSelect.stats.count+1) |number:1}}
 								</td>
 							</tr>
 							<tr>
 								<th>Targets</th>
-								<td ng-repeat='stat in ctrl.goals'>{{stat}}</td>
+								<td ng-repeat='stat in ctrl.goals'><b>{{stat | number:1}}</b></td>
 							</tr>
 						</table>
 					</div>

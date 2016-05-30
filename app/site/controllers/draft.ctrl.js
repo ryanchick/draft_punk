@@ -36,6 +36,7 @@
 		draftVm.checkSelected = checkSelected;
 		draftVm.teamTotals = teamTotals;
 		draftVm.isSuggest = isSuggest;
+		draftVm.colourScale = colourScale;
 
 		function abbrev(name){
 			var arr = name.split(" ")
@@ -247,14 +248,36 @@
 		}
 
 		function isSuggest(player){
+			if(player){
+				for(var i = 0;i < draftVm.suggested.length;i++){
 
-			for(var i = 0;i < draftVm.suggested.length;i++){
-
-				if(player.nba_id == draftVm.suggested[i].nba_id){
-					return i;
+					if(player.nba_id == draftVm.suggested[i].nba_id){
+						return i;
+					}
 				}
 			}
 			return -1;
+		}
+
+		function colourScale(value, goal)
+		{
+			var style = {'font-weight':'bold'}
+			// console.log(value,goal)
+			//for shooting pcts
+			if(goal >= 70){
+				style.opacity = (0.5 +  0.05 * Math.min(Math.abs(value-goal),10));
+			}else if(goal >= 40){
+				style.opacity = (0.5 +  0.1 * Math.min(Math.abs(value-goal),5));
+			}else{
+				style.opacity = (0.5 +  Math.min(0.5 * Math.abs((value-goal)/goal),0.5));
+			}
+			//change color based on which is higher
+			if(value < goal){
+				style.color = 'red';
+			}else{
+				style.color = 'green';
+			}
+			return style;
 		}
 
 	}
