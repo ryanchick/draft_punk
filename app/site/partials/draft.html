@@ -127,7 +127,8 @@
 					</div>
 					<div class="col-md-12" style="border:1px solid yellow">
 						Team Average
-						<table class="table table-condensed">
+						<input toggle-button class="form-control" ng-model="ctrl.teamGraph" ng-change="Change()" type="checkbox" data-on="Graph" data-off="Table" data-size="mini">
+						<table ng-show="!ctrl.teamGraph" class="table table-condensed">
 							<tr>
 								<th></th>
 								<th>PTS</th>

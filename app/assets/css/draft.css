@@ -97,9 +97,9 @@
     margin-bottom: 5px; }
 
 .home__playerPanel {
-  border: 2px solid black;
+  border: 2px solid gray;
   margin-bottom: 10px; }
-  .home__playerPanel :hover {
+  .home__playerPanel:hover {
     background-color: whitesmoke; }
   .home__playerPanel__playerImg {
     width: 50px;
@@ -107,5 +107,9 @@
     background-size: cover;
     background-position: center;
     margin-right: 20px; }
+
+.home__CTA {
+  text-align: center;
+  margin: 0px auto; }
 
 /*# sourceMappingURL=draft.css.map */
