@@ -41,7 +41,11 @@
 					controller: 'StatsCtrl as ctrl',
 					resolve: {
 						stats: function(playerSrv){
-							return playerSrv.getStats();
+							if(playerSrv.stats){
+								return playerSrv.stats;
+							}else{
+								return playerSrv.getStats();
+							}
 						}
 					}
 				})
@@ -50,17 +54,29 @@
 					controller: 'PlayerCtrl as ctrl',
 					resolve:{
 						player: function($route, playerSrv){
-							return playerSrv.getStats()
-								.then(function(stats){
-									var id = $route.current.params.playerId;
-									var l = stats.length;
+							if(playerSrv.stats){
+								var stats = playerSrv.stats;
+								var id = $route.current.params.playerId;
+								var l = stats.length;
 
-									for (var i = 0; i < l; i ++){
-										if (stats[i].id == id){
-											return stats[i];
-										}
+								for (var i = 0; i < l; i ++){
+									if (stats[i].id == id){
+										return stats[i];
 									}
-								})
+								}
+							}else{
+								return playerSrv.getStats()
+									.then(function(stats){
+										var id = $route.current.params.playerId;
+										var l = stats.length;
+
+										for (var i = 0; i < l; i ++){
+											if (stats[i].id == id){
+												return stats[i];
+											}
+										}
+									})
+							}
 						}
 					}
 				})
