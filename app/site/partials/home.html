@@ -14,7 +14,7 @@
 				<h3>Detailed Statistics</h3>
 				<p>Each player's statistics are analyzed by category and compared to find the best fit for your team</p>
 				
-				<div ng-repeat="player in ctrl.players| orderBy: '-pts'" ng-click="ctrl.changePlayer(player)" class="home__playerPanel">
+				<div ng-repeat="player in ctrl.players| orderBy: '-fg3m'" ng-click="ctrl.changePlayer(player)" class="home__playerPanel">
 					<div class="container-fluid">
 						<div class="row">
 							<div class="col-xs-3 home__playerPanel__playerImg" style="background-image:url({{player.img_url}})">
