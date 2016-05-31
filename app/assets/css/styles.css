@@ -26,6 +26,10 @@
 	background-size:cover;
 }
 
+.navbar-inverse{
+	margin:0;
+}
+
 /* when hiding the picture */
 /*.ng-hide-add         { animation:0.5s slideOut ease; }
 

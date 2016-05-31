@@ -6,6 +6,8 @@
 	function PlayerService($http){
 		var self = this;
 
+		getStats();
+
 		//variables
 
 		//function bindings

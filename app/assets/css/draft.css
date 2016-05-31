@@ -1,7 +1,6 @@
 .draftList {
-  height: 100px;
-  margin: 10px 20px;
-  padding: 10px;
+  height: 80px;
+  margin: 5px;
   border: 1px solid teal;
   overflow: hidden;
   font-size: 12px; }
@@ -59,6 +58,13 @@
     border: 1px solid red;
     overflow: auto;
     display: block; }
+  .draft__playerList__title {
+    margin-top: 5px;
+    display: inline-block; }
+  .draft__playerList__search {
+    margin-top: 5px;
+    float: right;
+    display: inline-block; }
   .draft__playerList__suggest {
     border: 2px solid green;
     box-sizing: border-box;
@@ -72,7 +78,8 @@
       background-position: center; }
   .draft__playerList__name {
     width: 135px;
-    word-wrap: break-word; }
+    word-wrap: break-word;
+    overflow: hidden; }
   .draft__playerList__stat {
     min-width: 35px;
     width: 35px;
@@ -95,6 +102,23 @@
   .playerStats__draftButton {
     margin-left: 10px;
     margin-bottom: 5px; }
+  .playerStats__table {
+    margin-bottom: 0; }
+
+.green {
+  color: green;
+  font-weight: bold; }
+
+.red {
+  color: red;
+  font-weight: bold; }
+
+.myTeam {
+  border: 1px solid green;
+  padding: 4px;
+  box-sizing: border-box; }
+  .myTeam__title {
+    margin: 5px 0; }
 
 .home__playerPanel {
   border: 2px solid gray;
@@ -109,7 +133,6 @@
     margin-right: 20px; }
 
 .home__CTA {
-  text-align: center;
-  margin: 0px auto; }
+  text-align: center; }
 
 /*# sourceMappingURL=draft.css.map */
