@@ -13,14 +13,24 @@
 					controller: 'HomeCtrl as ctrl',
 					resolve:{
 						demo: function($http,playerSrv){
-							return playerSrv.getStats()
-								.then(function(res){
-									return $http.get('api/stats/demo');
-								})
-								.then(function(res){
-									console.log(res);
-									return res;
-								})
+							if(playerSrv.stats){
+								return $http.get('api/stats/demo')
+							} else{
+								return playerSrv.getStats()
+									.then(function(res){
+										return $http.get('api/stats/demo');
+									})
+									.then(function(res){
+										console.log(res);
+										return res;
+									})
+							}
+						},
+						demo2: function($http){
+							return $http.get('api/stats/demo2')
+						},
+						raptors: function($http){
+							return $http.get('api/stats/raptors')
 						}
 					}
 				})

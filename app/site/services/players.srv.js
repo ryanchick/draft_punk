@@ -60,9 +60,6 @@
 							totalStats[pos].totals[stat] += stats[i][stat];
 						}
 					}
-					if(pos == 'SG'){
-						console.log(stats[i].ftp)
-					}
 					
 					for(var stat in stdDev[pos].stats){
 						if(stat == 'pts'||stat == 'ast'||stat == 'reb'||stat == 'stl'||stat == 'blk'||stat == 'fg3m'||stat == 'fgp'||stat == 'ftp'||stat == 'tov'){
@@ -80,8 +77,8 @@
 
 				}
 			}
-			console.log(stdDev['SG'].stats)
-			console.log(totalStats['SG'].totals.pts)
+			// console.log(stdDev['SG'].stats)
+			// console.log(totalStats['SG'].totals.pts)
 
 			for (var i in totalStats){
 				for(var stat in totalStats[i].totals){
@@ -90,22 +87,14 @@
 			}
 			for (var pos in stdDev){
 				for(var stat in stdDev[pos].dev){
-					if(pos == 'SG' && stat == 'ftp'){
-						console.log(stdDev[pos].stats[stat])
-						console.log(stdDev[pos].stats[stat+'2'])
-						console.log(totalStats)
-					}
 					// console.log(stat)
 					stdDev[pos].dev[stat] = Math.sqrt((stdDev[pos].stats[stat+'2'] - (stdDev[pos].stats[stat] * stdDev[pos].stats[stat])/totalStats[pos].count)/totalStats[pos].count)
-					if(pos == 'SG' && stat == 'ftp'){
-						console.log((stdDev[pos].stats[stat+'2'] - (stdDev[pos].stats[stat] * stdDev[pos].stats[stat])/totalStats[pos].count)/totalStats[pos].count)
-					}
 				}
 			}
-			console.log(totalStats['SG'].avg)
-			console.log(stdDev['SG'].dev)
+			// console.log(totalStats['SG'].avg)
+			// console.log(stdDev['SG'].dev)
 
-			/*
+			/*standard deviation algorithm
 			if len(data) == 0:
 			  return 0
 			K = data[0]
