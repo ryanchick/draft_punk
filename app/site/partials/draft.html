@@ -130,7 +130,7 @@
 					</div>
 					<div class="col-md-12" style="border:1px solid yellow">
 						Team Average
-						<input toggle-button class="form-control" ng-model="ctrl.teamGraph" ng-change="Change()" type="checkbox" data-on="Graph" data-off="Table" data-size="mini">
+						<input toggle-button class="form-control" ng-model="ctrl.teamGraph" ng-change="Change(); ctrl.drawTeamChart()" type="checkbox" data-on="Graph" data-off="Table" data-size="mini">
 						<table ng-show="!ctrl.teamGraph" class="table table-condensed">
 							<tr>
 								<th></th>
@@ -212,6 +212,11 @@
 								<td ng-repeat='stat in ctrl.goals'><b>{{stat | number:1}}</b></td>
 							</tr>
 						</table>
+						<div ng-show="ctrl.teamGraph">
+							<!-- <nvd3 options='ctrl.teamOptions' data='ctrl.teamData'></nvd3> -->
+							Hello
+							<div id="chart" style="height: 200px;"><svg></svg></div>
+						</div>
 					</div>
 				</div>
 			</div>

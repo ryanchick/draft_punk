@@ -41,7 +41,8 @@
 		draftVm.teamTotals = teamTotals;
 		draftVm.isSuggest = isSuggest;
 		draftVm.colourScale = colourScale;
-		draftVm.drawChart = drawChart;
+		draftVm.drawPlayerChart = drawPlayerChart;
+		draftVm.drawTeamChart = drawTeamChart;
 
 		function abbrev(name){
 			var arr = name.split(" ")
@@ -55,7 +56,8 @@
 
 		function show(player){
 			draftVm.playerSelect = player;
-			draftVm.drawChart();
+			draftVm.drawPlayerChart();
+			draftVm.drawTeamChart();
 		}
 
 		function checkSelected(){
@@ -287,7 +289,7 @@
 			return style;
 		}
 
-		function drawChart(){
+		function drawPlayerChart(){
 			draftVm.avg = playerSrv.avgStats[draftVm.playerSelect.position];
 			draftVm.options = {
 			    chart: {
@@ -337,7 +339,58 @@
 			//window.dispatchEvent(new Event('resize'));
 			$timeout(function() {
                     window.dispatchEvent(new Event('resize'));
-                }, 50);
+            }, 75);
+		}
+
+		var chart = nv.models.multiBarChart();
+			d3.select('#chart svg').datum([
+			  {
+			    key: "S1",
+			    color: "#51A351",
+			    values:
+			    [      
+			      { x : "PTS", y : 0},
+			      { x : "AST", y : 0 },
+			      { x : "REB",   y : 0 }  
+			    ]
+			  },
+			  {
+			    key: "S2",
+			    color: "#BD362F",
+			    values:
+			    [      
+			      { x : "PTS", y : 0 },
+			      { x : "AST", y : 0 },
+			      { x : "REB",   y : 0 } 
+			    ]
+			  }
+		]).transition().duration(200).call(chart);
+
+		function drawTeamChart(){
+			var chart = nv.models.multiBarChart();
+			d3.select('#chart svg').datum([
+			  {
+			    key: "S1",
+			    color: "#51A351",
+			    values:
+			    [      
+			      { x : "PTS", y : draftVm.teamSelect.stats.pts/draftVm.teamSelect.stats.count},
+			      { x : "AST", y : 30 },
+			      { x : "REB",   y : 20 }  
+			    ]
+			  },
+			  {
+			    key: "S2",
+			    color: "#BD362F",
+			    values:
+			    [      
+			      { x : "PTS", y : 60 },
+			      { x : "AST", y : 50 },
+			      { x : "REB",   y : 70 } 
+			    ]
+			  }
+			]).transition().duration(200).call(chart);
+
 		}
 
 	}
