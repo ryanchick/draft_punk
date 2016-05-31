@@ -8,7 +8,7 @@
 		// console.log('draft')
 		console.log(stats)
 		draftVm.playerStats = stats.data;
-		draftVm.numTeams = 12;
+		draftVm.numTeams = 4;
 		draftVm.userPick = 1;
 		draftVm.rounds = [0,1,2,3,4,5,6,7,8,9,10,11,12];
 		draftVm.curRound = 0;
@@ -21,6 +21,18 @@
 		draftVm.myPick = false;
 		draftVm.teamSelect = draftVm.league.teams[draftVm.userPick-1];
 		draftVm.goals = [14.78,3.33,5.99,1.09,0.74,1.07,46.4,78.3,2.0]
+		draftVm.targets = {
+			pts:14.78,
+			ast:3.33,
+			reb:5.99,
+			stl:1.09,
+			blk:0.74,
+			fg3m:1.07,
+			fgp:0.464,
+			ftp:0.783,
+			tov:2.0
+		}
+
 		draftVm.suggested = [draftVm.playerStats[0],
 			draftVm.playerStats[1],
 			draftVm.playerStats[2]];
@@ -31,6 +43,7 @@
 
 
 		checkSelected();
+		// drawTeamChart();
 		// draftVm.playerSelect = draftVm.filtered[1];
 
 		//public methods
@@ -160,6 +173,7 @@
 					}else{
 						draftVm.playerSelect = draftVm.filtered[0];
 					}
+
 					return $http.put('/api/draft/' + (draftVm.userPick - 1),draftVm.league.teams[(draftVm.userPick - 1)])
 				})
 				.then(function(res){
@@ -167,6 +181,12 @@
 					console.log(res);
 					draftVm.suggested = res.data;
 					draftVm.drafting = false;
+					// if(draftVm.myPick == true){
+					// 	draftVm.drawTeamChart();
+					// }
+				})
+				.then(function(){
+					draftVm.show(draftVm.playerSelect);
 				})			
 
 		}
@@ -308,7 +328,7 @@
 			        y: function(d){ return d.value; },
 			        showValues: true,
 			        valueFormat: function(d){
-			            return d3.format(',.1f')(d);
+			            return d3.format(',.1%')(d);
 			        },
 			        transitionDuration: 500,
 			        xAxis: {
@@ -317,7 +337,8 @@
 			        },
 			        yAxis: {
 			            axisLabel: '% : Avg '+draftVm.playerSelect.position,
-			            axisLabelDistance: -5
+			            axisLabelDistance: -5,
+			            tickFormat: d3.format(',.1%')
 			        }
 			    }
 			};
@@ -325,15 +346,15 @@
 			draftVm.data = [{
 			    key: draftVm.playerSelect.name,
 			    values: [
-			        { "label" : "PTS" , "value" : (draftVm.playerSelect.pts-draftVm.avg.pts)/draftVm.avg.pts*100},
-			        { "label" : "AST" , "value" : (draftVm.playerSelect.ast-draftVm.avg.ast)/draftVm.avg.ast*100},
-			        { "label" : "REB" , "value" : (draftVm.playerSelect.reb-draftVm.avg.reb)/draftVm.avg.reb*100},
-			        { "label" : "STL" , "value" : (draftVm.playerSelect.stl-draftVm.avg.stl)/draftVm.avg.stl*100},
-			        { "label" : "BLK" , "value" : (draftVm.playerSelect.blk-draftVm.avg.blk)/draftVm.avg.blk*100},
-			        { "label" : "3PT" , "value" : (draftVm.playerSelect.fg3m-draftVm.avg.fg3m)/draftVm.avg.fg3m*100},
-			        { "label" : "FG%" , "value" : ((draftVm.playerSelect.fga == 0 ? 0 : draftVm.playerSelect.fgm/draftVm.playerSelect.fga) - draftVm.avg.fgp)/draftVm.avg.fgp*100},
-			        { "label" : "FT%" , "value" : ((draftVm.playerSelect.fta == 0 ? 0 : draftVm.playerSelect.ftm/draftVm.playerSelect.fta) - draftVm.avg.ftp)/draftVm.avg.ftp*100},
-			        { "label" : "TO"  , "value" : (draftVm.avg.tov-draftVm.playerSelect.tov)/draftVm.avg.tov*100}
+			        { "label" : "PTS" , "value" : (draftVm.playerSelect.pts-draftVm.avg.pts)/draftVm.avg.pts},
+			        { "label" : "AST" , "value" : (draftVm.playerSelect.ast-draftVm.avg.ast)/draftVm.avg.ast},
+			        { "label" : "REB" , "value" : (draftVm.playerSelect.reb-draftVm.avg.reb)/draftVm.avg.reb},
+			        { "label" : "STL" , "value" : (draftVm.playerSelect.stl-draftVm.avg.stl)/draftVm.avg.stl},
+			        { "label" : "BLK" , "value" : (draftVm.playerSelect.blk-draftVm.avg.blk)/draftVm.avg.blk},
+			        { "label" : "3PT" , "value" : (draftVm.playerSelect.fg3m-draftVm.avg.fg3m)/draftVm.avg.fg3m},
+			        { "label" : "FG%" , "value" : ((draftVm.playerSelect.fga == 0 ? 0 : draftVm.playerSelect.fgm/draftVm.playerSelect.fga) - draftVm.avg.fgp)/draftVm.avg.fgp},
+			        { "label" : "FT%" , "value" : ((draftVm.playerSelect.fta == 0 ? 0 : draftVm.playerSelect.ftm/draftVm.playerSelect.fta) - draftVm.avg.ftp)/draftVm.avg.ftp},
+			        { "label" : "TO"  , "value" : (draftVm.avg.tov-draftVm.playerSelect.tov)/draftVm.avg.tov}
 			    ]
 			}];
 			//window.dispatchEvent(new Event('resize'));
@@ -342,55 +363,105 @@
             }, 75);
 		}
 
-		var chart = nv.models.multiBarChart();
-			d3.select('#chart svg').datum([
-			  {
-			    key: "S1",
-			    color: "#51A351",
-			    values:
-			    [      
-			      { x : "PTS", y : 0},
-			      { x : "AST", y : 0 },
-			      { x : "REB",   y : 0 }  
-			    ]
-			  },
-			  {
-			    key: "S2",
-			    color: "#BD362F",
-			    values:
-			    [      
-			      { x : "PTS", y : 0 },
-			      { x : "AST", y : 0 },
-			      { x : "REB",   y : 0 } 
-			    ]
-			  }
-		]).transition().duration(200).call(chart);
-
 		function drawTeamChart(){
-			var chart = nv.models.multiBarChart();
-			d3.select('#chart svg').datum([
-			  {
-			    key: "S1",
-			    color: "#51A351",
-			    values:
-			    [      
-			      { x : "PTS", y : draftVm.teamSelect.stats.pts/draftVm.teamSelect.stats.count},
-			      { x : "AST", y : 30 },
-			      { x : "REB",   y : 20 }  
-			    ]
-			  },
-			  {
-			    key: "S2",
-			    color: "#BD362F",
-			    values:
-			    [      
-			      { x : "PTS", y : 60 },
-			      { x : "AST", y : 50 },
-			      { x : "REB",   y : 70 } 
-			    ]
-			  }
-			]).transition().duration(200).call(chart);
+			// var chart = nv.models.multiBarChart();
+			// d3.select('#chart svg').datum([
+			//   {
+			//     key: "S1",
+			//     color: "#51A351",
+			//     values:
+			//     [      
+			//       { x : "PTS", y : draftVm.teamSelect.stats.pts/draftVm.teamSelect.stats.count},
+			//       { x : "AST", y : 30 },
+			//       { x : "REB",   y : 20 }  
+			//     ]
+			//   },
+			//   {
+			//     key: "S2",
+			//     color: "#BD362F",
+			//     values:
+			//     [      
+			//       { x : "PTS", y : 60 },
+			//       { x : "AST", y : 50 },
+			//       { x : "REB",   y : 70 } 
+			//     ]
+			//   }
+			// ]).transition().duration(200).call(chart);
+			var __team = draftVm.teamSelect.stats;
+			var __player = draftVm.playerSelect
+			console.log('__team');
+			console.log(__team);
+			draftVm.teamOptions = {
+			    chart: {
+			        type: 'multiBarChart',
+			        height: 230,
+			        //width: 400,
+			        margin : {
+			            top: 5,
+			            right: 0,
+			            bottom: 45,
+			            left: 55
+			        },
+			        showControls:false,
+			        reduceXTicks:false,
+			        x: function(d){ return d.label; },
+			        y: function(d){ return d.value; },
+			        showValues: true,
+			        valueFormat: function(d){
+			            return d3.format(',.4%')(d);
+			        },
+			        transitionDuration: 500,
+			        xAxis: {
+			            axisLabel: 'Standard Fantasy Categories',
+			            axisLabelDistance: -5
+			        },
+			        yAxis: {
+			            axisLabel: '% Relative to Targets',
+			            axisLabelDistance: -5,
+			            tickFormat: d3.format(',.1%')
+			        }
+			    }
+			};
 
+			draftVm.teamData = [{
+			    key: draftVm.teamSelect.teamName,
+			    values: [
+			        { "label" : "PTS" , "value" : pctDiff(__team.pts/__team.count,draftVm.targets.pts)},
+			        { "label" : "AST" , "value" : pctDiff(__team.ast/__team.count,draftVm.targets.ast)},
+			        { "label" : "REB" , "value" : pctDiff(__team.reb/__team.count,draftVm.targets.reb)},
+			        { "label" : "STL" , "value" : pctDiff(__team.stl/__team.count,draftVm.targets.stl)},
+			        { "label" : "BLK" , "value" : pctDiff(__team.blk/__team.count,draftVm.targets.blk)},
+			        { "label" : "3PT" , "value" : pctDiff(__team.fg3m/__team.count,draftVm.targets.fg3m)},
+			        { "label" : "FG%" , "value" : pctDiff((__team.fga == 0 ? NaN : __team.fgm/__team.fga),draftVm.targets.fgp)},
+			        { "label" : "FT%" , "value" : pctDiff((__team.fta == 0 ? NaN : __team.ftm/__team.fta),draftVm.targets.ftp)},
+			        { "label" : "TO"  , "value" : -1 * pctDiff(__team.tov/__team.count,draftVm.targets.tov)}
+			    ]}
+			,{
+			    key: 'w/ Added Player',
+			    values: [
+			        { "label" : "PTS" , "value" : pctDiff((__team.pts+__player.pts)/(__team.count+1),draftVm.targets.pts)},
+			        { "label" : "AST" , "value" : pctDiff((__team.ast+__player.ast)/(__team.count+1),draftVm.targets.ast)},
+			        { "label" : "REB" , "value" : pctDiff((__team.reb+__player.reb)/(__team.count+1),draftVm.targets.reb)},
+			        { "label" : "STL" , "value" : pctDiff((__team.stl+__player.stl)/(__team.count+1),draftVm.targets.stl)},
+			        { "label" : "BLK" , "value" : pctDiff((__team.blk+__player.blk)/(__team.count+1),draftVm.targets.blk)},
+			        { "label" : "3PT" , "value" : pctDiff((__team.fg3m+__player.fg3m)/(__team.count+1),draftVm.targets.fg3m)},
+			        { "label" : "FG%" , "value" : pctDiff((__team.fgm+__player.fgm)/(__team.fga+__player.fga),draftVm.targets.fgp)},
+			        { "label" : "FT%" , "value" : pctDiff((__team.ftm+__player.ftm)/(__team.fta+__player.fta),draftVm.targets.ftp)},
+			        { "label" : "TO"  , "value" : -1 * pctDiff((__team.tov+__player.tov)/(__team.count+1),draftVm.targets.tov)},
+			    ]
+			}
+				];
+
+			$timeout(function() {
+                    window.dispatchEvent(new Event('resize'));
+            }, 75);
+		}
+
+		function pctDiff(x1,x2){
+			if(isNaN(x1)){
+				return 0;
+			}
+			return (x1-x2)/x2;
 		}
 
 	}

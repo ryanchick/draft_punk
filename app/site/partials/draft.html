@@ -213,15 +213,14 @@
 							</tr>
 						</table>
 						<div ng-show="ctrl.teamGraph">
-							<!-- <nvd3 options='ctrl.teamOptions' data='ctrl.teamData'></nvd3> -->
-							Hello
-							<div id="chart" style="height: 200px;"><svg></svg></div>
+							<nvd3 options='ctrl.teamOptions' data='ctrl.teamData'></nvd3>
+							<!-- <div id="chart" style="height: 200px;"><svg></svg></div> -->
 						</div>
 					</div>
 				</div>
 			</div>
 			<div class="col-md-2 myTeam">
-				<select ng-options="team as team.teamName for team in ctrl.league.teams" ng-model="ctrl.teamSelect" style="float:right"></select>
+				<select ng-options="team as team.teamName for team in ctrl.league.teams" ng-model="ctrl.teamSelect" style="float:right" ng-change="ctrl.drawTeamChart()"></select>
 				<h4 class="myTeam__title">{{ctrl.teamSelect.teamName}}</h4>
 				<table class="table table-condensed table-bordered">
 					<tr>
