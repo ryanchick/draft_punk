@@ -25,7 +25,10 @@
 			draftVm.playerStats[1],
 			draftVm.playerStats[2]];
 		draftVm.drafting = false;
+		draftVm.teamGraph = false;
+
 		//draftVm.avg = playerSrv.avgStats[draftVm.playerSelect.position];
+
 
 		checkSelected();
 		// draftVm.playerSelect = draftVm.filtered[1];

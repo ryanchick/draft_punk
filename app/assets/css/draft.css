@@ -105,10 +105,25 @@
   .playerStats__table {
     margin-bottom: 0; }
 
+.green {
+  color: green;
+  font-weight: bold; }
+
+.red {
+  color: red;
+  font-weight: bold; }
+
+.myTeam {
+  border: 1px solid green;
+  padding: 4px;
+  box-sizing: border-box; }
+  .myTeam__title {
+    margin: 5px 0; }
+
 .home__playerPanel {
-  border: 2px solid black;
+  border: 2px solid gray;
   margin-bottom: 10px; }
-  .home__playerPanel :hover {
+  .home__playerPanel:hover {
     background-color: whitesmoke; }
   .home__playerPanel__playerImg {
     width: 50px;
@@ -117,11 +132,7 @@
     background-position: center;
     margin-right: 20px; }
 
-.myTeam {
-  border: 1px solid green;
-  padding: 4px;
-  box-sizing: border-box; }
-  .myTeam__title {
-    margin: 5px 0; }
+.home__CTA {
+  text-align: center; }
 
 /*# sourceMappingURL=draft.css.map */

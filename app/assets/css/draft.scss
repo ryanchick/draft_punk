@@ -190,7 +190,6 @@ $stat_width: 35px;
 	}
 }
 
-<<<<<<< HEAD
 .green{
 	color:green;
 	font-weight:bold;
@@ -213,7 +212,7 @@ $stat_width: 35px;
 	&:hover{
 		background-color:whitesmoke;
 	}
-	border: 2px solid black;
+	border: 2px solid gray;
 	margin-bottom:10px;
 	// height:50px;
 	&__playerImg{
@@ -224,4 +223,10 @@ $stat_width: 35px;
 		margin-right:20px;
 
 	}
+}
+
+.home__CTA{
+	// border:1px solid red;
+	text-align:center;
+	// margin:0px auto;
 }
