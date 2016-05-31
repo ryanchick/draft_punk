@@ -13,14 +13,14 @@ app.use(express.static(__dirname + './../app/'));
 //route configuration
 var user_routes = require('./routes/user_routes');
 var stat_routes = require('./routes/stat_routes');
-var team_routes = require('./routes/team_routes');
+var league_routes = require('./routes/league_routes');
 var draft_routes = require('./routes/draft_routes')
 var init_routes = require('./routes/init_routes')
 
 //set Routes
 app.use('/api/users',user_routes);
 app.use('/api/stats',stat_routes);
-app.use('/api/team',team_routes);
+app.use('/api/league',league_routes);
 app.use('/api/draft',draft_routes);
 app.use('/api/init',init_routes)
 

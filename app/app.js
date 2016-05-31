@@ -80,12 +80,19 @@
 						}
 					}
 				})
+				.when('/draft',{
+					templateUrl: 'site/partials/draftInfo.html',
+					controller: 'DraftInfoCtrl as ctrl'
+				})
 				.when('/draft/:leagueId',{
 					templateUrl: 'site/partials/draft.html',
 					controller: 'DraftCtrl as ctrl',
 					resolve:{
 						stats:function($http){
 							return $http.get("api/draft/init");
+						},
+						league:function($http, $route){
+							return $http.get("api/league/"+$route.current.params.leagueId);
 						}
 					}
 				})
