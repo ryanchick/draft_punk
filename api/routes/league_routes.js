@@ -16,7 +16,6 @@ router.get('/:leagueId', function(req, res) {
 	})
 });
 
-
 //add new league
 router.post('/newLeague',function (req,res){
 	var teams = [];

@@ -4,11 +4,17 @@
 		.controller('UserCtrl', UserCtrl);
 
 	function UserCtrl(user){
+		console.log(user);
 		userVm = this;
 
 		//variables
 		//userVm.user = JSON.parse(localStorage.draftUser);
-		userVm.user = user.data;
+		if (user.user){
+			userVm.user = user.user;
+			userVm.leagues = user.leagues;
+		} else {
+			userVm.user = user;
+		}
 		console.log("user ctrl");
 		console.log(userVm.user);
 

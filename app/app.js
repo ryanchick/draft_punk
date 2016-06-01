@@ -47,8 +47,32 @@
 					controller: 'UserCtrl as ctrl',
 					resolve:{
 						user: function($http,$route){
+							
 							return $http.get('api/users/' + $route.current.params.username)
-						}
+								.then(function(res){
+									var user;
+									var leagues;
+									user = res.data;
+									if (user.teams.length > 0){
+										var leagueIds = [];
+										for (var i = 0; i < user.teams.length; i++){
+											leagueIds.push({id:user.teams[i]});
+										}
+										//console.log(leagueIds);
+										//console.log(user);
+										return $http.post('api/users/leagues',leagueIds)
+											.then(function(res){
+												//console.log(res);
+												console.log(user);
+												leagues = res.data;
+												console.log(leagues);
+												return {user: user, leagues:leagues};
+											})
+									} else {
+										return user;
+									}
+								})
+						}	
 					}
 				})
 				.when('/stats',{
