@@ -45,9 +45,9 @@
 				.when('/user/:username',{
 					templateUrl: 'site/partials/user.html',
 					controller: 'UserCtrl as ctrl',
-					resolve: {
-						user: function($http, $route){
-							return $http.get('api/users/'+$route.current.params.username);
+					resolve:{
+						user: function($http,$route){
+							return $http.get('api/users/' + $route.current.params.username)
 						}
 					}
 				})
