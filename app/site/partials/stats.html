@@ -1,10 +1,8 @@
 <div class="container">
 	<h2>STATS</h2>
-
 	<table class="table table-bordered table-striped table-hover table-condensed statTable">
-
 		<tr>
-			<th ng-repeat="category in ctrl.headers" ng-click="ctrl.sortChange(category.sort)" ng-bind="category.label" class="statTable__cell"></th>
+			<th ng-repeat="category in ctrl.headers" ng-click="ctrl.sortChange(category.sort)" class="statTable__cell">{{category.label}} <i class="fa fa-caret-up" ng-show="ctrl.sort == category.sort"></i><i class="fa fa-caret-down" ng-show="ctrl.sort == '-' + category.sort"></i></th>
 		</tr>
 		<tr ng-repeat="player in ctrl.stats | orderBy:ctrl.sort" ng-click="ctrl.playerProfile(player.id)">
 			<td>

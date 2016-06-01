@@ -3,12 +3,13 @@
 		.module('draftApp')
 		.controller('DraftCtrl',DraftCtrl)
 
-	function DraftCtrl ($timeout, $http,$routeParams,stats, playerSrv, league){
+	function DraftCtrl ($timeout, $http,$routeParams,$location,stats, playerSrv, league){
 		var draftVm = this;
 		// console.log('draft')
 		
 		draftVm.playerStats = stats.data;
 		draftVm.league=league.data;
+		console.log(draftVm.league)
 		draftVm.numTeams = league.data.teams.length;
 		draftVm.userPick = league.data.userPosition;
 		draftVm.rounds = [0,1,2,3,4,5,6,7,8,9,10,11,12];
@@ -40,9 +41,10 @@
 		draftVm.drafting = false;
 		draftVm.teamGraph = false;
 
+
 		//draftVm.avg = playerSrv.avgStats[draftVm.playerSelect.position];
 
-
+		resumeProgress();
 		checkSelected();
 		// drawTeamChart();
 		// draftVm.playerSelect = draftVm.filtered[1];
@@ -157,6 +159,8 @@
 						console.log(res);
 					})
 				draftVm.done = true;
+				
+
 				//console.log(draftVm.league)
 
 			}else{
@@ -191,10 +195,17 @@
 					// if(draftVm.myPick == true){
 					// 	draftVm.drawTeamChart();
 					// }
+					
 				})
 				.then(function(){
 					draftVm.show(draftVm.playerSelect);
-				})			
+				})	
+
+			if(draftVm.done == true){
+				$timeout(function() {
+                    	$location.path('/review/' + $routeParams.leagueId);
+            	}, 3000);
+			}		
 
 		}
 
@@ -231,6 +242,21 @@
 			return totals;
 		}
 
+		function resumeProgress(){
+			
+			draftVm.numTeams = draftVm.league.teams.length;
+			draftVm.userPick = league.data.userPosition;
+			draftVm.curPick = draftVm.league.draftedPlayers.length;
+			draftVm.curRound = Math.floor(draftVm.curPick/draftVm.numTeams);
+			if(draftVm.curPick == draftVm.numTeams * 13){
+				draftVm.done = true;
+				$timeout(function() {
+                    $location.path('/review/' + $routeParams.leagueId);
+            	}, 2000);
+			}
+			console.log(draftVm.curPick)
+			console.log(draftVm.numTeams * 13)
+		}
 		//function createLeague(userId, num, nth){
 			// var teams = [];
 			// for(var i = 0; i < num; i++){
@@ -380,29 +406,6 @@
 		}
 
 		function drawTeamChart(){
-			// var chart = nv.models.multiBarChart();
-			// d3.select('#chart svg').datum([
-			//   {
-			//     key: "S1",
-			//     color: "#51A351",
-			//     values:
-			//     [      
-			//       { x : "PTS", y : draftVm.teamSelect.stats.pts/draftVm.teamSelect.stats.count},
-			//       { x : "AST", y : 30 },
-			//       { x : "REB",   y : 20 }  
-			//     ]
-			//   },
-			//   {
-			//     key: "S2",
-			//     color: "#BD362F",
-			//     values:
-			//     [      
-			//       { x : "PTS", y : 60 },
-			//       { x : "AST", y : 50 },
-			//       { x : "REB",   y : 70 } 
-			//     ]
-			//   }
-			// ]).transition().duration(200).call(chart);
 			var __team = draftVm.teamSelect.stats;
 			var __player = draftVm.playerSelect
 			console.log('__team');

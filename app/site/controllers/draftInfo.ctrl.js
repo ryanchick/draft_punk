@@ -7,7 +7,12 @@
 		var draftInfoVm = this;
 
 		//variables
-		draftInfoVm.user = JSON.parse(localStorage.draftUser);
+		draftInfoVm.user = {
+			id:-1,
+		};
+		if(localStorage.draftUser){
+			draftInfoVm.user = JSON.parse(localStorage.draftUser);
+		} 
 
 		draftInfoVm.createLeague = createLeague;
 

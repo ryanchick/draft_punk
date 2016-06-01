@@ -25,6 +25,35 @@ router.get('/demo',function(req,res){
 	})
 })
 
+router.get('/demo2',function(req,res){
+	var where = {where:{$or:[
+		{name:'Russell Westbrook'},
+		{name:'Klay Thompson'},
+		{name:'Kevin Durant'},
+		{name:'Draymond Green'},
+		{name:'Hassan Whiteside'}]
+	}}
+	models.Stats.findAll(where).then(function(stats){
+		// console.log(stats)
+		res.json(stats);
+	})
+})
+
+router.get('/raptors',function(req,res){
+	var where = {where:{$or:[
+		{name:'Kyle Lowry'},
+		{name:'DeMar DeRozan'},
+		{name:'Terrence Ross'},
+		{name:'Patrick Patterson'},
+		{name:'Jonas Valanciunas'}]
+	}}
+	models.Stats.findAll(where).then(function(stats){
+		// console.log(stats)
+		res.json(stats);
+	})
+})
+
+
 //get stats for specific player
 router.get('/:playerId', function(req, res) {
 	// console.log(req.body)
