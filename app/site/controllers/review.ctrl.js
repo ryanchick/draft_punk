@@ -9,6 +9,8 @@
 		
 		// revVm.playerStats = stats.data;
 		revVm.league=league.data;
+		revVm.done = false;
+		
 
 		revVm.team = revVm.league.teams[revVm.league.userPosition - 1]
 		console.log(revVm.league)
@@ -25,23 +27,28 @@
 			ftp:0.783,
 			tov:2.0
 		}
-		revVm.teamPcts = {
-			Points: pctDiff(revVm.team.stats.pts/revVm.team.stats.count,revVm.targets.pts),
-			'Assists': pctDiff(revVm.team.stats.ast/revVm.team.stats.count,revVm.targets.ast),
-			'Rebounds': pctDiff(revVm.team.stats.reb/revVm.team.stats.count,revVm.targets.reb),
-			'Steals': pctDiff(revVm.team.stats.stl/revVm.team.stats.count,revVm.targets.stl),
-			'Blocks': pctDiff(revVm.team.stats.blk/revVm.team.stats.count,revVm.targets.blk),
-			'Threes Made' : pctDiff(revVm.team.stats.fg3m/revVm.team.stats.count,revVm.targets.fg3m),
-			'Field Goal %' : pctDiff((revVm.team.stats.fga == 0 ? NaN : revVm.team.stats.fgm/revVm.team.stats.fga),revVm.targets.fgp),
-			'Free Throw %' : pctDiff((revVm.team.stats.fta == 0 ? NaN : revVm.team.stats.ftm/revVm.team.stats.fta),revVm.targets.ftp),
-			'Turnovers' : -1 * pctDiff(revVm.team.stats.tov/revVm.team.stats.count,revVm.targets.tov)
-		}
 
-		drawTeamChart();
-		sortStats(revVm.teamPcts)
+		if(revVm.league.draftedPlayers.length == revVm.league.teams.length * 13 && revVm.league.teams.length > 0){
+			revVm.done = true;
+			revVm.teamPcts = {
+				Points: pctDiff(revVm.team.stats.pts/revVm.team.stats.count,revVm.targets.pts),
+				'Assists': pctDiff(revVm.team.stats.ast/revVm.team.stats.count,revVm.targets.ast),
+				'Rebounds': pctDiff(revVm.team.stats.reb/revVm.team.stats.count,revVm.targets.reb),
+				'Steals': pctDiff(revVm.team.stats.stl/revVm.team.stats.count,revVm.targets.stl),
+				'Blocks': pctDiff(revVm.team.stats.blk/revVm.team.stats.count,revVm.targets.blk),
+				'Threes Made' : pctDiff(revVm.team.stats.fg3m/revVm.team.stats.count,revVm.targets.fg3m),
+				'Field Goal %' : pctDiff((revVm.team.stats.fga == 0 ? NaN : revVm.team.stats.fgm/revVm.team.stats.fga),revVm.targets.fgp),
+				'Free Throw %' : pctDiff((revVm.team.stats.fta == 0 ? NaN : revVm.team.stats.ftm/revVm.team.stats.fta),revVm.targets.ftp),
+				'Turnovers' : -1 * pctDiff(revVm.team.stats.tov/revVm.team.stats.count,revVm.targets.tov)
+			}
+
+			drawTeamChart();
+			sortStats(revVm.teamPcts)
+		}
 
 		//public methods
 		revVm.colourScale = colourScale;
+		revVm.route = route;
 
 		function drawTeamChart(){
 			var __team = revVm.team.stats;
@@ -154,6 +161,10 @@
 				style.color = 'green';
 			}
 			return style;
+		}
+
+		function route(){
+			$location.path('/draft/' + $routeParams.leagueId)
 		}
 
 
