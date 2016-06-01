@@ -35,6 +35,20 @@ router.post('/',function(req,res){
 	})
 })
 
+//get list of leagues for user
+router.post('/leagues', function(req, res){
+	console.log("getting leagues");
+	console.log(req.body);
+	var where = {where:{$or:
+		req.body
+	}};
+	models.Leagues.findAll(where).then(function(leagues){
+		console.log("found leagues")
+		console.log(leagues)
+		res.json(leagues);
+	})
+})
+
 //user login with existing username and password
 //sends back empty object if username/password do not match users
 router.post('/login', function(req,res){
