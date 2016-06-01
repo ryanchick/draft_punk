@@ -1,0 +1,14 @@
+<h1>Draft Review</h1>
+{{ctrl.league.userId}}
+This league has {{ctrl.league.teams.length}} teams.
+Your team drafted in position #{{ctrl.league.userPosition}}.
+
+<div>
+Your Drafted Team:
+<ul>
+	<li ng-repeat="(key,value) in ctrl.league.teams[ctrl.league.userPosition-1].players">
+		{{key}} : 
+		{{value.name |abbrevNameFilter}}
+	</li>
+</ul>
+</div>

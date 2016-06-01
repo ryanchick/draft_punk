@@ -108,7 +108,12 @@
 				})
 				.when('/review/:leagueId',{
 					templateUrl: 'site/partials/review.html',
-					controller: 'ReviewCtrl as ctrl'
+					controller: 'ReviewCtrl as ctrl',
+					resolve:{
+						league:function($http, $route){
+							return $http.get("api/league/"+$route.current.params.leagueId);
+						}
+					}
 				})
 				.otherwise({
 					redirectTo: '/home'
@@ -130,5 +135,12 @@
 				});
 		});
 
+	angular
+		.module('draftApp')
+		.run(function($rootScope) {
+    		$rootScope.$on('$stateChangeSuccess', function() {
+	   			document.body.scrollTop = document.documentElement.scrollTop = 0;
+			});
+		})
 		
 })();

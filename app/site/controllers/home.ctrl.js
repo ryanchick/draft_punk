@@ -117,7 +117,7 @@
 			
 			var __team = homeVm.demoTeam;
 			__team.count = 5;
-			if(homeVm.addedPlayer.name){
+			if(homeVm.addedPlayer == player){
 				homeVm.addedPlayer = {};
 			}else{
 				homeVm.addedPlayer = player;
