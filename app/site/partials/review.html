@@ -1,14 +1,95 @@
-<h1>Draft Review</h1>
-{{ctrl.league.userId}}
-This league has {{ctrl.league.teams.length}} teams.
-Your team drafted in position #{{ctrl.league.userPosition}}.
+<div class="container">
+	<h1>Draft Overview</h1>
+	League Name: INSERT NAME
+	This league has {{ctrl.league.teams.length}} teams.
+	Your team drafted in position #{{ctrl.league.userPosition}}.
 
-<div>
-Your Drafted Team:
-<ul>
-	<li ng-repeat="(key,value) in ctrl.league.teams[ctrl.league.userPosition-1].players">
-		{{key}} : 
-		{{value.name |abbrevNameFilter}}
-	</li>
-</ul>
+	<div>
+	Roster:
+<!-- 	<ul class="list-group" style="width:250px;">
+		<li class="list-group-item" ng-repeat="(key,value) in ctrl.league.teams[ctrl.league.userPosition-1].players">
+			{{key}} : 
+			{{value.name |abbrevNameFilter}}
+		</li>
+	</ul> -->
+	<table class="table table-bordered">
+		<tr>
+			<th>Position</th>
+			<th>Name</th>
+			<th>Points</th>
+			<th>Assists</th>
+			<th>Rebounds</th>
+			<th>Steals</th>
+			<th>Blocks</th>
+			<th>Threes Made</th>
+			<th>Field Goal %</th>
+			<th>Free Throw %</th>
+			<th>Turnovers</th>
+		</tr>
+		<tr ng-repeat="(key,value) in ctrl.team.players">
+			<td>{{key}}</td>
+			<td>{{value.name}}</td>
+			<td>{{value.pts}}</td>
+			<td>{{value.ast}}</td>
+			<td>{{value.reb}}</td>
+			<td>{{value.stl}}</td>
+			<td>{{value.blk}}</td>
+			<td>{{value.fg3m}}</td>
+			<td>{{value.fgp | number:1}}</td>
+			<td>{{value.ftp | number:1}}</td>
+			<td>{{value.tov}}</td>
+		</tr>
+		<tr>
+			
+			<th></th>
+			<th>Team Averages</th>
+			<th ng-style="ctrl.colourScale(ctrl.team.stats.pts/ctrl.team.stats.count,ctrl.targets.pts)">
+				{{ctrl.team.stats.pts/ctrl.team.stats.count | number:1}}
+			</th>
+			<th ng-style="ctrl.colourScale(ctrl.team.stats.ast/ctrl.team.stats.count,ctrl.targets.ast)">
+				{{ctrl.team.stats.ast/ctrl.team.stats.count | number:1}}
+			</th>
+			<th ng-style="ctrl.colourScale(ctrl.team.stats.reb/ctrl.team.stats.count,ctrl.targets.reb)">
+				{{ctrl.team.stats.reb/ctrl.team.stats.count | number:1}}
+			</th>
+			<th ng-style="ctrl.colourScale(ctrl.team.stats.stl/ctrl.team.stats.count,ctrl.targets.stl)">
+				{{ctrl.team.stats.stl/ctrl.team.stats.count | number:1}}
+			</th>
+			<th ng-style="ctrl.colourScale(ctrl.team.stats.blk/ctrl.team.stats.count,ctrl.targets.blk)">
+				{{ctrl.team.stats.blk/ctrl.team.stats.count | number:1}}
+			</th>
+			<th ng-style="ctrl.colourScale(ctrl.team.stats.fg3m/ctrl.team.stats.count,ctrl.targets.fg3m)">
+				{{ctrl.team.stats.fg3m/ctrl.team.stats.count | number:1}}
+			</th>
+			<th ng-style="ctrl.colourScale(ctrl.team.stats.fgm/ctrl.team.stats.fga * 100,ctrl.targets.fgp * 100)">
+				{{ctrl.team.stats.fgm/ctrl.team.stats.fga * 100| number:1}}
+			</th>
+			<th ng-style="ctrl.colourScale(ctrl.team.stats.ftm/ctrl.team.stats.fta * 100,ctrl.targets.ftp * 100)">
+				{{ctrl.team.stats.ftm/ctrl.team.stats.fta * 100 | number:1}}
+			</th>
+			<th ng-style="ctrl.colourScale(ctrl.targets.tov,ctrl.team.stats.tov/ctrl.team.stats.count)">
+				{{ctrl.team.stats.tov/ctrl.team.stats.count | number:1}}
+			</th>
+
+		</tr>
+		<tr>
+			<th></th>
+			<th>Target Averages</th>
+			<th>{{ctrl.targets.pts}}</th>
+			<th>{{ctrl.targets.ast}}</th>
+			<th>{{ctrl.targets.reb}}</th>
+			<th>{{ctrl.targets.stl}}</th>
+			<th>{{ctrl.targets.blk}}</th>
+			<th>{{ctrl.targets.fg3m}}</th>
+			<th>{{ctrl.targets.fgp * 100 | number:2}}</th>
+			<th>{{ctrl.targets.ftp * 100 | number:2}}</th>
+			<th>{{ctrl.targets.tov}}</th>
+		</tr>
+	</table>
+	<h3>Team Analysis</h3>
+	<p>Your team's strengths are {{ctrl.strength[0].stat}}, {{ctrl.strength[1].stat}} and {{ctrl.strength[2].stat}}.</p>
+	<p>Your team's weaknesses are {{ctrl.weakness[0].stat}}, {{ctrl.weakness[1].stat}} and {{ctrl.weakness[2].stat}}.</p>
+	<!-- <p>We recommend trying to trade for someone to</p> -->
+	<nvd3 options='ctrl.teamOptions' data='ctrl.teamData'></nvd3>
+	</div>
 </div>
