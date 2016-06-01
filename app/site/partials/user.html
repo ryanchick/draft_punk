@@ -14,7 +14,7 @@
 			</div>
 		</div>
 		<div ng-show="ctrl.showProfile" class="col-sm-8">
-			<user-profile></user-profile>
+			<user-profile user="{{ctrl.user}}"></user-profile>
 		</div>
 		<div ng-show="ctrl.showLeagues" class="col-sm-8">
 			<user-leagues user="{{ctrl.user}}"></user-leagues>

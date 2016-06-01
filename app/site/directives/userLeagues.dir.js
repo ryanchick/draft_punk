@@ -7,7 +7,7 @@
 				templateUrl: 'site/partials/userLeagues.html',
 				controller: 'userLeaguesCtrl as ctrl',
 				scope: {
-					user:'@'
+					user: "@"
 				}
 			};
 		});
@@ -21,5 +21,6 @@
 		console.log($scope.user)
 		leagueVm.test = "LEAGUES";
 		leagueVm.user = JSON.parse($scope.user)
+
 	}
 })();

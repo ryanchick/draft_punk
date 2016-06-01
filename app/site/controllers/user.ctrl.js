@@ -7,10 +7,11 @@
 		userVm = this;
 
 		//variables
-		userVm.user = JSON.parse(localStorage.draftUser);
+		//userVm.user = JSON.parse(localStorage.draftUser);
 		userVm.user = user.data;
-		console.log(user)
-		
+		console.log("user ctrl");
+		console.log(userVm.user);
+
 		//function bindings
 		userVm.changeDir = changeDir;
 
