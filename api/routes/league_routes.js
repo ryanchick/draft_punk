@@ -73,6 +73,21 @@ router.post('/newLeague',function (req,res){
 
 	models.Leagues.create(newLeague).then(function(league){
 		res.send(league);
+		return league.id;
+	}).then(function(leagueId){
+		var where = {where:{id:req.body.userId}};
+		models.Users.find(where).then(function(user){
+			console.log("old teams:");
+			console.log(user.teams);
+			var tempTeams = user.teams;
+			tempTeams.push(leagueId);
+			user.updateAttributes({
+				teams: tempTeams
+			}).then(function(){
+				console.log("new teams:");
+				console.log(user.teams);
+			})
+		})
 	})
 })
 
@@ -84,7 +99,7 @@ router.put('/:leagueId',function (req,res){
 			teams: req.body.teams,
 			draftedPlayers: req.body.draftedPlayers
 		}).then(function(){
-		res.json(league)
+			res.json(league);
 		})
 	})
 })
