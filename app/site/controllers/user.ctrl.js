@@ -3,11 +3,13 @@
 		.module('draftApp')
 		.controller('UserCtrl', UserCtrl);
 
-	function UserCtrl(){
+	function UserCtrl(user){
 		userVm = this;
 
 		//variables
 		userVm.user = JSON.parse(localStorage.draftUser);
+		userVm.user = user.data;
+		console.log(user)
 		
 		//function bindings
 		userVm.changeDir = changeDir;

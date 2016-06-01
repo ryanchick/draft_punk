@@ -6,7 +6,9 @@
 				restrict: 'E',
 				templateUrl: 'site/partials/userLeagues.html',
 				controller: 'userLeaguesCtrl as ctrl',
-				scope: {}
+				scope: {
+					user:'@'
+				}
 			};
 		});
 
@@ -14,9 +16,10 @@
 		.module('draftApp')
 		.controller('userLeaguesCtrl', userLeaguesCtrl);
 
-	function userLeaguesCtrl(){
+	function userLeaguesCtrl($scope){
 		leagueVm = this;
-
+		console.log($scope.user)
 		leagueVm.test = "LEAGUES";
+		leagueVm.user = JSON.parse($scope.user)
 	}
 })();

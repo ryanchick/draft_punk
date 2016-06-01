@@ -78,14 +78,14 @@ router.post('/newLeague',function (req,res){
 		var where = {where:{id:req.body.userId}};
 		models.Users.find(where).then(function(user){
 			console.log("old teams:");
-			console.log(user.teams);
+			console.log(user);
 			var tempTeams = user.teams;
 			tempTeams.push(leagueId);
 			user.updateAttributes({
 				teams: tempTeams
 			}).then(function(){
 				console.log("new teams:");
-				console.log(user.teams);
+				console.log(user);
 			})
 		})
 	})
