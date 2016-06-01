@@ -7,7 +7,7 @@
 		<tr ng-repeat="player in ctrl.stats | orderBy:ctrl.sort" ng-click="ctrl.playerProfile(player.id)">
 			<td>
 				<div class = "playerbox">
-					<img class = "playerbox__img" src="{{player.img_url}}" alt='' onError="this.onerror=null;this.src='http://www.ligum.umontreal.ca/people/johndoe.jpg'">
+					<img class = "playerbox__img" ng-src="{{player.img_url}}" alt='' onError="this.onerror=null;this.src='http://www.ligum.umontreal.ca/people/johndoe.jpg'">
 				</div>
 			</td>
 			<td class="statTable__cell" ng-bind="player.name"></td>
