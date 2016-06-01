@@ -3,15 +3,15 @@
 		.module('draftApp')
 		.controller('DraftCtrl',DraftCtrl)
 
-	function DraftCtrl ($timeout, $http,$routeParams,$location,stats, playerSrv, league){
+	function DraftCtrl ($timeout, $http,$routeParams,$location, stats, playerSrv){
 		var draftVm = this;
 		// console.log('draft')
 		
-		draftVm.playerStats = stats.data;
-		draftVm.league=league.data;
+		draftVm.playerStats = stats.data.players;
+		draftVm.league = stats.data.league;
 		console.log(draftVm.league)
-		draftVm.numTeams = league.data.teams.length;
-		draftVm.userPick = league.data.userPosition;
+		draftVm.numTeams = draftVm.league.teams.length;
+		draftVm.userPick = draftVm.league.userPosition;
 		draftVm.rounds = [0,1,2,3,4,5,6,7,8,9,10,11,12];
 		draftVm.curRound = 0;
 		draftVm.curPick = 0;
@@ -150,6 +150,11 @@
 			draftVm.league.draftedPlayers.push(player);
 			if(draftVm.curPick % draftVm.numTeams == (draftVm.numTeams-1) && draftVm.curRound != 12){
 				draftVm.curRound++;
+				$http.put('api/league/'+draftVm.league.id, {teams:draftVm.league.teams,draftedPlayers:draftVm.league.draftedPlayers})
+					.then(function(res){
+						console.log("saved league as:");
+						console.log(res);
+					})
 			}
 			if(draftVm.curPick == ((draftVm.numTeams * 13) - 1)){
 				console.log(draftVm.done)
@@ -245,7 +250,7 @@
 		function resumeProgress(){
 			
 			draftVm.numTeams = draftVm.league.teams.length;
-			draftVm.userPick = league.data.userPosition;
+			draftVm.userPick = draftVm.league.userPosition;
 			draftVm.curPick = draftVm.league.draftedPlayers.length;
 			draftVm.curRound = Math.floor(draftVm.curPick/draftVm.numTeams);
 			if(draftVm.curPick == draftVm.numTeams * 13){

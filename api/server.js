@@ -10,6 +10,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(express.static(__dirname + './../app/'));
 
+var authentication = require("./middleware/auth");
+
 //route configuration
 var user_routes = require('./routes/user_routes');
 var stat_routes = require('./routes/stat_routes');
