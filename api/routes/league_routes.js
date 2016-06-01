@@ -64,6 +64,7 @@ router.post('/newLeague',function (req,res){
 	}
 
 	var newLeague = {
+		leagueName: req.body.leagueName,
 		userId: req.body.userId,
 		userPosition: req.body.userPosition,
 		teams: teams,
