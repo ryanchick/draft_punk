@@ -47,7 +47,7 @@
 					controller: 'UserCtrl as ctrl',
 					resolve:{
 						user: function($http,$route){
-							return $http.get('api/user/' + $route.current.params.username)
+							return $http.get('api/users/' + $route.current.params.username)
 						}
 					}
 				})

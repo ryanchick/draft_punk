@@ -10,7 +10,7 @@ router.get('/', function(req, res) {
 
 //get info for specific user(show )
 router.get('/:username', function(req, res) {
-	// console.log(req.params.userId)
+	console.log(req.params.userId)
 	var where = {where:{username:req.params.username}};
 	models.Users.find(where).then(function(user){
 		res.json(user);
