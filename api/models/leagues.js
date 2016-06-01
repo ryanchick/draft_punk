@@ -2,6 +2,7 @@
 module.exports = function(sequelize, DataTypes) {
   var Leagues = sequelize.define('Leagues', {
     userId: DataTypes.INTEGER,
+    leagueName: DataTypes.STRING,
     userPosition: DataTypes.INTEGER,
     teams: DataTypes.ARRAY(DataTypes.JSON),
     draftedPlayers: DataTypes.ARRAY(DataTypes.JSON)

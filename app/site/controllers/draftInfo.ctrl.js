@@ -14,6 +14,7 @@
 		function createLeague(){
 			console.log("creating")
 			var leagueInfo = {
+					leagueName: draftInfoVm.leagueName,
 					userId: draftInfoVm.user.id,
 					leagueSize: draftInfoVm.leagueSize,
 					userPosition: draftInfoVm.userPosition
