@@ -9,7 +9,6 @@
 				scope: {
 					user: "@"
 				}
-
 			};
 		});
 
@@ -19,10 +18,9 @@
 
 	function userLeaguesCtrl($scope){
 		leagueVm = this;
-
+		console.log($scope.user)
 		leagueVm.test = "LEAGUES";
-		console.log($scope.user);
-		leagueVm.user = JSON.parse($scope.user);
-		console.log(leagueVm.user);
+		leagueVm.user = JSON.parse($scope.user)
+
 	}
 })();
