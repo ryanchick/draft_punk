@@ -127,12 +127,12 @@
 					templateUrl: 'site/partials/draft.html',
 					controller: 'DraftCtrl as ctrl',
 					resolve:{
-						stats:function($http){
-							return $http.get("api/draft/init");
+						stats:function($http,$route){
+							return $http.get("api/draft/init/" + $route.current.params.leagueId);
 						},
-						league:function($http, $route){
-							return $http.get("api/league/"+$route.current.params.leagueId);
-						}
+						// league:function($http, $route){
+						// 	return $http.get("api/league/"+$route.current.params.leagueId);
+						// }
 					}
 				})
 				.when('/review/:leagueId',{

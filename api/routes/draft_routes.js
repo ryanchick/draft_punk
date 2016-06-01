@@ -38,42 +38,58 @@ var goals = {
 var maxVar = 0.25;
 
 //get players for draft
-router.get('/init', function(req,res) {
-	models.Stats.findAll()
-		.then(function(stats){
-			// console.log(ret)
-			var l = stats.length;
-			console.log(l)
-			availPlayers = [];
-			allPlayers = [];
-			for(var i = 0; i < l;i++){
-				allPlayers.push(stats[i].dataValues)
+router.get('/init/:leagueId', function(req,res) {
+	var where = {where:{id:req.params.leagueId}};
+	var draftLeague;
+	models.Leagues.find(where)
+	.then(function(league){
+		// console.log(league);
+		draftLeague = league;
+		return models.Stats.findAll()
+	})
+	.then(function(stats){
+		// console.log(ret)
+		var l = stats.length;
+		var draftedLength = draftLeague.draftedPlayers.length
+		console.log(l)
+		availPlayers = [];
+		// allPlayers = [];
+		for(var i = 0; i < l;i++){
+			var flag = false;
+			for(var j = 0;j < draftedLength;j++){
+				if(stats[i].dataValues.name == draftLeague.draftedPlayers[j].name){
+					flag = true;
+				}
 			}
-			availPlayers = allPlayers.slice();
-			console.log('initialized')
-			var l = availPlayers.length;
-			for(var i = 0; i < l;i++){
-				var __player = availPlayers[i];
-				__player.fgp = __player.fga > 0 ? __player.fgm/__player.fga * 100: 0;
-				__player.ftp = __player.fta > 0 ? __player.ftm/__player.fta * 100: 0;
-				availPlayers[i].totRtg = 
-					__player.pts * ovrWgts.pts +
-					__player.ast * ovrWgts.ast +
-					__player.reb * ovrWgts.reb +
-					__player.stl * ovrWgts.stl +
-					__player.blk * ovrWgts.blk +
-					__player.fg3m  * ovrWgts.fg3 +
-					(__player.fgp - ovrWgts.fgpAvg) * __player.fga * ovrWgts.fgp + 
-					(__player.ftp - ovrWgts.ftpAvg) * __player.fta * ovrWgts.ftp +
-					__player.tov * ovrWgts.tov
-					* (1 + ((__player.games_played - 72)/ 82));
+			if(flag == false){
+				availPlayers.push(stats[i].dataValues)
 			}
-			availPlayers.sort(function(a, b) {
-			  return b.totRtg - a.totRtg;
-			});
-			res.json(availPlayers)
-			// console.log(availPlayers)
-		})
+		}
+		// availPlayers = allPlayers.slice();
+		console.log('initialized')
+		var l = availPlayers.length;
+		for(var i = 0; i < l;i++){
+			var __player = availPlayers[i];
+			__player.fgp = __player.fga > 0 ? __player.fgm/__player.fga * 100: 0;
+			__player.ftp = __player.fta > 0 ? __player.ftm/__player.fta * 100: 0;
+			availPlayers[i].totRtg = 
+				__player.pts * ovrWgts.pts +
+				__player.ast * ovrWgts.ast +
+				__player.reb * ovrWgts.reb +
+				__player.stl * ovrWgts.stl +
+				__player.blk * ovrWgts.blk +
+				__player.fg3m  * ovrWgts.fg3 +
+				(__player.fgp - ovrWgts.fgpAvg) * __player.fga * ovrWgts.fgp + 
+				(__player.ftp - ovrWgts.ftpAvg) * __player.fta * ovrWgts.ftp +
+				__player.tov * ovrWgts.tov
+				* (1 + ((__player.games_played - 72)/ 82));
+		}
+		availPlayers.sort(function(a, b) {
+		  return b.totRtg - a.totRtg;
+		});
+		res.json({league:draftLeague,players:availPlayers})
+		// console.log(availPlayers)
+	})
 })
 
 router.get('/players/:leagueId', function(req, res) {
