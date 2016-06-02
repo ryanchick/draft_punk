@@ -16,16 +16,23 @@
 		.module('draftApp')
 		.controller('userProfileCtrl', userProfileCtrl);
 
-	function userProfileCtrl($scope){
+	function userProfileCtrl($scope, $http){
 		profileVm = this;
 
 		profileVm.test = "PROFILE";
 		profileVm.user = JSON.parse($scope.user)
 		
 		profileVm.changeEdit = changeEdit;
+		profileVm.confirm = confirm;
 
 		function changeEdit(){
 			profileVm.editting = !profileVm.editting;
+		}
+
+		function confirm(){
+			console.log(profileVm.user);
+			$http.put('/api/users/'+profileVm.user.id, profileVm.user);
+
 		}
 	}
 })();

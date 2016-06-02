@@ -3,9 +3,14 @@
 		<th></th>
 		<th>
 			<a style="float:right" ng-click="ctrl.changeEdit()" ng-show="!ctrl.editting">Edit User Details<a>
-			<a style="float:right" ng-click="ctrl.changeEdit()" ng-show="ctrl.editting">Confirm Changes<a>
+			<a style="float:right" ng-click="ctrl.changeEdit(); ctrl.confirm()" ng-show="ctrl.editting">Confirm Changes<a>
 		</th>
 	<tr>
+	<tr>
+		<td>Username:</td>
+		<td >{{ctrl.user.username}}</td>
+
+	</tr>
 	<tr>
 		<td>First Name:</td>
 		<td  ng-show="!ctrl.editting">{{ctrl.user.firstName}}</td>
@@ -16,11 +21,7 @@
 		<td ng-show="!ctrl.editting">{{ctrl.user.lastName}}</td>
 		<td ng-show="ctrl.editting"><input ng-model="ctrl.user.lastName"></td>
 	</tr>
-	<tr>
-		<td>Username:</td>
-		<td ng-show="!ctrl.editting">{{ctrl.user.username}}</td>
-		<td ng-show="ctrl.editting"><input ng-model="ctrl.user.username"></td>
-	</tr>
+	
 	<tr>
 		<td>Email</td>
 		<td ng-show="!ctrl.editting">{{ctrl.user.email}}</td>
