@@ -20,6 +20,8 @@
   background-color: black;
   color: white;
   height: 400px; }
+  .userOptions h1 {
+    cursor: pointer !important; }
   .userOptions .active {
     color: #5dc21e;
     text-decoration: underline; }

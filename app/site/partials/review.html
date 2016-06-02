@@ -11,12 +11,12 @@
 		</p>
 
 		<div>
-		<h3>Team Analysis:</h3>
+		<h2>Team Analysis:</h2>
 		<p>Your team's strengths are {{ctrl.strength[0].stat}}, {{ctrl.strength[1].stat}} and {{ctrl.strength[2].stat}}.</p>
 		<p>Your team's weaknesses are {{ctrl.weakness[0].stat}}, {{ctrl.weakness[1].stat}} and {{ctrl.weakness[2].stat}}.</p>
 		<p>Your team is very strong in {{ctrl.strength[0].stat}}, so we recommend trying to trade one of your high {{ctrl.strength[0].stat}} players for someone to bring up your {{ctrl.weakness[0].stat}}.</p>
 		<nvd3 options='ctrl.teamOptions' data='ctrl.teamData'></nvd3>
-		<h3>Roster:</h3>
+		<h2>Roster:</h2>
 	<!-- 	<ul class="list-group" style="width:250px;">
 			<li class="list-group-item" ng-repeat="(key,value) in ctrl.league.teams[ctrl.league.userPosition-1].players">
 				{{key}} : 
