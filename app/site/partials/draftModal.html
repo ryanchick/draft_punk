@@ -4,8 +4,9 @@
         <!-- <span ng-show="ctrl.create">Create an Account</span> -->
     </h3>
 </div>
+<form name = "draftForm">
 <div class="modal-body">
-    <form name = "draftForm">
+    
         <div class="form-group">
             <label for="username">League Name</label>
             <input type="text" name="leagueName" class="form-control" ng-model="ctrl.leagueName" required>
@@ -18,13 +19,14 @@
             <label for="firstName">Your Draft Position</label>
             <input type="number" name='userPosition' class="form-control" ng-model="ctrl.userPosition" required>
         </div>
-    </form>
+    
 </div>
 <div class="modal-footer">
     <button class='btn btn-warning' ng-click="ctrl.cancel()">Cancel</button>
     <button type="submit" ng-show="ctrl.logged" class='btn btn-primary' ng-click="ctrl.createLeague(draftForm.$valid,true)">Save Draft</button>
     <button type="submit" class='btn btn-success' ng-click="ctrl.addUser(draftForm.$valid,false)">Proceed to Draft</button>
 </div>
+</form>
 <!-- 
 <input ng-model="ctrl.leagueName" placeholder="League Name">
 <input ng-model="ctrl.leagueSize" placeholder="League Size">
