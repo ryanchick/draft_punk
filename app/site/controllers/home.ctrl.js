@@ -10,7 +10,7 @@
 		homeVm.players2 = demo2.data;
 		homeVm.raptors = raptors.data;
 		homeVm.demoTeam = teamTotals(homeVm.raptors)
-		console.log(homeVm.demoTeam)
+		// console.log(homeVm.demoTeam)
 		homeVm.playerSelect;
 		homeVm.addedPlayer = {};
 		// homeVm.avg = playerSrv.avgStats[homeVm.playerSelect.position];
@@ -29,7 +29,7 @@
 		//variables
 		if (localStorage.user != undefined){
 			var user = JSON.parse(localStorage.user);
-			homeVm.userername = user.username;
+			homeVm.username = user.username;
 		}
 
 		changePlayer(homeVm.players[0]);
@@ -41,6 +41,7 @@
 		homeVm.get = get;
 		homeVm.changePlayer = changePlayer;
 		homeVm.drawTeamChart = drawTeamChart;
+		homeVm.draftOpen = homeVm.draftOpen;
 
 		//functions
 		function route(path){
@@ -50,7 +51,7 @@
 		function get(){
 			$http.get('api/stats/demo')
 				.then(function(res){
-					console.log(res);
+					// console.log(res);
 					return res.data
 				})
 		}
@@ -124,9 +125,9 @@
 			}
 			
 			var __player = homeVm.addedPlayer;
-			console.log('__team');
-			console.log(__team);
-			console.log(homeVm.targets)
+			// console.log('__team');
+			// console.log(__team);
+			// console.log(homeVm.targets)
 			homeVm.teamOptions = {
 			    chart: {
 			        type: 'multiBarChart',
@@ -217,7 +218,24 @@
 			return (x1-x2)/x2;
 		}
 
+		function draftOpen() {
+			if(isActive('draft')){
+				return;
+			}
+		    var modalInstance = $uibModal.open({
+		      	animation: true,
+		      	templateUrl: 'site/partials/draftModal.html',
+		      	controller: 'DraftModalCtrl as ctrl',
+		      	size: "",
+		    });
+
+		    modalInstance.result.then(function (selectedItem) {
+		    	// $scope.selected = selectedItem;
+		    }, function () {
+		    	console.log('Modal dismissed at: ' + new Date());
+		    });
+		};
+
 	}
-
-
+	
 })();

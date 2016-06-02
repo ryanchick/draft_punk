@@ -31,7 +31,8 @@
 			navbarVm.loggedIn = loggedIn;
 			navbarVm.logOut   = logOut;
 			navbarVm.isActive = isActive;
-			navbarVm.loginOpen = loginOpen
+			navbarVm.loginOpen = loginOpen;
+			navbarVm.draftOpen = draftOpen;
 
 			//functions
 			function route(path){
@@ -79,6 +80,24 @@
 			    	console.log('Modal dismissed at: ' + new Date());
 			    });
 			};
+			function draftOpen(size) {
+				if(isActive('draft')){
+					return;
+				}
+			    var modalInstance = $uibModal.open({
+			      	animation: true,
+			      	templateUrl: 'site/partials/draftModal.html',
+			      	controller: 'DraftModalCtrl as ctrl',
+			      	size: "",
+			    });
+
+			    modalInstance.result.then(function (selectedItem) {
+			    	// $scope.selected = selectedItem;
+			    }, function () {
+			    	console.log('Modal dismissed at: ' + new Date());
+			    });
+			};
+
 		}
 
 	angular.module('draftApp')
@@ -139,4 +158,6 @@
 				loginVm.create = !loginVm.create;
 			}
 		}
+
+	
 })();

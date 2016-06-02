@@ -8,6 +8,22 @@
 	src:url(../fonts/montserrat/Montserrat-Regular.ttf);
 }
 
+@font-face{
+	font-family:montserrat-light;
+	src:url(../fonts/montserrat/montserrat-light.ttf);
+}
+
+h1,h2{
+	font-family:bebas_neue;
+}
+h3,h4,b,th{
+	font-family:montserrat;
+}
+p,label,td,button{
+	font-family:montserrat-light;
+}
+
+
 /*FOR UI-BOOTSTRAP*/
 .nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
 

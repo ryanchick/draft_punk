@@ -34,14 +34,14 @@
 						}
 					}
 				})
-				.when('/login',{
-					templateUrl: 'site/partials/login.html',
-					controller: 'LoginCtrl as ctrl'
-				})
-				.when('/user',{
-					templateUrl: 'site/partials/login.html',
-					controller: 'LoginCtrl as ctrl'
-				})
+				// .when('/login',{
+				// 	templateUrl: 'site/partials/login.html',
+				// 	controller: 'LoginCtrl as ctrl'
+				// })
+				// .when('/user',{
+				// 	templateUrl: 'site/partials/login.html',
+				// 	controller: 'LoginCtrl as ctrl'
+				// })
 				.when('/user/:username',{
 					templateUrl: 'site/partials/user.html',
 					controller: 'UserCtrl as ctrl',
@@ -120,10 +120,10 @@
 						}
 					}
 				})
-				.when('/draft',{
-					templateUrl: 'site/partials/draftInfo.html',
-					controller: 'DraftInfoCtrl as ctrl'
-				})
+				// .when('/draft',{
+				// 	templateUrl: 'site/partials/draftInfo.html',
+				// 	controller: 'DraftInfoCtrl as ctrl'
+				// })
 				.when('/draft/:leagueId',{
 					templateUrl: 'site/partials/draft.html',
 					controller: 'DraftCtrl as ctrl',

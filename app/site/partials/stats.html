@@ -12,7 +12,7 @@
 		<tr>
 			<th ng-repeat="category in ctrl.headers" ng-click="ctrl.sortChange(category.sort)" class="statTable__cell">{{category.label}} <i class="fa fa-caret-up" ng-show="ctrl.sort == category.sort"></i><i class="fa fa-caret-down" ng-show="ctrl.sort == '-' + category.sort"></i></th>
 		</tr>
-		<tr ng-repeat="player in ctrl.stats | orderBy:ctrl.sort |filter:ctrl.search" ng-click="ctrl.playerProfile(player.id)">
+		<tr ng-repeat="player in ctrl.stats | orderBy:ctrl.sort |filter:{name:ctrl.search}" ng-click="ctrl.playerProfile(player.id)">
 			<td>
 				<div class = "playerbox">
 					<img class = "playerbox__img" ng-src="{{player.img_url}}" alt='' onError="this.onerror=null;this.src='http://www.ligum.umontreal.ca/people/johndoe.jpg'">

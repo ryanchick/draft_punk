@@ -1,0 +1,35 @@
+<div class="modal-header">
+    <h3 class="modal-title">
+        <span>Draft Setup</span>
+        <!-- <span ng-show="ctrl.create">Create an Account</span> -->
+    </h3>
+</div>
+<form name = "draftForm">
+<div class="modal-body">
+    
+        <div class="form-group">
+            <label for="username">League Name</label>
+            <input type="text" name="leagueName" class="form-control" ng-model="ctrl.leagueName" required>
+        </div>
+        <div class="form-group">
+            <label for="password">Number of Teams</label>
+            <input type="number" name="leagueSize" class="form-control" ng-model="ctrl.leagueSize" required>
+        </div>
+        <div class="form-group">
+            <label for="firstName">Your Draft Position</label>
+            <input type="number" name='userPosition' class="form-control" ng-model="ctrl.userPosition" required>
+        </div>
+    
+</div>
+<div class="modal-footer">
+    <button type='button' class='btn btn-warning' ng-click="ctrl.cancel()">Cancel</button>
+    <button type="button" ng-show="ctrl.logged" class='btn btn-primary' ng-click="ctrl.route('user')">Resume a Saved Draft</button>
+    <button type="submit" ng-show="ctrl.logged" class='btn btn-primary' ng-click="ctrl.createLeague(draftForm.$valid,true)">Save Draft</button>
+    <button type="submit" class='btn btn-success' ng-click="ctrl.createLeague(draftForm.$valid,false)">Proceed to Draft</button>
+</div>
+</form>
+<!-- 
+<input ng-model="ctrl.leagueName" placeholder="League Name">
+<input ng-model="ctrl.leagueSize" placeholder="League Size">
+<input ng-model="ctrl.userPosition" placeholder="Draft Position">
+<button class="btn" ng-click="ctrl.createLeague()">Proceed to Draft</button> -->

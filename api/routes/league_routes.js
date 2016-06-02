@@ -70,21 +70,23 @@ router.post('/newLeague',function (req,res){
 		draftedPlayers: []
 	}
 
-	models.Leagues.create(newLeague).then(function(league){
-		res.send(league);
+	models.Leagues.create(newLeague)
+	.then(function(league){
+		console.log('created league')
+		res.json(league);
 		return league.id;
 	}).then(function(leagueId){
 		var where = {where:{id:req.body.userId}};
 		models.Users.find(where).then(function(user){
-			console.log("old teams:");
-			console.log(user);
+			// console.log("old teams:");
+			// console.log(user);
 			var tempTeams = user.teams;
 			tempTeams.push(leagueId);
 			user.updateAttributes({
 				teams: tempTeams
 			}).then(function(){
-				console.log("new teams:");
-				console.log(user);
+				// console.log("new teams:");
+				// console.log(user);
 			})
 		})
 	})
