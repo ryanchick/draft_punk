@@ -58,7 +58,7 @@
 			revVm.teamOptions = {
 			    chart: {
 			        type: 'discreteBarChart',
-			        height: 230,
+			        height: 450,
 			        //width: 400,
 			        margin : {
 			            top: 5,

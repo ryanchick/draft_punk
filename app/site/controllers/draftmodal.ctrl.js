@@ -28,6 +28,7 @@
 				}
 				console.log(path)
 				$location.path('/' + path);
+				$uibModalInstance.close();
 
 			}
 
