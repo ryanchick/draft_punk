@@ -94,7 +94,7 @@
 									</span>
 								</div>
 								<!-- </div> -->
-								<div class="col-xs-10" style="{padding:0px}">
+								<div class="col-xs-10" style="padding:0px">
 									<b>{{ctrl.playerSelect.name}}</b>
 									{{ctrl.playerSelect.position}}
 									<!-- <i>Rating:{{ctrl.playerSelect.totRtg|number:2}}</i> -->
@@ -135,8 +135,10 @@
 					</div>
 					<hr class="graphDivide">
 					<!-- <div class="col-md-12"> -->
-					<div>
-						Team Average
+					<div class="teamAverage">
+						<h4 class="teamAverage__title">
+							Team Average
+						</h4>
 						<input toggle-button class="form-control" ng-model="ctrl.teamGraph" ng-change="Change(); ctrl.drawTeamChart()" type="checkbox" data-on="Graph" data-off="Table" data-size="mini">
 						<table ng-show="!ctrl.teamGraph" class="table table-condensed">
 							<tr>

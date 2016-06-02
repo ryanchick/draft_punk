@@ -429,6 +429,7 @@
 			            bottom: 45,
 			            left: 55
 			        },
+			        color:(["#107c10","#5dc21e"]),
 			        showControls:false,
 			        reduceXTicks:false,
 			        x: function(d){ return d.label; },
