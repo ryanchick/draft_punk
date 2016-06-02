@@ -34,7 +34,7 @@
 			function createLeague(isValid, save){
 				console.log("creating")
 				if(isValid == false){
-					alert('Invalid')
+					// alert('Invalid')
 					return;
 				}
 				var leagueInfo = {

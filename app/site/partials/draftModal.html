@@ -13,11 +13,11 @@
         </div>
         <div class="form-group">
             <label for="password">Number of Teams</label>
-            <input type="number" name="leagueSize" class="form-control" ng-model="ctrl.leagueSize" required>
+            <input type="number" name="leagueSize" class="form-control" ng-model="ctrl.leagueSize" required max=12 min=2>
         </div>
         <div class="form-group">
             <label for="firstName">Your Draft Position</label>
-            <input type="number" name='userPosition' class="form-control" ng-model="ctrl.userPosition" required>
+            <input type="number" name='userPosition' class="form-control" ng-model="ctrl.userPosition" required max={{ctrl.leagueSize}} min=0>
         </div>
     
 </div>
