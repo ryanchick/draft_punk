@@ -1,10 +1,25 @@
+.navbar {
+  margin-bottom: 5px; }
+
 .draftList {
   height: 80px;
   margin: 5px;
-  border: 1px solid teal;
   overflow: hidden;
   font-size: 12px;
   z-index: -4; }
+  .draftList button {
+    padding: 0;
+    padding-bottom: 10px;
+    background-color: #107c10; }
+    .draftList button:hover {
+      background-color: #5dc21e; }
+    .draftList button:active {
+      -webkit-transform: scale(0.9); }
+    .draftList button div {
+      margin: 0 auto; }
+      .draftList button div span {
+        font-size: 50px;
+        color: white; }
   .draftList__round {
     position: relative;
     z-index: -1; }
@@ -36,75 +51,74 @@
     border: none;
     height: 80px;
     overflow: hidden;
-    color: gray; }
+    color: gray;
+    position: relative;
+    bottom: 5px; }
   .draftList__pick {
     display: inline-block;
     background-color: grey;
     box-sizing: border-box;
-    border: 1px solid black;
     width: 6.5%;
     margin-right: 5px;
     height: 80px;
     overflow: hidden;
     padding: 3px;
-    color: white; }
+    color: white;
+    border-radius: 3px; }
     .draftList__pick--active {
-      border-color: green;
-      background-color: green;
-      border-width: 2px; }
+      background-color: black; }
     .draftList__pick--myTeam {
-      border-color: gold;
-      background-color: gold;
-      border-width: 2px; }
+      background-color: gold; }
       .draftList__pick--myTeam.draftList__pick--active {
-        border-color: red;
         background-color: red; }
   .draftList__left {
     float: left;
     height: 80px;
     width: 30px;
-    border: 1px solid blue;
     z-index: 3; }
   .draftList__right {
     float: right;
     height: 80px;
     width: 30px;
-    border: 1px solid red;
     z-index: 3; }
 
 .draft__playerList {
-  border: 1px solid blue;
+  border-radius: 3px;
   font-size: 12px;
-  height: 78vh; }
+  height: 80vh;
+  padding: 3px; }
+  .draft__playerList__container {
+    border-radius: 3px;
+    border: 1px solid grey; }
   .draft__playerList table {
-    max-width: 540px;
-    margin: 0 auto; }
+    max-width: 523px;
+    margin: 1px; }
   .draft__playerList thead {
-    display: block;
-    border: 1px solid blue; }
+    display: block; }
     .draft__playerList thead tr {
-      width: 100%;
-      border: 1px solid green; }
+      width: 100%; }
   .draft__playerList tbody {
-    height: 50vh;
-    border: 1px solid red;
+    height: 55vh;
     overflow: auto;
     display: block; }
   .draft__playerList__title {
-    margin-top: 5px;
+    margin: 5px;
     display: inline-block; }
   .draft__playerList__search {
-    margin-top: 5px;
+    margin: 5px;
     float: right;
     display: inline-block; }
+  .draft__playerList__suggestTitle {
+    margin-left: 5px; }
   .draft__playerList__suggest {
-    border: 2px solid green;
     box-sizing: border-box;
     font-weight: bold;
     font-size: 14px;
     vertical-align: middle;
-    padding: 0px; }
+    padding: 0px;
+    text-align: center; }
     .draft__playerList__suggest__image {
+      margin-left: 5px;
       height: 40px;
       background-size: cover;
       background-position: center; }
@@ -120,8 +134,7 @@
 
 .playerStats {
   height: 40vh;
-  border: 1px solid red;
-  padding: 10px;
+  padding: 5px;
   box-sizing: border-box;
   width: 100%; }
   .playerStats table {
@@ -137,6 +150,10 @@
   .playerStats__table {
     margin-bottom: 0; }
 
+.graphDivide {
+  margin-top: 5px;
+  margin-bottom: 5px; }
+
 .green {
   color: green;
   font-weight: bold; }
@@ -146,15 +163,14 @@
   font-weight: bold; }
 
 .myTeam {
-  border: 1px solid green;
   padding: 4px;
-  box-sizing: border-box; }
+  box-sizing: border-box;
+  height: 475px; }
   .myTeam__title {
     margin: 5px 0; }
 
 .home__playerPanel {
   cursor: pointer;
-  border: 2px solid gray;
   margin-bottom: 10px; }
   .home__playerPanel:hover {
     background-color: whitesmoke; }

@@ -1,7 +1,7 @@
 <div class="">
 	<div class="draftList">
-		<button class="draftList__left" ng-click="ctrl.curRound = ctrl.curRound - 1;ctrl.right = false" ng-disabled="ctrl.curRound== 0"></button>
-		<button class="draftList__right" ng-click="ctrl.curRound = ctrl.curRound + 1;ctrl.right = true" ng-disabled="ctrl.curRound >= 12"></button>
+		<button class="draftList__left btn" ng-click="ctrl.curRound = ctrl.curRound - 1;ctrl.right = false" ng-disabled="ctrl.curRound== 0"><div><span>«</span></div></button>
+		<button class="draftList__right btn" ng-click="ctrl.curRound = ctrl.curRound + 1;ctrl.right = true" ng-disabled="ctrl.curRound >= 12"><div><span>»</span></div></button>
 		<div class="draftList__round" ng-class="{'left':!ctrl.right}" ng-repeat='round in ctrl.rounds|limitTo:1:ctrl.curRound'>
 			<div class="draftList__roundNum">Round #{{round + 1}}:</div>
 			<div class="draftList__pick" ng-repeat='team in ctrl.league.teams |orderBy: $index :round % 2 == 1' ng-class="{'draftList__pick--myTeam':team.user,'draftList__pick--active':(round * ctrl.numTeams + $index) == ctrl.curPick}">
@@ -18,14 +18,15 @@
 <div class="container-fluid" ng-hide="ctrl.done">
 	<div class="row">
 			<div class="col-md-5 draft__playerList">
+				<div class=draft__playerList__container>
 				<h4 class="draft__playerList__title">Player List</h4>
 				
-				<div class="draft__playerList__search"><label>Search:</label><input type="text" name="" placeholder="Name" ng-model="ctrl.searchName">
+				<div class="draft__playerList__search"><label>Search: </label><input type="text" name="" placeholder="Name" ng-model="ctrl.searchName">
 				</div>
 				<div class="row">
 				
 					<div class="container-fluid">
-						<div><b>We Suggest:</b></div>
+						<div class="draft__playerList__suggestTitle"><b>We Suggest:</b></div>
 						<div class="col-xs-4 draft__playerList__suggest" ng-repeat="suggest in ctrl.suggested" ng-click="ctrl.show(suggest)">
 							<div class="col-xs-3 draft__playerList__suggest__image" style="background-image:url({{suggest.img_url}})"></div>
 							<b>
@@ -75,10 +76,11 @@
 						</tr>
 					</tbody>
 				</table>
+				</div>
 			</div>
 			<div class="col-md-5">
 				<div class="row">
-					<div class="col-md-12 playerStats">
+					<div class="playerStats">
 						<!-- <h4>Player Information:</h4> -->
 						<div ng-show='!ctrl.playerSelect.name'>
 							<h3>Pick a Player!</h3>
@@ -92,7 +94,7 @@
 									</span>
 								</div>
 								<!-- </div> -->
-								<div class="col-xs-10" style="{border:1px solid yellow,padding:0px}">
+								<div class="col-xs-10" style="{padding:0px}">
 									<b>{{ctrl.playerSelect.name}}</b>
 									{{ctrl.playerSelect.position}}
 									<!-- <i>Rating:{{ctrl.playerSelect.totRtg|number:2}}</i> -->
@@ -131,7 +133,9 @@
 							</div>
 						</div>
 					</div>
-					<div class="col-md-12" style="border:1px solid yellow">
+					<hr class="graphDivide">
+					<!-- <div class="col-md-12"> -->
+					<div>
 						Team Average
 						<input toggle-button class="form-control" ng-model="ctrl.teamGraph" ng-change="Change(); ctrl.drawTeamChart()" type="checkbox" data-on="Graph" data-off="Table" data-size="mini">
 						<table ng-show="!ctrl.teamGraph" class="table table-condensed">

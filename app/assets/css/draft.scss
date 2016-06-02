@@ -1,16 +1,39 @@
 
 $stat_width: 35px;
 
+//bootstrap override
+.navbar{
+	margin-bottom:5px
+}
+
 .draftList{
 	height:80px;
 	margin:5px;
 	// margin-bottom:10px;
 	//padding:10px;
-	border:1px solid teal;
+	//border:1px solid teal;
 	overflow:hidden;
 	font-size:12px;
 	// background-color:grey;
 	z-index:-4;
+	button{
+		padding:0;
+		padding-bottom:10px;
+		background-color: #107c10;
+		&:hover{
+			background-color: #5dc21e;
+		}
+		&:active{
+			-webkit-transform: scale(0.9);
+		}
+		div {
+			margin:0 auto;
+			span{
+				font-size:50px;
+				color:white;
+			}
+		}
+	}
 	&__round{
 		// background-color:darkgreen;
 		// border:1px solid teal;
@@ -72,13 +95,15 @@ $stat_width: 35px;
 		height:80px;
 		overflow:hidden;
 		color:gray;
+		position:relative;
+		bottom:5px;
 	}
 	&__pick{
 		display:inline-block;
 		// float:left;
 		background-color:grey;
 		box-sizing:border-box;
-		border:1px solid black;
+		//border:1px solid black;
 		width: 6.5%;
 		margin-right:5px;
 		// margin-bottom:1px;
@@ -86,18 +111,19 @@ $stat_width: 35px;
 		overflow:hidden;
 		padding:3px;
 		color:white;
+		border-radius:3px;
 		&--active{
-			border-color:green;
-			background-color:green;
-			border-width:2px;
+			//border-color:green;
+			background-color:black;
+			//border-width:2px;
 		}
 		&--myTeam{
-			border-color:gold;
+			//border-color:gold;
 			background-color:gold;
-			border-width:2px;
+			//border-width:2px;
 			// background-color:red;
 			&.draftList__pick--active{
-				border-color:red;
+				//border-color:red;
 				background-color:red;
 			}
 		}
@@ -109,7 +135,7 @@ $stat_width: 35px;
 		height:80px;
 		// margin: 5px;
 		width:30px;
-		border:1px solid blue;
+		//border:1px solid blue;
 		z-index:3;
 	}
 	&__right{
@@ -118,54 +144,70 @@ $stat_width: 35px;
 		height:80px;
 		width:30px;
 		// margin:5px;
-		border:1px solid red;
+		//border:1px solid red;
 		z-index:3;
 	}
 }
 
 .draft__playerList {
-	border:1px solid blue;
+	//border:1px solid grey;
+	//background-color:grey;
+	border-radius:3px;
 	font-size: 12px;
-	height:78vh;
+	height:80vh;
+	padding: 3px;
+	//padding-top:22px;
+	&__container{
+		//background-color:white;
+		border-radius:3px;
+		border:1px solid grey;
+	}
 	table{
 		// width:100%;
-		max-width: 540px;
-		margin: 0 auto;
+		max-width: 523px;
+		//margin: 0 auto;
+		margin:1px;
+
 	}
 	thead { 
 		display:block;
 		// width:97.5%; 
-		border:1px solid blue;
+		//border:1px solid blue;
 		tr{
 			width:100%;
-			border: 1px solid green;
+			//border: 1px solid green;
 		}
 	}
 	tbody { 
-		height:50vh; 
-		border: 1px solid red;
+		height:55vh; 
+		//border: 1px solid red;
 		overflow: auto; 
 		display:block;
 		// padding:0px; 
 	}
 	&__title{
-	margin-top:5px;
+	margin:5px;
 	display:inline-block
 	}
 	&__search{
-	margin-top:5px;
+	margin:5px;
 	float:right;
 	display:inline-block
 	}
+	&__suggestTitle{
+		margin-left:5px;
+	}
 	&__suggest{
-		border:2px solid green;
+		//border:2px solid green;
 		box-sizing:border-box;
 		font-weight:bold;
 		font-size:14px;
 		vertical-align:middle;
 		padding:0px;
+		text-align:center;
 
 		&__image{
+			margin-left:5px;
 			height:40px;
 			background-size:cover;
 			background-position:center;
@@ -223,8 +265,8 @@ $stat_width: 35px;
 
 .playerStats{
 	height:40vh;
-	border:1px solid red;
-	padding:10px;
+	//border:1px solid red;
+	padding:5px;
 	box-sizing:border-box;
 	width:100%;
 	table{
@@ -249,6 +291,11 @@ $stat_width: 35px;
 	}
 }
 
+.graphDivide{
+	margin-top:5px;
+	margin-bottom:5px;
+}
+
 .green{
 	color:green;
 	font-weight:bold;
@@ -259,9 +306,10 @@ $stat_width: 35px;
 }
 
 .myTeam {
-	border:1px solid green;
+	//border:1px solid green;
 	padding:4px; 
 	box-sizing:border-box;
+	height:475px;
 	&__title{
 		margin:5px 0;
 	}
@@ -273,7 +321,7 @@ $stat_width: 35px;
 
 	}
 	cursor: pointer;
-	border: 2px solid gray;
+	//border: 2px solid gray;
 	margin-bottom:10px;
 	// height:50px;
 	&__playerImg{
