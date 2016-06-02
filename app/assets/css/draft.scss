@@ -1,9 +1,13 @@
-
+$darkgreen:#107c10;
+$lightgreen:#5dc21e;
 $stat_width: 35px;
 
 //bootstrap override
 .navbar{
 	margin-bottom:5px
+}
+.badge{
+	background-color:#107c10;
 }
 
 .draftList{
@@ -19,9 +23,14 @@ $stat_width: 35px;
 	button{
 		padding:0;
 		padding-bottom:10px;
-		background-color: #107c10;
+		background-color: rgb(34,34,34);
 		&:hover{
-			background-color: #5dc21e;
+			background-color:black;
+			div{
+				span{
+					color:white;
+				}
+			}
 		}
 		&:active{
 			-webkit-transform: scale(0.9);
@@ -30,7 +39,7 @@ $stat_width: 35px;
 			margin:0 auto;
 			span{
 				font-size:50px;
-				color:white;
+				color:#5dc21e;
 			}
 		}
 	}
@@ -101,30 +110,31 @@ $stat_width: 35px;
 	&__pick{
 		display:inline-block;
 		// float:left;
-		background-color:grey;
+		background-color: white;
 		box-sizing:border-box;
-		//border:1px solid black;
+		border:1px solid black;
 		width: 6.5%;
 		margin-right:5px;
 		// margin-bottom:1px;
 		height:80px;
 		overflow:hidden;
 		padding:3px;
-		color:white;
+		color:black;
 		border-radius:3px;
 		&--active{
-			//border-color:green;
-			background-color:black;
-			//border-width:2px;
+			border:$lightgreen solid 5px;
+			color:$darkgreen;
+			font-weight:bold;
+			//background-color:b;
 		}
 		&--myTeam{
-			//border-color:gold;
-			background-color:gold;
-			//border-width:2px;
+			color:white;
+			//border:black solid 1px;
+			background-color:rgb(34,34,34);
 			// background-color:red;
 			&.draftList__pick--active{
-				//border-color:red;
-				background-color:red;
+				color:$lightgreen;
+			
 			}
 		}
 		
@@ -266,7 +276,7 @@ $stat_width: 35px;
 .playerStats{
 	height:40vh;
 	//border:1px solid red;
-	padding:5px;
+	padding:5px 10px;
 	box-sizing:border-box;
 	width:100%;
 	table{
@@ -285,6 +295,7 @@ $stat_width: 35px;
 		// display:inline-block;
 		margin-left:10px;
 		margin-bottom:5px;
+		float:right;
 	}
 	&__table{
 		margin-bottom:0;
@@ -292,8 +303,19 @@ $stat_width: 35px;
 }
 
 .graphDivide{
-	margin-top:5px;
+	margin-top:0;
 	margin-bottom:5px;
+}
+.teamAverage{
+	padding:0 5px;
+	&__title{
+		display:inline-block;
+		margin-top:0;
+		margin-bottom:5px
+	}
+	&__control{
+		float:right;
+	}
 }
 
 .green{
