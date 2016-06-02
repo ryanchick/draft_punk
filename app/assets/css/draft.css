@@ -121,6 +121,7 @@
     margin: 5px 0; }
 
 .home__playerPanel {
+  cursor: pointer;
   border: 2px solid gray;
   margin-bottom: 10px; }
   .home__playerPanel:hover {

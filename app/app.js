@@ -2,7 +2,7 @@
 	'use strict';
 
 	angular
-		.module('draftApp',['ngRoute', 'nvd3', 'angular-jwt']);
+		.module('draftApp',['ngRoute', 'ngAnimate', 'ui.bootstrap', 'nvd3', 'angular-jwt']);
 
 	angular
 		.module('draftApp')

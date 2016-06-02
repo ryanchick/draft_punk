@@ -211,7 +211,9 @@ $stat_width: 35px;
 .home__playerPanel{
 	&:hover{
 		background-color:whitesmoke;
+
 	}
+	cursor: pointer;
 	border: 2px solid gray;
 	margin-bottom:10px;
 	// height:50px;
