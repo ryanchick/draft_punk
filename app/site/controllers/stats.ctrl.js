@@ -8,6 +8,7 @@
 			statsVm.stats = stats;
 
 			statsVm.sort = '-pts';
+			statsVm.search = '';
 			statsVm.headers = [
 				{label:'',sort:'name'},
 				{label:'Name',sort:'name'},

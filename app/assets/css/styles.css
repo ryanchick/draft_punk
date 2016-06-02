@@ -8,6 +8,9 @@
 	src:url(../fonts/montserrat/Montserrat-Regular.ttf);
 }
 
+/*FOR UI-BOOTSTRAP*/
+.nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
+
 .playerbox {
 	height:40px;
 	width:50px;

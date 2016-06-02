@@ -1,14 +1,15 @@
 <div class="">
-	<div class="draftList" ng-repeat='round in ctrl.rounds|limitTo:1:ctrl.curRound'>
-		<button class="draftList__left" ng-click="ctrl.curRound = ctrl.curRound - 1;" ng-disabled="ctrl.curRound== 0"></button>
-		<button class="draftList__right" ng-click="ctrl.curRound = ctrl.curRound + 1" ng-disabled="ctrl.curRound >= 12"></button>
-		<div class="draftList__roundNum">Round #{{round + 1}}:</div>
-		<div class="draftList__pick" ng-repeat='team in ctrl.league.teams |orderBy: $index :round % 2 == 1' ng-class="{'draftList__pick--myTeam':team.user,'draftList__pick--active':(round * ctrl.numTeams + $index) == ctrl.curPick}">
-			{{team.teamName}} <br />
-			Pick#: {{round * ctrl.numTeams + $index+1}} <br />
-			{{ctrl.league.draftedPlayers[round * ctrl.numTeams + $index].name | abbrevNameFilter}}
+	<div class="draftList">
+		<button class="draftList__left" ng-click="ctrl.curRound = ctrl.curRound - 1;ctrl.right = false" ng-disabled="ctrl.curRound== 0"></button>
+		<button class="draftList__right" ng-click="ctrl.curRound = ctrl.curRound + 1;ctrl.right = true" ng-disabled="ctrl.curRound >= 12"></button>
+		<div class="draftList__round" ng-class="{'left':!ctrl.right}" ng-repeat='round in ctrl.rounds|limitTo:1:ctrl.curRound'>
+			<div class="draftList__roundNum">Round #{{round + 1}}:</div>
+			<div class="draftList__pick" ng-repeat='team in ctrl.league.teams |orderBy: $index :round % 2 == 1' ng-class="{'draftList__pick--myTeam':team.user,'draftList__pick--active':(round * ctrl.numTeams + $index) == ctrl.curPick}">
+				{{team.teamName}} <br />
+				Pick#: {{round * ctrl.numTeams + $index+1}} <br />
+				{{ctrl.league.draftedPlayers[round * ctrl.numTeams + $index].name | abbrevNameFilter}}
+			</div>
 		</div>
-
 	</div>
 </div>
 <div class="container-fluid" ng-show="ctrl.done">

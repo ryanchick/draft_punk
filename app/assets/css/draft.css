@@ -3,7 +3,31 @@
   margin: 5px;
   border: 1px solid teal;
   overflow: hidden;
-  font-size: 12px; }
+  font-size: 12px;
+  z-index: -4; }
+  .draftList__round {
+    position: relative;
+    z-index: -1; }
+    .draftList__round.ng-leave {
+      left: 0;
+      transition: 0.75s cubic-bezier(0.25, 0.25, 0.75, 0.75) all; }
+    .draftList__round.ng-leave.ng-leave-active {
+      left: -100%; }
+    .draftList__round.ng-enter {
+      left: 100%;
+      transition: 0.75s cubic-bezier(0.25, 0.25, 0.75, 0.75) all; }
+    .draftList__round.ng-enter.ng-enter-active {
+      left: 0; }
+    .draftList__round.left.ng-leave {
+      left: 0;
+      transition: 0.75s cubic-bezier(0.25, 0.25, 0.75, 0.75) all; }
+    .draftList__round.left.ng-leave.ng-leave-active {
+      left: 100%; }
+    .draftList__round.left.ng-enter {
+      left: -100%;
+      transition: 0.75s cubic-bezier(0.25, 0.25, 0.75, 0.75) all; }
+    .draftList__round.left.ng-enter.ng-enter-active {
+      left: 0; }
   .draftList__roundNum {
     display: inline-block;
     font-weight: bold;
@@ -11,34 +35,42 @@
     padding: 5px;
     border: none;
     height: 80px;
-    overflow: hidden; }
+    overflow: hidden;
+    color: gray; }
   .draftList__pick {
     display: inline-block;
+    background-color: grey;
     box-sizing: border-box;
     border: 1px solid black;
     width: 6.5%;
     margin-right: 5px;
     height: 80px;
     overflow: hidden;
-    padding: 3px; }
+    padding: 3px;
+    color: white; }
     .draftList__pick--active {
       border-color: green;
+      background-color: green;
       border-width: 2px; }
     .draftList__pick--myTeam {
       border-color: gold;
+      background-color: gold;
       border-width: 2px; }
       .draftList__pick--myTeam.draftList__pick--active {
-        border-color: red; }
+        border-color: red;
+        background-color: red; }
   .draftList__left {
     float: left;
     height: 80px;
     width: 30px;
-    border: 1px solid blue; }
+    border: 1px solid blue;
+    z-index: 3; }
   .draftList__right {
     float: right;
     height: 80px;
     width: 30px;
-    border: 1px solid red; }
+    border: 1px solid red;
+    z-index: 3; }
 
 .draft__playerList {
   border: 1px solid blue;
@@ -121,6 +153,7 @@
     margin: 5px 0; }
 
 .home__playerPanel {
+  cursor: pointer;
   border: 2px solid gray;
   margin-bottom: 10px; }
   .home__playerPanel:hover {

@@ -87,6 +87,18 @@
 			})
 		}
 
+		function removePlayer(player){
+			var l = draftVm.playerStats.length;
+			for(var i = 0; i < l;i++){
+				if(player.nba_id == draftVm.playerStats[i].nba_id){
+					draftVm.playerStats.splice(i,1);
+					break;
+				}
+			}
+		}
+
+
+
 		function draft(player){
 			draftVm.myPick = false;
 			draftVm.drafting = true;
@@ -151,10 +163,6 @@
 			if(draftVm.curPick % draftVm.numTeams == (draftVm.numTeams-1) && draftVm.curRound != 12){
 				draftVm.curRound++;
 				$http.put('api/league/'+draftVm.league.id, {teams:draftVm.league.teams,draftedPlayers:draftVm.league.draftedPlayers})
-					.then(function(res){
-						console.log("saved league as:");
-						console.log(res);
-					})
 			}
 			if(draftVm.curPick == ((draftVm.numTeams * 13) - 1)){
 				console.log(draftVm.done)
@@ -175,41 +183,36 @@
 			// draftVm.myPick = false;
 			
 			//refilter players remaining
-			checkSelected();
+			// checkSelected();
+			removePlayer(player);
 
 			//repopulate player info box with top remaining scorer
-			
-			$http.post('/api/draft/',player)
+			var __post = {
+				player:player,
+				team:draftVm.league.teams[(draftVm.userPick - 1)]
+			}
+			$http.post('/api/draft/',__post)
 				.then(function(res){
 					//console.log(res);
-					draftVm.playerStats = res.data;
-					// draftVm.playerSelect = res.data[0];
+					draftVm.playerStats = res.data.players;
+					draftVm.suggested = res.data.suggest;
+					
 					if(player == draftVm.filtered[0]){
 						draftVm.playerSelect = draftVm.filtered[1];
 					}else{
 						draftVm.playerSelect = draftVm.filtered[0];
 					}
-
-					return $http.put('/api/draft/' + (draftVm.userPick - 1),draftVm.league.teams[(draftVm.userPick - 1)])
-				})
-				.then(function(res){
-					//console.log('suggested');
-					//console.log(res);
-					draftVm.suggested = res.data;
-					draftVm.drafting = false;
-					// if(draftVm.myPick == true){
-					// 	draftVm.drawTeamChart();
-					// }
-					
+					// return $http.put('/api/draft/' + (draftVm.userPick - 1),draftVm.league.teams[(draftVm.userPick - 1)])
 				})
 				.then(function(){
 					draftVm.show(draftVm.playerSelect);
+					draftVm.drafting = false;
 				})	
 
 			if(draftVm.done == true){
 				$timeout(function() {
                     	$location.path('/review/' + $routeParams.leagueId);
-            	}, 3000);
+            	}, 2000);
 			}		
 
 		}

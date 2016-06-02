@@ -14,14 +14,17 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li class="active"><a ng-click="ctrl.route('draft')">Draft <span class="sr-only">(current)</span></a></li>
-        <li><a ng-click="ctrl.route('stats')">Stats</a></li>
+        <li ng-class="{active:ctrl.isActive('draft')}"><a ng-click="ctrl.route('draft')">Draft <span class="sr-only">(current)</span></a></li>
+        <li ng-class="{active:ctrl.isActive('stats')}"><a ng-click="ctrl.route('stats')">Stats</a></li>
 
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a ng-click="ctrl.route('user/'+ctrl.username)">User</a></li>
-        <li ng-show="!ctrl.loggedIn()">
-        	<a ng-click="ctrl.route('login')">Login</a>
+        <li ng-class="{active:ctrl.isActive('user')}">
+          <a ng-click="ctrl.loginOpen()" ng-show="!ctrl.loggedIn()">Profile</a>
+          <a ng-click="ctrl.route('user/'+ctrl.username)" ng-show="ctrl.loggedIn()">{{ctrl.username}}</a>
+        </li>
+        <li ng-class="{active:ctrl.isActive('login')}" ng-show="!ctrl.loggedIn()">
+        	<a ng-click="ctrl.loginOpen()">Login</a>
         </li>
         <li ng-show="ctrl.loggedIn()">
         	<a ng-click="ctrl.logOut()">Logout</a>

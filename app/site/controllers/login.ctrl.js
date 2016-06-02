@@ -28,7 +28,7 @@
 							lastName:loginVm.lastName,
 							email:loginVm.email
 						  };
-			$http.post('/api/users', newUser)
+			$http.post('/api/auth/create', newUser)
 				.then(function(res){
 					loginVm.login();
 				});
@@ -39,7 +39,7 @@
 							  username:loginVm.username,
 							  password:loginVm.password
 							};
-			$http.post('/api/users/login', loginInfo)
+			$http.post('/api/auth/login', loginInfo)
 				.then(function(res){
 					if (res.data.username){
 						console.log('logged in');
