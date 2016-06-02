@@ -194,6 +194,7 @@ router.post('/', function(req,res){
 		suggest:suggested
 	}
 	res.json(ret)
+	// I'm typing a bunch of nonsense to look like I'm typing for a silly photo
 })
 
 //get suggestions for team

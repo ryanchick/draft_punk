@@ -20,9 +20,9 @@
 			//variables
 			navbarVm.username = '';
 			if(localStorage.draftUser){
-				console.log('user')
+				// console.log('user')
 				navbarVm.username = JSON.parse(localStorage.draftUser).username;
-				console.log(navbarVm.username);
+				// console.log(navbarVm.username);
 			}
 			
 
@@ -42,6 +42,11 @@
 
 			function loggedIn(){
 				if (localStorage.draftAuthToken != undefined){
+					if(localStorage.draftUser){
+						// console.log('user')
+						navbarVm.username = JSON.parse(localStorage.draftUser).username;
+						// console.log(navbarVm.username);
+					}
 					return true;
 				} else {
 					return false;

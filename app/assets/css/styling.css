@@ -1,0 +1,17 @@
+.userLeagues {
+  height: 55vh;
+  overflow-y: scroll; }
+  .userLeagues__league {
+    border: 1px solid #107c10;
+    border-radius: 5px;
+    margin: 5px;
+    box-sizing: border-box;
+    padding: 5px;
+    position: relative; }
+    .userLeagues__league table {
+      margin-bottom: 5px; }
+    .userLeagues__league__buttons {
+      text-align: center;
+      margin: 0 auto; }
+
+/*# sourceMappingURL=styling.css.map */

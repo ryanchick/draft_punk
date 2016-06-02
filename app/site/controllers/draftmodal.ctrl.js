@@ -55,6 +55,7 @@
 							$uibModalInstance.close();
 						} else {
 							//close modal
+							$location.path('/user/'+draftmVm.user.username);
 							$uibModalInstance.close();
 						}
 
