@@ -17,8 +17,19 @@
 			// if(current.match('user')){
 			// 	draftmVm.logged == true;
 			// }
+			draftmVm.route = route;
 			draftmVm.createLeague = createLeague;
 			draftmVm.cancel = cancel;
+
+			function route(path){
+				console.log(draftmVm.user.id)
+				if(path == 'user'){
+					path = path + '/' + draftmVm.user.username;
+				}
+				console.log(path)
+				$location.path('/' + path);
+
+			}
 
 			function createLeague(isValid, save){
 				console.log("creating")
@@ -33,13 +44,15 @@
 						userPosition: draftmVm.userPosition
 				};
 				leagueInfo = JSON.stringify(leagueInfo);
-				console.log(leagueInfo);
+				// console.log(leagueInfo);
 				$http.post('/api/league/newLeague', leagueInfo)
 					.then(function(res){
 						console.log("created league")
-						console.log(res.data);
+						// console.log(res.data);
 						if(save == false){
+							console.log('going to draft')
 							$location.path('/draft/'+res.data.id);
+							$uibModalInstance.close();
 						} else {
 							//close modal
 							$uibModalInstance.close();

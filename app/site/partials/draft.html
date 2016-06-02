@@ -28,8 +28,10 @@
 						<div><b>We Suggest:</b></div>
 						<div class="col-xs-4 draft__playerList__suggest" ng-repeat="suggest in ctrl.suggested" ng-click="ctrl.show(suggest)">
 							<div class="col-xs-3 draft__playerList__suggest__image" style="background-image:url({{suggest.img_url}})"></div>
-							#{{$index+1}}: {{suggest.name | abbrevNameFilter}} <br>
-							Adj. Rtg: {{suggest.totRtg |number:2}}
+							<b>
+								#{{$index+1}}: {{suggest.name | abbrevNameFilter}} <br>
+								Adj. Rtg: {{suggest.totRtg |number:2}}
+							</b>
 						</div>
 					</div>
 				</div>

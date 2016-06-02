@@ -81,7 +81,9 @@
 			    });
 			};
 			function draftOpen(size) {
-
+				if(isActive('draft')){
+					return;
+				}
 			    var modalInstance = $uibModal.open({
 			      	animation: true,
 			      	templateUrl: 'site/partials/draftModal.html',

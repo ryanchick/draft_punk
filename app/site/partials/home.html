@@ -2,7 +2,7 @@
 	<div class="jumbotron">
 		<h1>DRAFT PROJECT</h1>
 		<p>Explanation Text</p>
-		<p><button class="btn btn-success btn-lg" ng-click="ctrl.route('draft')">DRAFT NOW</button></p>
+		<p><button class="btn btn-success btn-lg" ng-click="ctrl.draftOpen()">DRAFT NOW</button></p>
 	</div>
 	<div>
 		<div class="row">
@@ -20,8 +20,9 @@
 							<div class="col-xs-3 home__playerPanel__playerImg" style="background-image:url({{player.img_url}})">
 							</div>
 							<div>
-							<b>{{player.name}}</b>
+							<p><b>{{player.name}}</b>
 							<br>{{player.position}}
+							</p>
 							</div>
 						</div>
 					</div>
@@ -54,8 +55,8 @@
 							<div class="col-xs-3 home__playerPanel__playerImg" style="background-image:url({{player.img_url}})">
 							</div>
 							<div>
-							<b>{{player.name}}</b>
-							<br>{{player.position}}
+							<p><b>{{player.name}}</b>
+							<br>{{player.position}}</p>
 							</div>
 						</div>
 					</div>
@@ -66,6 +67,6 @@
 		<!-- <button ng-click="ctrl.get()">GET</button> -->
 	</div>
 	<div class="home__CTA">
-		<button class="btn btn-success btn-lg" ng-click="ctrl.route('draft')"><h2>DRAFT NOW</h2></button>
+		<button class="btn btn-success btn-lg" ng-click="ctrl.draftOpen"><h2>DRAFT NOW</h2></button>
 	</div>
 <div>
