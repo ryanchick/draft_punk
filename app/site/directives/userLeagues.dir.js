@@ -17,36 +17,35 @@
 		.module('draftApp')
 		.controller('userLeaguesCtrl', userLeaguesCtrl);
 
-	function userLeaguesCtrl($scope){
+	function userLeaguesCtrl($scope, $http, $location){
 		leagueVm = this;
-		console.log($scope.user)
+		//console.log($scope.user)
 		leagueVm.test = "LEAGUES";
 		leagueVm.user = JSON.parse($scope.user);
 		leagueVm.leagues = JSON.parse($scope.leagues);
 		leagueVm.editting = [];
 
-		leagueVm.editToggle = editToggle;
-		leagueVm.editLeague = editLeague;
+		leagueVm.draftStatus = draftStatus;
+		leagueVm.route = route;
 
-		function editToggle(id){
-			var i = leagueVm.editting.indexOf(id);
-			if (i == -1){
-				leagueVm.editting.push(id);
-			} else {
-				console.log("splice");
-				leagueVm.editting.splice(i,1);
+		function draftStatus(id){
+			for (var i = 0; i < leagueVm.leagues.length; i++){
+				if (leagueVm.leagues[i].id == id){
+					if (leagueVm.leagues[i].draftedPlayers.length == 0){
+						return 1;
+					} else if (leagueVm.leagues[i].draftedPlayers.length == leagueVm.leagues[i].teams.length * 13){
+						return 3;
+					} else if (leagueVm.leagues[i].draftedPlayers.length > 0){
+						return 2;
+					}	
+				}
 			}
-			console.log(leagueVm.editting);
-
 		}
 
-		function editLeague(id){
-			if (leagueVm.editting.indexOf(id) == -1){
-				return false
-			} else {
-				return true;
-			}
-
+		function route(url){
+			$location.path(url);
 		}
+
+
 	}
 })();
