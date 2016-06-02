@@ -36,7 +36,7 @@
 			<div class="userLeagues__league__buttons">
 				<button ng-show="ctrl.draftStatus(league.id)==1" class="btn btn-success" ng-click="ctrl.route('draft/'+league.id)">Start Draft</button>
 				<button ng-show="ctrl.draftStatus(league.id)==2" class="btn btn-success" ng-click="ctrl.route('draft/'+league.id)">Continue Draft</button>
-				<button ng-show="ctrl.draftStatus(league.id)==3" class="btn btn-success" ng-click="ctrl.route('review/'+league.id)">Review Draft</button>
+				<button ng-show="ctrl.draftStatus(league.id)==3" class="btn btn-black" ng-click="ctrl.route('review/'+league.id)">Review Draft</button>
 			</div>
 		</div>
 	</div>

@@ -11,7 +11,7 @@
 				//Antetokounmpo exception
 				if(arr[1]){
 					if(arr[1].toLowerCase() == 'antetokounmpo'){
-						return 'GIANNIS';
+						return 'Giannis A.';
 					}
 				}
 				arr[0] = arr[0].charAt(0) + ".";

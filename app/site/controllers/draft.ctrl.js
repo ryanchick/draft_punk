@@ -170,8 +170,12 @@
 					.then(function(res){
 						console.log("saved league as:");
 						console.log(res);
+						draftVm.done = true;
+						$timeout(function() {
+                    		$location.path('/review/' + $routeParams.leagueId);
+            			}, 1000);
 					})
-				draftVm.done = true;
+				
 				
 
 				//console.log(draftVm.league)
