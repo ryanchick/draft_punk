@@ -22,5 +22,10 @@
 		profileVm.test = "PROFILE";
 		profileVm.user = JSON.parse($scope.user)
 		
+		profileVm.changeEdit = changeEdit;
+
+		function changeEdit(){
+			profileVm.editting = !profileVm.editting;
+		}
 	}
 })();
