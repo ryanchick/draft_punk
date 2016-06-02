@@ -18,13 +18,15 @@ var stat_routes = require('./routes/stat_routes');
 var league_routes = require('./routes/league_routes');
 var draft_routes = require('./routes/draft_routes')
 var init_routes = require('./routes/init_routes')
+var auth_routes = require('./routes/auth_routes')
 
 //set Routes
-app.use('/api/users',user_routes);
+app.use('/api/users',authentication,user_routes);
 app.use('/api/stats',stat_routes);
 app.use('/api/league',league_routes);
 app.use('/api/draft',draft_routes);
-app.use('/api/init',init_routes)
+app.use('/api/init',init_routes);
+app.use('/api/auth',auth_routes);
 
 //test user table
 

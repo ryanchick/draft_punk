@@ -2,7 +2,7 @@
 	'use strict';
 
 	angular
-		.module('draftApp',['ngRoute', 'nvd3']);
+		.module('draftApp',['ngRoute', 'nvd3', 'angular-jwt']);
 
 	angular
 		.module('draftApp')
@@ -53,6 +53,7 @@
 									var user;
 									var leagues;
 									user = res.data;
+									console.log(res.data)
 									if (user.teams.length > 0){
 										var leagueIds = [];
 										for (var i = 0; i < user.teams.length; i++){
@@ -148,16 +149,28 @@
 					redirectTo: '/home'
 				})
 
-				$httpProvider.interceptors.push(function(){
+				$httpProvider.interceptors.push(function(jwtHelper){
 	    			return {
 	            		request: function(config) {
+	            			if(localStorage.draftAuthToken != undefined){
+								config.headers.authentication = localStorage.draftAuthToken;
+							}
+				
 	                		return config;
 	            		},
 	            		response: function(response) {
-	              		  var auth_token = response.headers('authentication');
-	                		if(localStorage.draftAuthToken == undefined && auth_token != null){
-	                				localStorage.draftAuthToken = auth_token;
-	                		}
+	              		  	var auth_token = response.headers('authentication');
+	                		// if(localStorage.draftAuthToken == undefined && auth_token != null){
+	                		// 	localStorage.draftAuthToken = auth_token;
+	                		// }
+	                		if(auth_token){
+								var decrypt_token = jwtHelper.decodeToken(auth_token);
+								console.log(decrypt_token);
+								if(decrypt_token.email){
+									localStorage.draftAuthToken = auth_token;
+								}
+								
+							}
 	                		return response;
 	            		}
 	    			}
