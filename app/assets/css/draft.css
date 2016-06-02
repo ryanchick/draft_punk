@@ -190,6 +190,7 @@
 
 .home__playerPanel {
   cursor: pointer;
+  border: 2px solid gray;
   margin-bottom: 10px; }
   .home__playerPanel:hover {
     background-color: whitesmoke; }
@@ -202,5 +203,28 @@
 
 .home__CTA {
   text-align: center; }
+  .home__CTA__btn {
+    margin: 25px 0;
+    padding: 0 125px; }
+
+.mainJumbo {
+  background-image: url("../images/home_ballground.jpg");
+  background-size: cover; }
+  .mainJumbo h1 {
+    color: white; }
+  .mainJumbo p {
+    color: white; }
+  .mainJumbo__btn {
+    background-color: black;
+    color: #5dc21e;
+    border: #5dc21e solid 2px; }
+    .mainJumbo__btn:hover {
+      color: white;
+      border: white solid 2px; }
+
+.userJumbo {
+  background-image: url("../images/home_ballground.jpg"); }
+  .userJumbo h1 {
+    color: white; }
 
 /*# sourceMappingURL=draft.css.map */
