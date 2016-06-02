@@ -105,7 +105,6 @@ router.put('/:leagueId',function (req,res){
 	})
 })
 
-
 //delete team
 router.delete('/:userId/deleteTeam/:teamId',function(req,res){
 	console.log(req.params.userId)

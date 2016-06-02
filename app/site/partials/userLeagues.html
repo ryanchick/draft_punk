@@ -1,43 +1,38 @@
 <div ng-repeat="league in ctrl.leagues" style="border:teal solid 1px">
 	<table class="table table-hover">
 		<tr>
-			<th></th>
-			<th><a style="float:right" ng-click="ctrl.editToggle(league.id)">Edit League Details<a></th>
-		<tr>
+			<th>				
+				<button ng-show="ctrl.draftStatus(league.id)==1" class="btn btn-success" ng-click="ctrl.route('draft/'+league.id)">Start Draft</button>
+				<button ng-show="ctrl.draftStatus(league.id)==2" class="btn btn-success" ng-click="ctrl.route('draft/'+league.id)">Continue Draft</button>
+				<button ng-show="ctrl.draftStatus(league.id)==3" class="btn btn-success" ng-click="ctrl.route('review/'+league.id)">Review Draft</button>
+			</th>
+
+
+		</tr>
 		<tr>
 			<td>
 				League Name:
 			</td>
-			<td ng-show="!ctrl.editLeague(league.id)">
+			<td>
 				{{league.leagueName}}
-			</td>
-			<td ng-show="ctrl.editLeague(league.id)">
-				<input ng-model="league.leagueName">
 			</td>
 		</tr>
 		<tr>
 			<td>
 				# of Teams:	
 			</td>
-			<td ng-show="!ctrl.editLeague(league.id)">
+			<td>
 				{{league.teams.length}}
-			</td>
-			<td ng-show="ctrl.editLeague(league.id)">
-				<input ng-model="league.teams.length">
 			</td>
 		</tr>
 		<tr>
 			<td>
 				Draft Position:	
 			</td>
-			<td ng-show="!ctrl.editLeague(league.id)">
+			<td>
 				{{league.userPosition}}
 			</td>
-			<td ng-show="ctrl.editLeague(league.id)">
-				<input ng-model="league.userPosition">
-			</td>
 		</tr>
-		
 	</table>
 </div>
 

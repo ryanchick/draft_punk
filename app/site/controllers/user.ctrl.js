@@ -15,8 +15,8 @@
 		} else {
 			userVm.user = user;
 		}
-		console.log("user ctrl");
-		console.log(userVm.user);
+		
+		userVm.showLeagues = true;
 
 		//function bindings
 		userVm.changeDir = changeDir;
