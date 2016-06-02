@@ -1,9 +1,28 @@
-<table>
+<table class="table table-hover">
 	<tr>
-		<td></td>
-		<td></td>
+		<th></th>
+		<th><a style="float:right" ng-click="ctrl.changeEdit()">Edit User Details<a></th>
+	<tr>
+	<tr>
+		<td>First Name:</td>
+		<td ng-show="!ctrl.editting">{{ctrl.user.firstName}}</td>
+		<td ng-show="ctrl.editting"><input ng-model="ctrl.user.firstName"></td>
 	</tr>
-
+	<tr>
+		<td>Last Name:</td>
+		<td ng-show="!ctrl.editting">{{ctrl.user.lastName}}</td>
+		<td ng-show="ctrl.editting"><input ng-model="ctrl.user.lastName"></td>
+	</tr>
+	<tr>
+		<td>Username:</td>
+		<td ng-show="!ctrl.editting">{{ctrl.user.username}}</td>
+		<td ng-show="ctrl.editting"><input ng-model="ctrl.user.username"></td>
+	</tr>
+	<tr>
+		<td>Email</td>
+		<td ng-show="!ctrl.editting">{{ctrl.user.email}}</td>
+		<td ng-show="ctrl.editting"><input ng-model="ctrl.user.email"></td>
+	</tr>
 	
 
 </table>
