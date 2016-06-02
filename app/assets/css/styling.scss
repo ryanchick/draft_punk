@@ -27,6 +27,24 @@ $lightgreen:#5dc21e;
 	&__createButton{
 		margin-left:10px;
 	}
+}
 
+.userOptions{
+	background-color:black;
+	color:white;
+	height:400px;
+	.active{
+		color:$lightgreen;
+		text-decoration:underline;
+	}
+}
+
+.btn-black{
+	background-color:#343434;
+	color:$lightgreen;
+	&:hover{
+		color:white;
+		background-color:black;
+	}
 }
 

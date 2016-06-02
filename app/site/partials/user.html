@@ -2,19 +2,19 @@
 	<div class="jumbotron">
 		<h1>Welcome {{ctrl.user.firstName}}</h1>
 	</div>
-	<div class="row">
-		<div style="border:black solid 1px" class="col-sm-4">
-			<div style="border:blue solid 1px" ng-click="ctrl.changeDir(1)">
-				<h2>Profile</h2>
+	<div class="row" style="overflow:none">
+		<div class="col-sm-3 userOptions">
+			<div ng-class="{'active':ctrl.showProfile}" ng-click="ctrl.changeDir(1)">
+				<h1>Profile</h1>
 			</div>
-			<div style="border:blue solid 1px" ng-click="ctrl.changeDir(2)">
-				<h2>Leagues</h2>
+			<div ng-class="{'active':ctrl.showLeagues}" ng-click="ctrl.changeDir(2)">
+				<h1>Leagues</h1>
 			</div>
 		</div>
-		<div ng-show="ctrl.showProfile" class="col-sm-8">
+		<div ng-show="ctrl.showProfile" class="col-sm-9">
 			<user-profile user="{{ctrl.user}}"></user-profile>
 		</div>
-		<div ng-show="ctrl.showLeagues" class="col-sm-8">
+		<div ng-show="ctrl.showLeagues" class="col-sm-9">
 			<user-leagues user="{{ctrl.user}}" leagues="{{ctrl.leagues}}"></user-leagues>
 		</div>
 	</div>

@@ -13,5 +13,22 @@
     .userLeagues__league__buttons {
       text-align: center;
       margin: 0 auto; }
+  .userLeagues__createButton {
+    margin-left: 10px; }
+
+.userOptions {
+  background-color: black;
+  color: white;
+  height: 400px; }
+  .userOptions .active {
+    color: #5dc21e;
+    text-decoration: underline; }
+
+.btn-black {
+  background-color: #343434;
+  color: #5dc21e; }
+  .btn-black:hover {
+    color: white;
+    background-color: black; }
 
 /*# sourceMappingURL=styling.css.map */
