@@ -3,7 +3,7 @@
 		.module('draftApp')
 		.controller('HomeCtrl', HomeCtrl);
 
-	function HomeCtrl($http, $location, $timeout, playerSrv,demo,demo2,raptors){
+	function HomeCtrl($http, $location, $timeout, $uibModal,playerSrv,demo,demo2,raptors){
 		var homeVm = this;
 
 		homeVm.players = demo.data;
@@ -41,7 +41,7 @@
 		homeVm.get = get;
 		homeVm.changePlayer = changePlayer;
 		homeVm.drawTeamChart = drawTeamChart;
-		homeVm.draftOpen = homeVm.draftOpen;
+		homeVm.draftOpen = draftOpen;
 
 		//functions
 		function route(path){
@@ -219,9 +219,7 @@
 		}
 
 		function draftOpen() {
-			if(isActive('draft')){
-				return;
-			}
+			console.log('draft start')
 		    var modalInstance = $uibModal.open({
 		      	animation: true,
 		      	templateUrl: 'site/partials/draftModal.html',
