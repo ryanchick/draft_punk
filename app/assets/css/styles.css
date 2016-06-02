@@ -52,8 +52,11 @@ p,label,td,button{
 
 .playerHeader {
 	margin-bottom: 15px;
-}
 
+}
+.playerHeader h2{
+	margin:5px;
+}
 
 .playerHeader__img{
 	height:180px;

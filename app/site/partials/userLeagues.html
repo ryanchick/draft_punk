@@ -1,6 +1,6 @@
 <div class="userLeagues">
 	<div class="container-fluid">
-		<button class="btn btn-success userLeagues__createButton" ng-click="ctrl.draftOpen()"><b>Create a League</b></button>
+		<button class="btn btn-black userLeagues__createButton" ng-click="ctrl.draftOpen()"><b>Create a League</b></button>
 	</div>
 
 	<div class="row">
@@ -34,8 +34,8 @@
 				</tr>
 			</table>
 			<div class="userLeagues__league__buttons">
-				<button ng-show="ctrl.draftStatus(league.id)==1" class="btn btn-primary" ng-click="ctrl.route('draft/'+league.id)">Start Draft</button>
-				<button ng-show="ctrl.draftStatus(league.id)==2" class="btn btn-primary" ng-click="ctrl.route('draft/'+league.id)">Continue Draft</button>
+				<button ng-show="ctrl.draftStatus(league.id)==1" class="btn btn-success" ng-click="ctrl.route('draft/'+league.id)">Start Draft</button>
+				<button ng-show="ctrl.draftStatus(league.id)==2" class="btn btn-success" ng-click="ctrl.route('draft/'+league.id)">Continue Draft</button>
 				<button ng-show="ctrl.draftStatus(league.id)==3" class="btn btn-success" ng-click="ctrl.route('review/'+league.id)">Review Draft</button>
 			</div>
 		</div>

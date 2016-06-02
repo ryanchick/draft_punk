@@ -29,8 +29,8 @@
     </form>
 </div>
 <div class="modal-footer">
-    <button ng-show="ctrl.create" class='btn btn-success' ng-click="ctrl.addUser()">Create Account</button>
     <button ng-show="ctrl.create" class='btn btn-danger' ng-click="ctrl.toggleCreate()">Cancel</button>
-    <button ng-show="!ctrl.create" class='btn btn-warning' ng-click="ctrl.toggleCreate()">New User</button>
-    <button ng-show="!ctrl.create" class='btn btn-primary' ng-click="ctrl.login()">Login</button>
+    <button ng-show="ctrl.create" class='btn btn-success' ng-click="ctrl.addUser()">Create Account</button>
+    <button ng-show="!ctrl.create" class='btn btn-primary' ng-click="ctrl.toggleCreate()">New User</button>
+    <button ng-show="!ctrl.create" class='btn btn-black' ng-click="ctrl.login()">Login</button>
 </div>
