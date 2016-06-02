@@ -421,7 +421,7 @@
 			draftVm.teamOptions = {
 			    chart: {
 			        type: 'multiBarChart',
-			        height: 230,
+			        height: 200,
 			        //width: 400,
 			        margin : {
 			            top: 5,
