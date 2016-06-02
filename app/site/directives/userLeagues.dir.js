@@ -17,7 +17,7 @@
 		.module('draftApp')
 		.controller('userLeaguesCtrl', userLeaguesCtrl);
 
-	function userLeaguesCtrl($scope, $http, $location){
+	function userLeaguesCtrl($scope, $http, $location, $uibModal){
 		leagueVm = this;
 		//console.log($scope.user)
 		leagueVm.test = "LEAGUES";
@@ -27,6 +27,7 @@
 
 		leagueVm.draftStatus = draftStatus;
 		leagueVm.route = route;
+		leagueVm.draftOpen = draftOpen;
 
 		function draftStatus(id){
 			for (var i = 0; i < leagueVm.leagues.length; i++){
@@ -45,6 +46,21 @@
 		function route(url){
 			$location.path(url);
 		}
+
+		function draftOpen(size) {
+		    var modalInstance = $uibModal.open({
+		      	animation: true,
+		      	templateUrl: 'site/partials/draftModal.html',
+		      	controller: 'DraftModalCtrl as ctrl',
+		      	size: "",
+		    });
+
+		    modalInstance.result.then(function (selectedItem) {
+		    	// $scope.selected = selectedItem;
+		    }, function () {
+		    	console.log('Modal dismissed at: ' + new Date());
+		    });
+		};
 
 
 	}

@@ -1,39 +1,47 @@
-<div ng-repeat="league in ctrl.leagues" style="border:teal solid 1px">
-	<table class="table table-hover">
-		<tr>
-			<th>				
-				<button ng-show="ctrl.draftStatus(league.id)==1" class="btn btn-success" ng-click="ctrl.route('draft/'+league.id)">Start Draft</button>
-				<button ng-show="ctrl.draftStatus(league.id)==2" class="btn btn-success" ng-click="ctrl.route('draft/'+league.id)">Continue Draft</button>
+<div class="userLeagues">
+	<div class="container-fluid">
+		<button class="btn btn-success userLeagues__createButton" ng-click="ctrl.draftOpen()"><b>Create a League</b></button>
+	</div>
+
+	<div class="row">
+	<div class="container-fluid">
+	<div class="col-md-6" ng-repeat="league in ctrl.leagues">
+		<div class="userLeagues__league">
+			<table class="table table-hover">
+				<tr>
+					<td>
+						League Name:
+					</td>
+					<td>
+						{{league.leagueName}}
+					</td>
+				</tr>
+				<tr>
+					<td>
+						# of Teams:	
+					</td>
+					<td>
+						{{league.teams.length}}
+					</td>
+				</tr>
+				<tr>
+					<td>
+						Draft Position:	
+					</td>
+					<td>
+						{{league.userPosition}}
+					</td>
+				</tr>
+			</table>
+			<div class="userLeagues__league__buttons">
+				<button ng-show="ctrl.draftStatus(league.id)==1" class="btn btn-primary" ng-click="ctrl.route('draft/'+league.id)">Start Draft</button>
+				<button ng-show="ctrl.draftStatus(league.id)==2" class="btn btn-primary" ng-click="ctrl.route('draft/'+league.id)">Continue Draft</button>
 				<button ng-show="ctrl.draftStatus(league.id)==3" class="btn btn-success" ng-click="ctrl.route('review/'+league.id)">Review Draft</button>
-			</th>
-
-
-		</tr>
-		<tr>
-			<td>
-				League Name:
-			</td>
-			<td>
-				{{league.leagueName}}
-			</td>
-		</tr>
-		<tr>
-			<td>
-				# of Teams:	
-			</td>
-			<td>
-				{{league.teams.length}}
-			</td>
-		</tr>
-		<tr>
-			<td>
-				Draft Position:	
-			</td>
-			<td>
-				{{league.userPosition}}
-			</td>
-		</tr>
-	</table>
+			</div>
+		</div>
+	</div>
+	</div>
+	</div>
 </div>
 
 
