@@ -96,7 +96,7 @@ router.get('/players/:leagueId', function(req, res) {
 router.post('/', function(req,res){
 	var player = req.body.player;
 	console.log(player.name)
-	console.log(req.body)
+	// console.log(req.body)
 
 	//remove player from list
 	var l = availPlayers.length;
