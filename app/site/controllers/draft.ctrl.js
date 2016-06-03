@@ -216,7 +216,7 @@
 			if(draftVm.done == true){
 				$timeout(function() {
                     	$location.path('/review/' + $routeParams.leagueId);
-            	}, 2000);
+            	}, 1500);
 			}		
 
 		}

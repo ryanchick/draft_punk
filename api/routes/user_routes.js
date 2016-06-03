@@ -53,15 +53,18 @@ router.post('/leagues', function(req, res){
 //update account inform
 router.put('/:id',function(req,res){
 	console.log(req.body)
+	var __user = {};
 	var where = {where:{id:req.params.id}};
 	models.Users.find(where).then(function(user){
+		__user = user;
 		user.updateAttributes({
 			firstName: req.body.firstName,
 			lastName: req.body.lastName,
 			email: req.body.email
 		})
 	}).then(function(){
-		res.json(user);
+		__user.password = "";
+		res.json(__user);
 	})
 
 })
