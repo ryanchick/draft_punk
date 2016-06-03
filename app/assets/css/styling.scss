@@ -1,7 +1,7 @@
 $darkgreen:#107c10;
 $lightgreen:#5dc21e;
 
-//bootstrap overrides
+//BOOTSTRAP OVERRIDES
 .navbar-items{
 	font-family: bebas_neue;
 	font-size:24px !important;
@@ -38,10 +38,37 @@ $lightgreen:#5dc21e;
 	&:hover,&:hover &__split{
 		color:$darkgreen !important;
 	}
+}
+//END OVERRIDES
 
 
+.playerbox {
+	height:40px;
+	width:50px;
+	overflow:hidden;
+	text-align:center;
+	&__img{
+		height:100%;
+		cursor:pointer;
+	}
 }
 
+.statTable__cell{
+	vertical-align:middle !important;
+	text-align:center;
+}
+
+.playerHeader {
+	margin-bottom: 15px;
+	h2{
+		margin:5px;
+	}
+	&__img{
+		height:180px;
+		width:225px;
+		background-size:cover;
+	}
+}
 
 .userLeagues{
 	height:55vh;

@@ -2,13 +2,14 @@ $darkgreen:#107c10;
 $lightgreen:#5dc21e;
 $stat_width: 35px;
 
-//bootstrap override
+//BOOTSTRAP OVERRIDES
 .navbar{
 	margin-bottom:5px
 }
 .badge{
 	background-color:#107c10;
 }
+//END OVERRIDES
 
 .draftList{
 	height:80px;
@@ -343,7 +344,6 @@ $stat_width: 35px;
 .home__playerPanel{
 	&:hover{
 		background-color:whitesmoke;
-
 	}
 	cursor: pointer;
 	border: 2px solid gray;
@@ -355,7 +355,6 @@ $stat_width: 35px;
 		background-size:cover;
 		background-position:center;
 		margin-right:20px;
-
 	}
 }
 
@@ -367,7 +366,6 @@ $stat_width: 35px;
 		margin: 25px 0;
 		padding: 0 125px;
 	}
-
 }
 
 .mainJumbo{
@@ -386,7 +384,6 @@ $stat_width: 35px;
 		&:hover{
 			color:white;
 			border:white solid 2px;
-
 		}
 	}
 }

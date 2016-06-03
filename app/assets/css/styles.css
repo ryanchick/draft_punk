@@ -33,39 +33,6 @@ p,label,td,button{
 /*FOR UI-BOOTSTRAP*/
 .nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
 
-.playerbox {
-	height:40px;
-	width:50px;
-	overflow:hidden;
-	text-align:center;
-
-}
-
-.playerbox__img{
-	height:100%;
-}
-
-.statTable__cell{
-	vertical-align:middle !important;
-	text-align:center;
-}
-
-.playerHeader {
-	margin-bottom: 15px;
-
-}
-.playerHeader h2{
-	margin:5px;
-}
-
-.playerHeader__img{
-	height:180px;
-	width:225px;
-	background-size:cover;
-}
-
-
-
 
 /* when hiding the picture */
 /*.ng-hide-add         { animation:0.5s slideOut ease; }

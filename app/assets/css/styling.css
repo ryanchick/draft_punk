@@ -22,6 +22,28 @@
   .navbar-brand:hover, .navbar-brand:hover .navbar-brand__split {
     color: #107c10 !important; }
 
+.playerbox {
+  height: 40px;
+  width: 50px;
+  overflow: hidden;
+  text-align: center; }
+  .playerbox__img {
+    height: 100%;
+    cursor: pointer; }
+
+.statTable__cell {
+  vertical-align: middle !important;
+  text-align: center; }
+
+.playerHeader {
+  margin-bottom: 15px; }
+  .playerHeader h2 {
+    margin: 5px; }
+  .playerHeader__img {
+    height: 180px;
+    width: 225px;
+    background-size: cover; }
+
 .userLeagues {
   height: 55vh;
   overflow-y: scroll; }
