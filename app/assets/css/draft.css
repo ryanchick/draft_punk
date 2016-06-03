@@ -229,4 +229,7 @@
   .userJumbo h1 {
     color: white; }
 
+.userRow {
+  margin-left: 0 !important; }
+
 /*# sourceMappingURL=draft.css.map */
