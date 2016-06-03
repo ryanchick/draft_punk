@@ -23,7 +23,7 @@
 </div>
 <div class="modal-footer">
     <button type='button' class='btn btn-danger' ng-click="ctrl.cancel()">Cancel</button>
-    <button type="button" ng-show="ctrl.logged" class='btn btn-success' ng-click="ctrl.route('user');ctrl.">Resume a Saved Draft</button>
+    <button type="button" ng-show="ctrl.logged" class='btn btn-success' ng-click="ctrl.route('user')">Resume a Saved Draft</button>
     <button type="submit" ng-show="ctrl.logged" class='btn btn-success' ng-click="ctrl.createLeague(draftForm.$valid,true)">Save Draft</button>
     <button type="submit" class='btn btn-black' ng-click="ctrl.createLeague(draftForm.$valid,false)">Proceed to Draft</button>
 </div>

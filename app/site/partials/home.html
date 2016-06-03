@@ -1,14 +1,14 @@
 <div class="container">
 	<div class="jumbotron mainJumbo">
-		<h1>DRAFT PROJECT</h1>
-		<p>Explanation Text</p>
+		<h1>DRAFT<span style="color:#107c10">ASSIST</span></h1>
+		<p>The leader in fantasy basketball drafts</p>
 		<button class="btn mainJumbo__btn btn-lg" ng-click="ctrl.draftOpen()"><h2>DRAFT NOW</h2></button>
 	</div>
 	<div>
 		<div class="row">
 			<div class="col-xs-12">
 				<h3>Advanced Fantasy Drafting</h3>
-				<p>PROJECT TITLE does stuff.. etc</p>
+				<p>DRAFTASSIST uses data from the stats.nba.com API and research from past fantasy basketball seasons to help you draft the winning team for your league. DRAFTASSIST gives you the edge against your friends and coworkers during your next draft, giving you the best chance at taking 1st place! </p>
 			</div>
 			<div class="col-sm-4">
 				<h3>Detailed Statistics</h3>
@@ -36,7 +36,7 @@
 			<hr>
 			<div class="col-sm-12"> 
 				<h3>Predictive Draft Strategy</h3>
-				<p>PROJECT TITLE uses data from past fantasy drafts to establish category goals for your team that will win the majority of leagues. The target statistics (shown as the 0% line on the graph below) are meant to reach 3rd (out of 12) in every category in an average league, a threshold that will win 90% of fantasy leagues.</p>
+				<p>DRAFTASSIST uses data from past fantasy drafts to establish category goals for your team that will win the majority of leagues. The target statistics (shown as the 0% line on the graph below) are meant to reach 3rd (out of 12) in every category in an average league, a threshold that will win 90% of fantasy leagues.</p>
 				
 				<!-- <p><i>Raptors Starters: Kyle Lowry, DeMar DeRozan, Terrence Ross, Patrick Patterson, Jonas Valanciunas</i></p> -->
 
@@ -47,7 +47,7 @@
 			</div>
 			<div class="col-sm-4">
 				<h3>Mid-Draft Team Analysis</h3>
-				<p>As you draft your team, PROJECT TITLE will analyze the stats of your team and compare those stats against each remaining player to find the best available player for your next pick.</p>
+				<p>As you draft your team, DRAFTASSIST will analyze the stats of your team and compare those stats against each remaining player to find the best available player for your next pick.</p>
 				<p><i>Raptors Starters: Kyle Lowry, DeMar DeRozan, Terrence Ross, Patrick Patterson, Jonas Valanciunas</i></p>
 				<div ng-repeat="player in ctrl.players2| orderBy: 'blk'" ng-click="ctrl.drawTeamChart(player)" class="home__playerPanel">
 					<div class="container-fluid">

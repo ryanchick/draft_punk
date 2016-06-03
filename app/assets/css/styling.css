@@ -1,3 +1,27 @@
+.navbar-items, .navbar-inverse li a, .navbar-brand {
+  font-family: bebas_neue;
+  font-size: 24px !important;
+  cursor: pointer; }
+
+.navbar-inverse li a {
+  margin: 0;
+  /*color:#107c10!important;*/
+  color: #5dc21e !important; }
+  .navbar-inverse li a:hover {
+    color: white !important; }
+
+.btn-success {
+  background-color: #5dc21e; }
+  .btn-success:hover {
+    background-color: #107c10; }
+
+.navbar-brand {
+  color: #5dc21e !important; }
+  .navbar-brand__split {
+    color: white !important; }
+  .navbar-brand:hover, .navbar-brand:hover .navbar-brand__split {
+    color: #107c10 !important; }
+
 .userLeagues {
   height: 55vh;
   overflow-y: scroll; }

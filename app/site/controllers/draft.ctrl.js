@@ -269,66 +269,6 @@
 			console.log(draftVm.curPick)
 			console.log(draftVm.numTeams * 13)
 		}
-		//function createLeague(userId, num, nth){
-			// var teams = [];
-			// for(var i = 0; i < num; i++){
-			// 	teams.push({
-			// 		teamId:i,
-			// 		teamName:'Team '+(i+1),
-			// 		user:false,
-			// 		players:{
-			// 			"PG":"",
-			// 			"SG":"",
-			// 			"SF":"",
-			// 			"PF":"",
-			// 			"C":"",
-			// 			"G":"",
-			// 			"F":"",
-			// 			"UTIL1":"",
-			// 			"UTIL2":"",
-			// 			"UTIL3":"",
-			// 			"BENCH1":"",
-			// 			"BENCH2":"",
-			// 			"BENCH3":""
-			// 		},
-			// 		stats:{
-			// 			pts:0,
-			// 			ast:0,
-			// 			reb:0,
-			// 			stl:0,
-			// 			blk:0,
-			// 			fg3m:0,
-			// 			fgm:0,
-			// 			fga:0,
-			// 			ftm:0,
-			// 			fta:0,
-			// 			tov:0,
-			// 			count:0
-			// 		}
-			// 	})
-			// 	if (nth == (i+1)){
-			// 		teams[i].user = true;
-			// 		teams[i].teamName = 'My Team';
-			// 	}
-			// }
-			// console.log(teams)
-			// var league = {
-			// 	id:$routeParams.leagueId,
-			// 	teams:teams,
-			// 	draftedPlayers:[],
-
-			// }
-			// return league;
-		// 	var leagueInfo = {
-		// 				userId: userId,
-		// 				leagueSize: num,
-		// 				userPosition: nth
-		// 	};
-		// 	$http.post('/api/leagues/newLeague', leagueInfo)
-		// 		.then(function(res){
-		// 			console.log(res.data);
-		// 		})
-		// }
 
 		function isSuggest(player){
 			if(player){
@@ -365,6 +305,7 @@
 
 		function drawPlayerChart(){
 			draftVm.avg = playerSrv.avgStats[draftVm.playerSelect.position];
+			draftVm.std = playerSrv.stdDev[draftVm.playerSelect.position].dev;
 			draftVm.options = {
 			    chart: {
 			        type: 'discreteBarChart',
@@ -381,8 +322,9 @@
 			        x: function(d){ return d.label; },
 			        y: function(d){ return d.value; },
 			        showValues: true,
+			        forceY:[-2,2],
 			        valueFormat: function(d){
-			            return d3.format(',.1%')(d);
+			            return d3.format(',.1f')(d);
 			        },
 			        transitionDuration: 500,
 			        xAxis: {
@@ -390,25 +332,36 @@
 			            axisLabelDistance: -5
 			        },
 			        yAxis: {
-			            axisLabel: '% : Avg '+draftVm.playerSelect.position,
+			            axisLabel: 'Std Dev. vs '+draftVm.playerSelect.position,
 			            axisLabelDistance: -5,
-			            tickFormat: d3.format(',.1%')
+			            tickFormat: d3.format(',.1f')
 			        }
 			    }
 			};
 
 			draftVm.data = [{
 			    key: draftVm.playerSelect.name,
+			    // values: [
+			    //     { "label" : "PTS" , "value" : (draftVm.playerSelect.pts-draftVm.avg.pts)/draftVm.avg.pts},
+			    //     { "label" : "AST" , "value" : (draftVm.playerSelect.ast-draftVm.avg.ast)/draftVm.avg.ast},
+			    //     { "label" : "REB" , "value" : (draftVm.playerSelect.reb-draftVm.avg.reb)/draftVm.avg.reb},
+			    //     { "label" : "STL" , "value" : (draftVm.playerSelect.stl-draftVm.avg.stl)/draftVm.avg.stl},
+			    //     { "label" : "BLK" , "value" : (draftVm.playerSelect.blk-draftVm.avg.blk)/draftVm.avg.blk},
+			    //     { "label" : "3PT" , "value" : (draftVm.playerSelect.fg3m-draftVm.avg.fg3m)/draftVm.avg.fg3m},
+			    //     { "label" : "FG%" , "value" : ((draftVm.playerSelect.fga == 0 ? 0 : draftVm.playerSelect.fgm/draftVm.playerSelect.fga) - draftVm.avg.fgp)/draftVm.avg.fgp},
+			    //     { "label" : "FT%" , "value" : ((draftVm.playerSelect.fta == 0 ? 0 : draftVm.playerSelect.ftm/draftVm.playerSelect.fta) - draftVm.avg.ftp)/draftVm.avg.ftp},
+			    //     { "label" : "TO"  , "value" : (draftVm.avg.tov-draftVm.playerSelect.tov)/draftVm.avg.tov}
+			    // ]
 			    values: [
-			        { "label" : "PTS" , "value" : (draftVm.playerSelect.pts-draftVm.avg.pts)/draftVm.avg.pts},
-			        { "label" : "AST" , "value" : (draftVm.playerSelect.ast-draftVm.avg.ast)/draftVm.avg.ast},
-			        { "label" : "REB" , "value" : (draftVm.playerSelect.reb-draftVm.avg.reb)/draftVm.avg.reb},
-			        { "label" : "STL" , "value" : (draftVm.playerSelect.stl-draftVm.avg.stl)/draftVm.avg.stl},
-			        { "label" : "BLK" , "value" : (draftVm.playerSelect.blk-draftVm.avg.blk)/draftVm.avg.blk},
-			        { "label" : "3PT" , "value" : (draftVm.playerSelect.fg3m-draftVm.avg.fg3m)/draftVm.avg.fg3m},
-			        { "label" : "FG%" , "value" : ((draftVm.playerSelect.fga == 0 ? 0 : draftVm.playerSelect.fgm/draftVm.playerSelect.fga) - draftVm.avg.fgp)/draftVm.avg.fgp},
-			        { "label" : "FT%" , "value" : ((draftVm.playerSelect.fta == 0 ? 0 : draftVm.playerSelect.ftm/draftVm.playerSelect.fta) - draftVm.avg.ftp)/draftVm.avg.ftp},
-			        { "label" : "TO"  , "value" : (draftVm.avg.tov-draftVm.playerSelect.tov)/draftVm.avg.tov}
+			        { "label" : "PTS" , "value" : (draftVm.playerSelect.pts-draftVm.avg.pts)/draftVm.std.pts},
+			        { "label" : "AST" , "value" : (draftVm.playerSelect.ast-draftVm.avg.ast)/draftVm.std.ast},
+			        { "label" : "REB" , "value" : (draftVm.playerSelect.reb-draftVm.avg.reb)/draftVm.std.reb},
+			        { "label" : "STL" , "value" : (draftVm.playerSelect.stl-draftVm.avg.stl)/draftVm.std.stl},
+			        { "label" : "BLK" , "value" : (draftVm.playerSelect.blk-draftVm.avg.blk)/draftVm.std.blk},
+			        { "label" : "3PT" , "value" : (draftVm.playerSelect.fg3m-draftVm.avg.fg3m)/draftVm.std.fg3m},
+			        { "label" : "FG%" , "value" : ((draftVm.playerSelect.fga == 0 ? 0 : draftVm.playerSelect.fgm/draftVm.playerSelect.fga) - draftVm.avg.fgp)/draftVm.std.fgp},
+			        { "label" : "FT%" , "value" : ((draftVm.playerSelect.fta == 0 ? 0 : draftVm.playerSelect.ftm/draftVm.playerSelect.fta) - draftVm.avg.ftp)/draftVm.std.ftp},
+			        { "label" : "TO"  , "value" : (draftVm.avg.tov-draftVm.playerSelect.tov)/draftVm.std.tov}
 			    ]
 			}];
 			//window.dispatchEvent(new Event('resize'));

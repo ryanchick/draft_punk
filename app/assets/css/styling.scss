@@ -1,6 +1,48 @@
 $darkgreen:#107c10;
 $lightgreen:#5dc21e;
 
+//bootstrap overrides
+.navbar-items{
+	font-family: bebas_neue;
+	font-size:24px !important;
+	cursor:pointer;
+}
+
+.navbar-inverse li a{
+	@extend .navbar-items;
+	margin:0;
+	/*color:#107c10!important;*/
+	color:$lightgreen !important;
+	&:hover{
+		color:white!important;
+	}
+}
+
+.btn-success{
+	background-color:$lightgreen;
+	&:hover{
+		background-color:$darkgreen;
+	}
+}
+
+.navbar-brand{
+	// color:white !important;
+	@extend .navbar-items;
+	color:$lightgreen!important;
+	&__split{
+		color:white!important;
+		// &:hover{
+		// 	color:$lightgreen !important;
+		// }
+	}
+	&:hover,&:hover &__split{
+		color:$darkgreen !important;
+	}
+
+
+}
+
+
 .userLeagues{
 	height:55vh;
 	overflow-y:scroll;

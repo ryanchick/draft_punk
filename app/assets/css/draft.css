@@ -166,6 +166,8 @@
 
 .teamAverage {
   padding: 0 5px; }
+  .teamAverage__graphToggle {
+    float: right; }
   .teamAverage__title {
     display: inline-block;
     margin-top: 0;

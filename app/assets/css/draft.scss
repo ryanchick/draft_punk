@@ -308,6 +308,9 @@ $stat_width: 35px;
 }
 .teamAverage{
 	padding:0 5px;
+	&__graphToggle{
+		float:right;
+	}
 	&__title{
 		display:inline-block;
 		margin-top:0;

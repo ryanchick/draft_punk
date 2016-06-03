@@ -14,7 +14,7 @@
 }
 
 .toggle {
-	float:right;
+	/*float:right;*/
 	position: relative;
 	overflow: hidden;
 }

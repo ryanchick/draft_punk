@@ -64,26 +64,8 @@ p,label,td,button{
 	background-size:cover;
 }
 
-.navbar-inverse a,.navbar-brand{
-	cursor:pointer;
-	margin:0;
-	font-family: bebas_neue;
-	font-size:24px !important;
-	/*color:#107c10!important;*/
-	color:#5dc21e!important;
-}
-.navbar-inverse a:hover,.navbar-brand:hover{
-	/*color:#5dc21e!important;*/
-	/*color:#107c10!important;*/
-	color:white !important;
-}
 
-.btn-success{
-	background-color:#107c10;
-}
-.btn-success:hover{
-	background-color:#5dc21e;
-}
+
 
 /* when hiding the picture */
 /*.ng-hide-add         { animation:0.5s slideOut ease; }

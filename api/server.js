@@ -3,7 +3,7 @@ var express = require("express");
 var bodyParser = require("body-parser");
 
 var app = express();
-var PORT = 80;
+var PORT = 8080;
 
 //app config
 app.use(bodyParser.json({limit: '50mb'}));

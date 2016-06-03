@@ -140,7 +140,11 @@
 						<h4 class="teamAverage__title">
 							Team Average
 						</h4>
-						<input toggle-button class="form-control" ng-model="ctrl.teamGraph" ng-change="Change(); ctrl.drawTeamChart()" type="checkbox" data-on="Graph" data-off="Table" data-size="mini">
+						<div class="teamAverage__graphToggle">
+							<i class="fa fa-table" aria-hidden="true"></i>
+							<input toggle-button class="form-control" ng-model="ctrl.teamGraph" ng-change="Change(); ctrl.drawTeamChart()" type="checkbox" data-on="Graph" data-off="Table" data-size="mini">
+							<i class="fa fa-bar-chart" aria-hidden="true"></i>
+						</div>
 						<table ng-show="!ctrl.teamGraph" class="table table-condensed">
 							<tr>
 								<th></th>
