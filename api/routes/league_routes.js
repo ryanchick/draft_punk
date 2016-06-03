@@ -76,19 +76,21 @@ router.post('/newLeague',function (req,res){
 		res.json(league);
 		return league.id;
 	}).then(function(leagueId){
-		var where = {where:{id:req.body.userId}};
-		models.Users.find(where).then(function(user){
-			// console.log("old teams:");
-			// console.log(user);
-			var tempTeams = user.teams;
-			tempTeams.push(leagueId);
-			user.updateAttributes({
-				teams: tempTeams
-			}).then(function(){
-				// console.log("new teams:");
+		if(req.body.userId > 0){
+			var where = {where:{id:req.body.userId}};
+			models.Users.find(where).then(function(user){
+				// console.log("old teams:");
 				// console.log(user);
+				var tempTeams = user.teams;
+				tempTeams.push(leagueId);
+				user.updateAttributes({
+					teams: tempTeams
+				}).then(function(){
+					// console.log("new teams:");
+					// console.log(user);
+				})
 			})
-		})
+		}
 	})
 })
 
