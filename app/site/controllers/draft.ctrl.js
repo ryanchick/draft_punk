@@ -160,6 +160,7 @@
 			// draftVm.league.teams[pickTeam].players.push(player);
 			
 			draftVm.league.draftedPlayers.push(player);
+
 			if(draftVm.curPick % draftVm.numTeams == (draftVm.numTeams-1) && draftVm.curRound != 12){
 				draftVm.curRound++;
 				$http.put('api/league/'+draftVm.league.id, {teams:draftVm.league.teams,draftedPlayers:draftVm.league.draftedPlayers})
@@ -182,6 +183,7 @@
 
 			}else{
 				draftVm.curPick++;
+				$http.put('api/league/'+draftVm.league.id, {teams:draftVm.league.teams,draftedPlayers:draftVm.league.draftedPlayers})
 			}
 
 			// draftVm.myPick = false;

@@ -22,7 +22,10 @@
 		//console.log($scope.user)
 		leagueVm.test = "LEAGUES";
 		leagueVm.user = JSON.parse($scope.user);
-		leagueVm.leagues = JSON.parse($scope.leagues);
+		leagueVm.leagues = [];
+		if($scope.leagues){
+			leagueVm.leagues = JSON.parse($scope.leagues);
+		}
 		leagueVm.editting = [];
 
 		leagueVm.draftStatus = draftStatus;

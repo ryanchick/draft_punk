@@ -127,9 +127,11 @@
 
 			//functions
 			function addUser(isValid){
+				console.log('create');
 				if(!isValid){
 					return;
 				}
+
 				var newUser = {
 								username:loginVm.username,
 								password:loginVm.password,
@@ -144,6 +146,7 @@
 			}
 
 			function login(){
+				console.log('login');
 				var loginInfo = {
 								  username:loginVm.username,
 								  password:loginVm.password
@@ -162,8 +165,8 @@
 							console.log('invalid login');
 						}
 					},function(err){
-						console.log(err)
-						alert('Wrong Username and/or Password!')
+						console.log(err);
+						alert('Wrong Username and/or Password!');
 					});
 			}
 

@@ -96,6 +96,7 @@ router.get('/players/:leagueId', function(req, res) {
 router.post('/', function(req,res){
 	var player = req.body.player;
 	console.log(player.name)
+	console.log(req.body)
 
 	//remove player from list
 	var l = availPlayers.length;
@@ -134,9 +135,9 @@ router.post('/', function(req,res){
 		}
 	}
 	if(userTeam.count >= 7){
-		for(var pos in req.body.players){
+		for(var pos in req.body.team.players){
 			if(!(pos.match('UTIL') || pos.match('BENCH'))){
-				if(req.body.players[pos] == ""){
+				if(req.body.team.players[pos] == ""){
 					missing = pos;
 					console.log(missing)
 					break;

@@ -56,6 +56,7 @@
 							$uibModalInstance.close();
 						} else {
 							//close modal
+							console.log('saved league')
 							$location.path('/user/'+draftmVm.user.username);
 							$uibModalInstance.close();
 						}

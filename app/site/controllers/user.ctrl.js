@@ -14,6 +14,7 @@
 			userVm.leagues = user.leagues;
 		} else {
 			userVm.user = user;
+			// userVm.leagues = [];
 		}
 		
 		userVm.showLeagues = true;
