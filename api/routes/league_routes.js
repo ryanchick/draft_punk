@@ -11,7 +11,7 @@ router.get('/', function(req, res) {
 router.get('/:leagueId', function(req, res) {
 	var where = {where:{id:req.params.leagueId}};
 	models.Leagues.find(where).then(function(league){
-		console.log(league);
+		// console.log(league);
 		res.json(league);
 	})
 });
@@ -20,7 +20,7 @@ router.get('/:leagueId', function(req, res) {
 router.post('/newLeague',function (req,res){
 	var teams = [];
 	var num = req.body.leagueSize;
-	console.log(req);
+	// console.log(req);
 	for(var i = 0; i < num; i++){
 		teams.push({
 			teamId:i,
