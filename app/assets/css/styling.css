@@ -56,5 +56,7 @@
   .btn-black:hover {
     color: white;
     background-color: black; }
+  .btn-black:active, .btn-black:focus {
+    color: #5dc21e; }
 
 /*# sourceMappingURL=styling.css.map */

@@ -4,33 +4,34 @@
         <span ng-show="ctrl.create">Create an Account</span>
     </h3>
 </div>
-<div class="modal-body">
-    <form name = "frm">
+<form name = "loginForm">
+    <div class="modal-body">
+    
         <div class="form-group">
             <label for="username">User Name</label>
-            <input type="text" name="username" class="form-control" id="username" ng-model="ctrl.username">
+            <input type="text" name="username" class="form-control" id="username" ng-model="ctrl.username" required>
         </div>
         <div class="form-group">
             <label for="password">Password</label>
-            <input type="password" name="password" class="form-control" id="password" ng-model="ctrl.password">
+            <input type="password" name="password" class="form-control" id="password" ng-model="ctrl.password" required>
         </div>
         <div ng-show="ctrl.create" class="form-group">
             <label for="firstName">First Name</label>
-            <input type="text" name="firstName" class="form-control" id="firstName" ng-model="ctrl.firstName" placeholder="">
+            <input type="text" name="firstName" class="form-control" id="firstName" ng-model="ctrl.firstName" placeholder="" required>
         </div>
         <div ng-show="ctrl.create" class="form-group">
             <label for="lastName">Last Name</label>
-            <input type="text" name="lastName" class="form-control" id="lastName" ng-model="ctrl.lastName" placeholder="">
+            <input type="text" name="lastName" class="form-control" id="lastName" ng-model="ctrl.lastName" placeholder="" required>
         </div>
         <div ng-show="ctrl.create" class="form-group">
             <label for="email">Email</label>
-            <input type="email" name="username" class="form-control" id="email" ng-model="ctrl.email" placeholder="e.g. user@email.com">
-        </div>
-    </form>
-</div>
-<div class="modal-footer">
-    <button ng-show="ctrl.create" class='btn btn-danger' ng-click="ctrl.toggleCreate()">Cancel</button>
-    <button ng-show="ctrl.create" class='btn btn-success' ng-click="ctrl.addUser()">Create Account</button>
-    <button ng-show="!ctrl.create" class='btn btn-primary' ng-click="ctrl.toggleCreate()">New User</button>
-    <button ng-show="!ctrl.create" class='btn btn-black' ng-click="ctrl.login()">Login</button>
-</div>
+            <input type="email" name="username" class="form-control" id="email" ng-model="ctrl.email" placeholder="e.g. user@email.com" required>
+        </div>     
+    </div>
+    <div class="modal-footer">
+        <button type="button" ng-show="ctrl.create" class='btn btn-danger' ng-click="ctrl.toggleCreate()">Cancel</button>
+        <button type="submit" ng-show="ctrl.create" class='btn btn-success' ng-click="ctrl.addUser(loginForm.$valid)">Create Account</button>
+        <button type="button" ng-show="!ctrl.create" class='btn btn-primary' ng-click="ctrl.toggleCreate()">New User</button>
+        <button type="button" ng-show="!ctrl.create" class='btn btn-black' ng-click="ctrl.login()">Login</button>
+    </div>
+</form>

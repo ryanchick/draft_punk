@@ -91,5 +91,8 @@ $lightgreen:#5dc21e;
 		color:white;
 		background-color:black;
 	}
+	&:active,&:focus{
+		color:$lightgreen;
+	}
 }
 

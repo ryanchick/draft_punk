@@ -126,7 +126,10 @@
 
 
 			//functions
-			function addUser(){
+			function addUser(isValid){
+				if(!isValid){
+					return;
+				}
 				var newUser = {
 								username:loginVm.username,
 								password:loginVm.password,
@@ -147,6 +150,8 @@
 								};
 				$http.post('/api/auth/login', loginInfo)
 					.then(function(res){
+						
+						console.log(res)
 						if (res.data.username){
 							console.log('logged in');
 							console.log(res.data);
@@ -156,10 +161,14 @@
 						} else {
 							console.log('invalid login');
 						}
+					},function(err){
+						console.log(err)
+						alert('Wrong Username and/or Password!')
 					});
 			}
 
 			function toggleCreate(){
+
 				loginVm.create = !loginVm.create;
 			}
 		}
