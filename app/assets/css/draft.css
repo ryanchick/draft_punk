@@ -1,5 +1,7 @@
 .navbar {
-  margin-bottom: 5px; }
+  margin-bottom: 5px; 
+  border-radius:0px;
+}
 
 .badge {
   background-color: #107c10; }
@@ -211,7 +213,9 @@
 
 .mainJumbo {
   background-image: url("../images/home_ballground.jpg");
-  background-size: cover; }
+  background-size: cover; 
+  width:100vw;
+}
   .mainJumbo h1 {
     color: white; }
   .mainJumbo p {
