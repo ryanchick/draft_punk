@@ -214,7 +214,6 @@
 .mainJumbo {
   background-image: url("../images/home_ballground.jpg");
   background-size: cover; 
-  width:100vw;
 }
   .mainJumbo h1 {
     color: white; }
